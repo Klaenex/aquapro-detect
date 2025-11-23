@@ -17,6 +17,7 @@ export default function SiteMenuGlass() {
   return (
     <>
       {/* Desktop Menu */}
+
       <nav className="hidden md:flex gap-6 text-sm font-medium">
         {links.map((link) => (
           <Link
@@ -28,7 +29,6 @@ export default function SiteMenuGlass() {
           </Link>
         ))}
       </nav>
-
       {/* Mobile Button */}
       <button
         className="md:hidden text-slate-200 text-xl"
@@ -36,7 +36,6 @@ export default function SiteMenuGlass() {
       >
         ☰
       </button>
-
       {/* Mobile Menu */}
       {open && (
         <div className="absolute w-full left-0 top-16 bg-slate-900/60 backdrop-blur-lg border-b border-slate-700 p-6 z-40 md:hidden">
