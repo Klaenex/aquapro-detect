@@ -1,5 +1,16 @@
 import React from "react";
 
-export default function Container({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <div className={`mx-auto max-w-6xl w-full px-4 md:px-6 ${className}`}>{children}</div>;
+type ContainerProps = React.HTMLAttributes<HTMLDivElement>;
+
+export default function Container(props: ContainerProps) {
+  const { className = "", children, ...rest } = props;
+
+  return (
+    <div
+      {...rest}
+      className={`mx-auto w-full max-w-6xl px-4 md:px-6 ${className}`}
+    >
+      {children}
+    </div>
+  );
 }
