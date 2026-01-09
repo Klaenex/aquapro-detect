@@ -1,14 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { CATEGORIES, SERVICES } from "@/lib/content";
 import { getServiceUrl } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  title: "Demande d’intervention | AquaPro-Détect Belgium",
+  description:
+    "Envoyez une demande d’intervention : recherche de fuite, inspection caméra, débouchage 24/7, nettoyage fin de bail ou après sinistre.",
+  alternates: { canonical: "/demande-intervention/" },
+  openGraph: {
+    title: "Demande d’intervention | AquaPro-Détect Belgium",
+    description:
+      "Choisissez un service puis remplissez le formulaire pour être recontacté rapidement.",
+    url: "/demande-intervention/",
+    type: "website",
+  },
+};
 
 export default function RequestPage() {
   return (
     <div>
       <h1 className="h1">Demande d’intervention</h1>
       <p className="lead">
-        Choisissez d’abord le service concerné. Ensuite, vous pourrez remplir le
-        formulaire dédié (prochaine étape).
+        Choisissez d’abord le service concerné. Vous pourrez ensuite remplir le
+        formulaire dédié.
       </p>
 
       {CATEGORIES.map((c) => {

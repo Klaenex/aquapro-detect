@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.aquapro-detect.be/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/problemes/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/urgence-24-7/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/demande-intervention/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/assurances-rapports/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/a-propos/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/contact/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/mentions-legales-rgpd/</loc></url>
+
+  <!-- Catégories -->
+  <url><loc>https://www.aquapro-detect.be/services/detection-diagnostic/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/nettoyage-sinistres/</loc></url>
+
+  <!-- Services -->
+  <url><loc>https://www.aquapro-detect.be/services/detection-diagnostic/recherche-de-fuite/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/detection-diagnostic/camera-thermique/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/detection-diagnostic/test-fumigene/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/detection-diagnostic/detection-sonar/</loc></url>
+
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/inspection-camera/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/analyse-stabilite/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/debouchage-24-7/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/entretien-egouts/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/egouts-canalisations/reparation-egouts/</loc></url>
+
+  <url><loc>https://www.aquapro-detect.be/services/nettoyage-sinistres/nettoyage-fin-de-bail/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/services/nettoyage-sinistres/nettoyage-apres-sinistre/</loc></url>
+
+  <!-- Problèmes -->
+  <url><loc>https://www.aquapro-detect.be/problemes/odeurs-egout/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/problemes/humidite-moisissures/</loc></url>
+  <url><loc>https://www.aquapro-detect.be/problemes/fissures-stabilite/</loc></url>
+</urlset>

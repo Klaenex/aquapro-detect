@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import { PROBLEMS } from "@/lib/content";
 import { Card, CardsGrid } from "@/components/Cards";
+
+export const metadata: Metadata = {
+  title: "Problèmes | AquaPro-Détect Belgium",
+  description:
+    "Odeurs d’égout, humidité & moisissures, fissures & stabilité : trouvez le bon service (inspection caméra, test fumigène, recherche de fuite…).",
+  alternates: { canonical: "/problemes/" },
+  openGraph: {
+    title: "Problèmes | AquaPro-Détect Belgium",
+    description:
+      "Pages orientées client : on part du symptôme pour vous guider vers le bon service.",
+    url: "/problemes/",
+    type: "website",
+  },
+};
 
 export default function ProblemsPage() {
   return (

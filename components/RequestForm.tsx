@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { ServiceFormType } from "@/lib/content";
+import { CONTACT } from "@/lib/content";
 
 type Props = {
   serviceTitle: string;
@@ -72,13 +73,12 @@ export default function RequestForm({
     [formType]
   );
 
-  const showEtage = true; // utile si appartement
-  const showPaiement = true;
   const showAssurance = formType === "fuite" || formType === "inspection";
-
   const showFuiteExtras = formType === "fuite";
   const showInspectionExtras = formType === "inspection";
   const showNettoyageExtras = formType === "nettoyage";
+
+  const isUrgenceType = formType === "debouchage";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -87,12 +87,13 @@ export default function RequestForm({
 
     const fd = new FormData(e.currentTarget);
 
-    // anti-spam honeypot
+    // honeypot anti-spam
     const hp = String(fd.get("website") || "");
     if (hp.trim().length > 0) {
       setStatus("ok");
-      setFeedback("Merci ! Votre demande a bien été envoyée.");
-      e.currentTarget.reset();
+      window.location.href = `/merci?service=${encodeURIComponent(
+        serviceTitle
+      )}`;
       return;
     }
 
@@ -105,7 +106,6 @@ export default function RequestForm({
         submittedAt: new Date().toISOString(),
       },
 
-      // commun
       description: String(fd.get("description") || ""),
       urgence: String(fd.get("urgence") || ""),
       logement: String(fd.get("logement") || ""),
@@ -160,10 +160,11 @@ export default function RequestForm({
         throw new Error(json?.error || "Erreur serveur");
 
       setStatus("ok");
-      setFeedback(
-        "Merci ! Votre demande a bien été envoyée. Nous vous recontactons rapidement."
-      );
-      e.currentTarget.reset();
+
+      // redirection page Merci (plus pro + mieux pour l’utilisateur)
+      window.location.href = `/merci?service=${encodeURIComponent(
+        serviceTitle
+      )}`;
     } catch {
       setStatus("error");
       setFeedback(
@@ -181,7 +182,34 @@ export default function RequestForm({
         </div>
       </div>
 
-      {/* Honeypot anti-spam (ne pas supprimer) */}
+      {/* Bloc urgence visible */}
+      {isUrgenceType ? (
+        <div className="card" style={{ marginTop: 14, borderStyle: "dashed" }}>
+          <div style={{ fontWeight: 800 }}>
+            🚨 Urgence ? Appelez directement
+          </div>
+          <div className="lead" style={{ marginTop: 8 }}>
+            <a
+              className="pill pillPrimary"
+              href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
+            >
+              {CONTACT.phone1}
+            </a>{" "}
+            <a
+              className="pill"
+              href={`tel:${CONTACT.phone2.replace(/\s/g, "")}`}
+            >
+              {CONTACT.phone2}
+            </a>
+          </div>
+          <div className="lead" style={{ marginTop: 10 }}>
+            Pour un reflux important / débordement, l’appel est plus rapide que
+            le formulaire.
+          </div>
+        </div>
+      ) : null}
+
+      {/* Honeypot anti-spam */}
       <div
         style={{
           position: "absolute",
@@ -245,29 +273,21 @@ export default function RequestForm({
           </select>
         </div>
 
-        {showEtage ? (
-          <div>
-            <label className="label">Étage (si appartement)</label>
-            <input name="etage" className="input" placeholder="Ex: 2e" />
-          </div>
-        ) : null}
+        <div>
+          <label className="label">Étage (si appartement)</label>
+          <input name="etage" className="input" placeholder="Ex: 2e" />
+        </div>
 
-        {showPaiement ? (
-          <div>
-            <label className="label">Mode de paiement</label>
-            <select
-              name="paiement"
-              className="select"
-              defaultValue="bancontact"
-            >
-              <option value="bancontact">Bancontact</option>
-              <option value="cash">Cash</option>
-            </select>
-          </div>
-        ) : null}
+        <div>
+          <label className="label">Mode de paiement</label>
+          <select name="paiement" className="select" defaultValue="bancontact">
+            <option value="bancontact">Bancontact</option>
+            <option value="cash">Cash</option>
+          </select>
+        </div>
       </div>
 
-      {/* EXTRAS: FUITE */}
+      {/* Extras FUITE */}
       {showFuiteExtras ? (
         <div className="card" style={{ marginTop: 14 }}>
           <div style={{ fontWeight: 750, marginBottom: 10 }}>
@@ -310,7 +330,7 @@ export default function RequestForm({
         </div>
       ) : null}
 
-      {/* EXTRAS: INSPECTION */}
+      {/* Extras INSPECTION */}
       {showInspectionExtras ? (
         <div className="card" style={{ marginTop: 14 }}>
           <div style={{ fontWeight: 750, marginBottom: 10 }}>
@@ -353,7 +373,7 @@ export default function RequestForm({
         </div>
       ) : null}
 
-      {/* EXTRAS: NETTOYAGE */}
+      {/* Extras NETTOYAGE */}
       {showNettoyageExtras ? (
         <div className="card" style={{ marginTop: 14 }}>
           <div style={{ fontWeight: 750, marginBottom: 10 }}>
@@ -463,7 +483,7 @@ export default function RequestForm({
         <span className="lead" style={{ marginTop: 0 }}>
           {feedback
             ? feedback
-            : "Réponse rapide. Les informations sont annoncées clairement à l’avance."}
+            : "Réponse rapide. Tarifs clairs annoncés à l’avance."}
         </span>
       </div>
 

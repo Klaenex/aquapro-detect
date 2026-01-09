@@ -4,9 +4,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "AquaPro-Détect Belgium",
+  metadataBase: new URL("https://www.aquapro-detect.be"),
+  title: {
+    default: "AquaPro-Détect Belgium",
+    template: "%s",
+  },
   description:
-    "Recherche de fuite, caméra thermique, test fumigène, détection sonar, inspection caméra, débouchage 24/7, entretien et réparation d’égouts.",
+    "Recherche de fuite, caméra thermique, test fumigène, détection sonar, inspection caméra, débouchage 24/7, entretien et réparation d’égouts, nettoyage et sinistres.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "AquaPro-Détect Belgium",
+    locale: "fr_BE",
+  },
 };
 
 export default function RootLayout({

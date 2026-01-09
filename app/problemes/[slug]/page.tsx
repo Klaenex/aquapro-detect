@@ -1,9 +1,47 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { PROBLEMS } from "@/lib/content";
 import { getProblem, getServiceUrl } from "@/lib/utils";
 
 export function generateStaticParams() {
   return PROBLEMS.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+
+  const problem = getProblem(slug);
+
+  if (!problem) {
+    return {
+      title: "Problèmes | AquaPro-Détect Belgium",
+      description:
+        "Odeurs d’égout, humidité, moisissures, fissures : trouvez rapidement le bon service pour résoudre votre problème.",
+    };
+  }
+
+  const title = `${problem.title} | Problèmes | AquaPro-Détect Belgium`;
+  const description =
+    problem.excerpt?.slice(0, 160) ||
+    "Trouvez rapidement le bon service pour résoudre votre problème.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/problemes/${slug}/`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url: `/problemes/${slug}/`,
+    },
+  };
 }
 
 export default async function ProblemPage({

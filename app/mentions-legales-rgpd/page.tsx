@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import { CONTACT } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Mentions légales & RGPD | AquaPro-Détect Belgium",
+  description:
+    "Mentions légales et informations RGPD : coordonnées de l’entreprise, contact, politique de confidentialité.",
+  alternates: { canonical: "/mentions-legales-rgpd/" },
+  openGraph: {
+    title: "Mentions légales & RGPD | AquaPro-Détect Belgium",
+    description: "Informations légales et confidentialité (RGPD).",
+    url: "/mentions-legales-rgpd/",
+    type: "website",
+  },
+};
 
 export default function LegalPage() {
   return (
