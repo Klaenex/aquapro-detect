@@ -1,0 +1,31 @@
+/* styles/globals.scss */
+
+/* --- Toutes les directives @use doivent être en haut du fichier --- */
+@use "abstracts/_variables" as *;
+@use "abstracts/_mixins" as *;
+@use "base/_reset" as *;
+@use "components/_header" as *;
+
+/* Variables CSS runtime (fallback + thème) */
+:root {
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --bg: #ffffff;
+  --primary: #0f172a;
+  --primaryText: #ffffff;
+  --radius: 14px;
+  --container: 1120px;
+
+  --text-grey: rgba(135, 135, 135, 1);
+  --p-small: 16px;
+}
+
+/* Règles globales supplémentaires si nécessaire */
+html,
+body {
+  /* Si tu veux, tu peux laisser ici un reset léger,
+     sinon le fichier base/_reset.scss le fait déjà. */
+}
+
+@import "components/_header";

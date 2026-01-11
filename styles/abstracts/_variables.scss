@@ -1,0 +1,25 @@
+/* styles/abstracts/_variables.scss */
+$font-primary: "Montserrat", sans-serif;
+$font-secondary: "Arial", sans-serif;
+
+$font-weight-light: 100;
+$font-weight-regular: 400;
+$font-weight-semiBold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+$font-size-normal: 1rem;
+$font-size-medium: 1.414rem;
+$font-size-title: 2.827rem;
+$font-size-big: 3.998rem;
+
+$c-green: #18988b;
+$c-grey: hsl(174, 13%, 55%);
+$c-red: hsl(0, 13%, 55%);
+$c-yellow: #fdc224;
+
+$screen-sm: 600px;
+$screen-md: 800px;
+$screen-lg: 1000px;
+$screen-xl: 1200px;
+$screen-custom: 1100px;
