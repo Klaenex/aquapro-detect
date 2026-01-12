@@ -1,0 +1,19 @@
+.Hero {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    color: var(--primaryText);
+    background: linear-gradient(129deg,#0b4765, #3ab9cc);
+}
+
+.background {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    fill: var(--bg);
+}
+
+.container {
+    position: relative;
+}
