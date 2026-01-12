@@ -6,6 +6,8 @@
 @use "base/_reset" as *;
 @use "components/_header" as *;
 
+@use "components/footer" as *;
+
 /* Variables CSS runtime (fallback + thème) */
 :root {
   --text: #0f172a;
@@ -19,13 +21,45 @@
 
   --text-grey: rgba(135, 135, 135, 1);
   --p-small: 16px;
+  --bg-blue: rgba(12, 70, 100, 1);
 }
 
-/* Règles globales supplémentaires si nécessaire */
 html,
 body {
-  /* Si tu veux, tu peux laisser ici un reset léger,
-     sinon le fichier base/_reset.scss le fait déjà. */
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 }
 
-@import "components/_header";
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h6 {
+  font-size: 1.414rem;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  font-size: --p-small;
+  margin: 0;
+}

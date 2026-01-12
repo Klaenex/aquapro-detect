@@ -1,11 +1,8 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import logo_horizontal from "@/public/img/aquapro_logo_horizontal.svg";
-import burger from "@/public/img/burger-bar.png";
 
 export default function Header() {
   const [nav, setNav] = useState("inactive");
