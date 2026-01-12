@@ -19,7 +19,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-.pill {
+.pills .pill {
   color: var(--text-grey);
   &:hover {
     color: var(--primaryText);

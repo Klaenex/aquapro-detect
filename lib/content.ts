@@ -515,3 +515,8 @@ export const HERO = {
   first_paragraph: "Avec plus de 15 ans d’expérience, AquaPro-Détect Belgium met son expertise au service des particuliers comme des professionnels.",
   second_paragraph: "Nous sommes spécialisés dans de nombreux domaines liés à la détection, l’inspection et l’entretien des bâtiments."
 }
+
+export const EMERGENCY = {
+  title: "Urgence Débouchage 24h/7j",
+  paragraph: "Intervention rapide partout en région bruxelloise",
+}

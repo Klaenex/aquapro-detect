@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CATEGORIES, CONTACT } from "@/lib/content";
 import { Card, CardsGrid } from "@/components/Cards";
 import Hero from "@/components/Hero"
+import Emergency from "@/components/Emergency"
 
 export const metadata: Metadata = {
   title: "AquaPro-Détect Belgium | Détection, égouts, débouchage, nettoyage",
@@ -62,6 +63,8 @@ export default function HomePage() {
           ))}
         </CardsGrid>
       </div>
+
+      <Emergency />
 
       <div className="section">
         <h2 className="h2">Problèmes fréquents</h2>
