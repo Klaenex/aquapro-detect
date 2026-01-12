@@ -1,10 +1,5 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/content";
-import Image from "next/image";
-import call from "@/public/img/icons/phone.svg";
-import email from "@/public/img/icons/mail.svg";
-import maps from "@/public/img/icons/pin-fat.svg";
-import vat from "@/public/img/icons/building.svg";
 
 export default function Footer() {
   return (
