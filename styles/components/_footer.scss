@@ -1,5 +1,5 @@
 .footer {
-  padding-top: 4rem;
+  padding-top: 2rem;
   padding-bottom: 2rem;
   box-shadow: 0 -4 4 rgba(0, 0, 0, 0.25);
   background-color: var(--bg-blue);
@@ -7,55 +7,55 @@
   h6 {
     color: var(--primaryText);
   }
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.414rem;
-    .liens {
-      .pills {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        a {
-          color: var(--primaryText);
-          &:hover {
-            color: var(--text);
-          }
-        }
-      }
-    }
-    .contactContainer {
-      padding-bottom: 1rem;
-      .contacts {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        div {
-          display: flex;
-          gap: 0.5rem;
-          align-items: center;
-          img {
-            height: 1rem;
-            width: 1rem;
-            color: var(--primaryText);
-          }
-          p {
-            color: var(--primaryText);
-          }
-        }
-      }
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pill {
+  color: var(--text-grey);
+  &:hover {
+    color: var(--primaryText);
   }
-  .copyright {
+}
+
+.contactContainer {
+  padding-bottom: 1rem;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.singleContact {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  svg {
+    height: 1rem;
+    width: 1rem;
+    fill: var(--primaryText);
+  }
+  p {
+    color: var(--primaryText);
+  }
+}
+
+.copyright {
+  padding-top: 1rem;
+  p {
+    width: 100%;
+    border-top: 1px solid rgba(128, 128, 128, 0.25);
+    color: var(--text-grey);
+    margin-top: 0;
     padding-top: 1rem;
-    p {
-      width: 100%;
-      border-top: 1px solid rgba(128, 128, 128, 0.25);
-      color: var(--text-grey);
-      margin-top: 0;
-      padding-top: 1rem;
-      text-align: center;
-    }
+    text-align: center;
   }
 }
