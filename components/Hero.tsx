@@ -8,12 +8,14 @@ export default function Hero() {
                 <path d="m0 120 60-10c60-10 180-30 300-40s240-10 360-5 240 15 360 20 240 5 300 5h60v30z"/>
             </svg>
             <div className="container">
-                <h4>
-                    {HERO.title[0]}
-                    <span>{HERO.title[1]}</span>
-                </h4>
-                <p>{HERO.first_paragraph}</p>
-                <p>{HERO.second_paragraph}</p>
+                <div className="textContainer">
+                    <h1>
+                        {HERO.title[0]}
+                        <span>{HERO.title[1]}</span>
+                    </h1>
+                    <p>{HERO.first_paragraph}</p>
+                    <p>{HERO.second_paragraph}</p>
+                </div>
             </div>
         </section>
     )

@@ -22,7 +22,7 @@ export default function Emergency() {
                         </svg>
                     </div>
                     <div className="text">
-                        <h6>{EMERGENCY.title}</h6>
+                        <h3>{EMERGENCY.title}</h3>
                         <p>{EMERGENCY.paragraph}</p>
                     </div>
                 </div>

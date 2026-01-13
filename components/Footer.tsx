@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="liens">
-          <h6>Liens</h6>
+          <h3>Liens</h3>
           <div className="pills">
             <Link className="pill" href="/services">
               Services
@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         <div className="contactContainer">
-          <h6>Nous contacter</h6>
+          <h3>Nous contacter</h3>
           <div className="contacts">
             <div className="singleContact">
               <svg

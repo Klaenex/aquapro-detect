@@ -21,7 +21,6 @@
 
   --text-grey: rgba(135, 135, 135, 1);
   --text-orange: #f59f0a;
-  --p-small: 16px;
   --bg-blue: rgba(12, 70, 100, 1);
 }
 
@@ -55,16 +54,34 @@ h6 {
   margin: 0;
 }
 
-h6 {
+h1 {
+  font-size: 2.827rem;
+  @media screen and (min-width:1000px) {
+    font-size: 5.653rem;
+  }
+}
+
+h2 {
+  font-size: 1.999rem;
+  @media screen and (min-width:1000px) {
+    font-size: 3.998rem;
+  }
+}
+
+h3 {
   font-size: 1.414rem;
   margin-bottom: 0.75rem;
+  @media screen and (min-width:1000px) {
+    font-size: 1.999rem;
+    margin-bottom: 1rem;
+  }
 }
 
-h4 {
-  font-size: 2.827rem;
-}
 
-p {
-  font-size: --p-small;
+p,a  {
+  font-size: 1rem;
   margin: 0;
+  @media screen and (min-width:1000px) {
+    font-size: 1.424rem;
+  }
 }

@@ -14,11 +14,30 @@ span {
 
 .background {
     position: absolute;
-    bottom: 0;
+    bottom: -1;
     width: 100%;
     fill: var(--bg);
 }
 
 .container {
     position: relative;
+}
+
+
+
+@media screen and (min-width:1000px) {
+    .Hero {
+        .container {
+            padding-bottom: 4rem;
+        }
+        .textContainer {
+            max-width: 70%;
+        }
+        h1 {
+            margin-bottom: 2rem;
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+    }
 }
