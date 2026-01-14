@@ -22,13 +22,16 @@ export default function Header() {
     <header className="topbar">
       <div className="container">
         <div className="navWrap">
-          <Link href="/" className="logo">
-            <Image
-              src={logo_horizontal}
-              alt="AquaPro-Détect"
-              className="icon"
-            />
-          </Link>
+          <h1 className="title title--hide">
+            AquaPro-Détect
+            <Link href="/" className="logo">
+              <Image
+                src={logo_horizontal}
+                alt="AquaPro-Détect"
+                className="icon"
+              />
+            </Link>
+          </h1>
 
           <button className={"burger " + burger} onClick={toggleBurger}>
             <div className="bar1"></div>
