@@ -22,8 +22,8 @@ export default function Header() {
     <header className="topbar">
       <div className="container">
         <div className="navWrap">
-          <h1 className="title title--hide">
-            AquaPro-Détect
+          <h1 className="title">
+            <span className="title--hide">AquaPro-Détect</span>
             <Link href="/" className="logo">
               <Image
                 src={logo_horizontal}

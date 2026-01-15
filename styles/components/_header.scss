@@ -4,9 +4,15 @@ header {
 }
 .title {
   &--hide {
-    text-indent: 100%;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
   }
 }
+
 .navWrap {
   display: flex;
   align-items: center;
