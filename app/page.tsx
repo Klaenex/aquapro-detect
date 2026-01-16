@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CATEGORIES, CONTACT } from "@/lib/content";
 import { Card, CardsGrid } from "@/components/Cards";
-import Hero from "@/components/Hero"
-import Emergency from "@/components/Emergency"
+import Hero from "@/components/Hero";
+import Emergency from "@/components/Emergency";
 
 export const metadata: Metadata = {
   title: "AquaPro-Détect Belgium | Détection, égouts, débouchage, nettoyage",
@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <div>
       <Hero />
-      <h1 className="h1">AquaPro-Détect Belgium</h1>
+      <h2 className="h2">AquaPro-Détect Belgium</h2>
       <p className="lead">
         Détection, inspection et entretien : recherche de fuite, inspection
         caméra, débouchage 24/7, caméra thermique, test fumigène, détection

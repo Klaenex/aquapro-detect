@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <div>
-      <h1 className="h1">Services</h1>
+      <h2 className="h2">Services</h2>
       <p className="lead">
         Accédez à chaque catégorie de services AquaPro-Détect.
       </p>
