@@ -18,7 +18,7 @@ export default function Hero() {
             <span className={styles.highlight}>{HERO.title[1]}</span>
           </h2>
           <p className={styles.paragraph}>{HERO.first_paragraph}</p>
-          <p>{HERO.second_paragraph}</p>
+          <p className={styles.paragraph}>{HERO.second_paragraph}</p>
         </div>
       </div>
     </section>
