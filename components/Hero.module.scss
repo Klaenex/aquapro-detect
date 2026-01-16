@@ -1,0 +1,49 @@
+@use "../styles/abstracts/_mixins" as *;
+
+.hero {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--primaryText);
+  background: linear-gradient(129deg, #0b4765, #3ab9cc);
+  min-height: min-content;
+  @include md {
+    min-height: 55vh;
+  }
+}
+
+.highlight {
+  color: #10b5cb;
+}
+
+.background {
+  position: absolute;
+  bottom: -1;
+  width: 100%;
+  fill: var(--bg);
+}
+
+.container {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.textContainer {
+  max-width: 600px;
+  margin: 1rem;
+  @include md {
+    margin-top: 5rem;
+    position: relative;
+    left: -10rem;
+  }
+  .title {
+    margin-bottom: 1rem;
+  }
+
+  .paragraph {
+    margin-bottom: 2rem;
+    color: var(--primaryText);
+  }
+}

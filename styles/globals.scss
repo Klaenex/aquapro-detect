@@ -3,10 +3,8 @@
 /* --- Toutes les directives @use doivent être en haut du fichier --- */
 @use "abstracts/_variables" as *;
 @use "abstracts/_mixins" as *;
+@use "base/_typography" as *;
 @use "base/_reset" as *;
-@use "components/_header" as *;
-
-@use "components/footer" as *;
 
 /* Variables CSS runtime (fallback + thème) */
 :root {
@@ -43,45 +41,4 @@ a {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 16px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-h1 {
-  font-size: 2.827rem;
-  @media screen and (min-width:1000px) {
-    font-size: 5.653rem;
-  }
-}
-
-h2 {
-  font-size: 1.999rem;
-  @media screen and (min-width:1000px) {
-    font-size: 3.998rem;
-  }
-}
-
-h3 {
-  font-size: 1.414rem;
-  margin-bottom: 0.75rem;
-  @media screen and (min-width:1000px) {
-    font-size: 1.999rem;
-    margin-bottom: 1rem;
-  }
-}
-
-
-p,a  {
-  font-size: 1rem;
-  margin: 0;
-  @media screen and (min-width:1000px) {
-    font-size: 1.424rem;
-  }
 }

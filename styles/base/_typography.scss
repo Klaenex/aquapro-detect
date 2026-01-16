@@ -1,0 +1,46 @@
+@use "../abstracts/_mixins" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.827rem;
+
+  @include md {
+    font-size: 5.653rem;
+  }
+}
+
+h2 {
+  font-size: 1.999rem;
+
+  @include md {
+    font-size: 3.998rem;
+  }
+}
+
+h3 {
+  font-size: 1.414rem;
+  margin-bottom: 0.75rem;
+
+  @include lg {
+    font-size: 1.999rem;
+    margin-bottom: 1rem;
+  }
+}
+
+p,
+a {
+  font-size: 1rem;
+  margin: 0;
+
+  //@include lg {
+  //  font-size: 1.424rem;
+  //}
+}

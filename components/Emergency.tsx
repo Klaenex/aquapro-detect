@@ -1,12 +1,12 @@
 import {CONTACT, EMERGENCY} from "@/lib/content";
-import "@/styles/components/_emergency.scss"
+import styles from "./Emergency.module.scss";
 
 export default function Emergency() {
     return (
-        <section className="Emergency">
-            <div className="container">
-                <div className="leftContainer">
-                    <div className="icon">
+        <section className={styles.emergency}>
+            <div className={`container ${styles.container}`}>
+                <div className={styles.leftContainer}>
+                    <div className={styles.icon}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={24}
@@ -21,13 +21,13 @@ export default function Emergency() {
                             <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01" />
                         </svg>
                     </div>
-                    <div className="text">
+                    <div>
                         <h3>{EMERGENCY.title}</h3>
                         <p>{EMERGENCY.paragraph}</p>
                     </div>
                 </div>
-                <div className="phoneNumbers">
-                    <a href="/contact" className="phone">
+                <div className={styles.phoneNumbers}>
+                    <a href="/contact" className={styles.phone}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={800}
@@ -44,7 +44,7 @@ export default function Emergency() {
                         </svg>
                         {CONTACT.phone1}
                     </a>
-                    <a href="/contact" className="phone">
+                    <a href="/contact" className={styles.phone}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width={800}

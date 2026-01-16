@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import logo_horizontal from "@/public/img/aquapro_logo_horizontal.svg";
+import styles from "./Header.module.scss";
 
 export default function Header() {
   const [nav, setNav] = useState("inactive");
@@ -19,27 +20,32 @@ export default function Header() {
   }
 
   return (
-    <header className="topbar">
+    <header className={styles.topbar}>
       <div className="container">
-        <div className="navWrap">
-          <h1 className="title">
-            <span className="title--hide">AquaPro-Détect</span>
-            <Link href="/" className="logo">
+        <div className={styles.navWrap}>
+          <h1 className={styles.title}>
+            <span className={styles["title--hide"]}>AquaPro-Détect</span>
+            <Link href="/" className={styles.logo}>
               <Image
                 src={logo_horizontal}
                 alt="AquaPro-Détect"
-                className="icon"
+                className={styles.icon}
               />
             </Link>
           </h1>
 
-          <button className={"burger " + burger} onClick={toggleBurger}>
-            <div className="bar1"></div>
-            <div className="bar2"></div>
-            <div className="bar3"></div>
+          <button
+            className={`${styles.burger} ${
+              burger === "cross" ? styles.cross : ""
+            }`}
+            onClick={toggleBurger}
+          >
+            <div className={styles.bar1}></div>
+            <div className={styles.bar2}></div>
+            <div className={styles.bar3}></div>
           </button>
 
-          <nav className={"nav " + nav}>
+          <nav className={`${styles.nav} ${nav === "inactive" ? styles.inactive : ""}`}>
             <Link className="pill" href="/services" onClick={toggleBurger}>
               Services
             </Link>
