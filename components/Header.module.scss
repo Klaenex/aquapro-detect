@@ -86,6 +86,35 @@
   }
 }
 
+.servicesWrap {
+  width: 100%;
+  
+}
+
+.dropdown {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdownItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.submenu {
+  margin: 0 0 0.35rem 0.75rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 .inactive {
   display: none;
 }
