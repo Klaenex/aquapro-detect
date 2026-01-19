@@ -1,0 +1,50 @@
+
+.ContactForm {
+    padding-bottom: 4rem;
+    h2 {
+        margin-bottom: 1rem;
+    }
+}
+
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+
+    :first-child {
+        width: 35%;
+    }
+    div:nth-child(2) {
+        width: 35%;
+    }
+
+    div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input {
+        border: 1px solid var(--border);
+        border-radius: 0.25rem;
+    }
+
+    textarea {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 0.25rem;
+    }
+
+    button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
