@@ -64,6 +64,13 @@ export default function Header() {
               nav === "inactive" ? styles.inactive : ""
             }`}
           >
+            <Link
+              className={styles.servicesLink}
+              href="/services"
+              onClick={toggleBurger}
+            >
+              Services
+            </Link>
             <div className={styles.servicesWrap}>
               <ul className={styles.dropdown}>
                 {CATEGORIES.map((cat) => {
