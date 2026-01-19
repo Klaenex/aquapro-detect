@@ -37,7 +37,11 @@ export default function Nav({ nav, toggleBurger }: Props) {
                 key={cat.slug}
                 className={`${styles.dropdownItem} ${styles.titleSubmenu}`}
               >
-                <Link href={`/services/${cat.slug}`} onClick={toggleBurger}>
+                <Link
+                  href={`/services/${cat.slug}`}
+                  onClick={toggleBurger}
+                  className={`${styles.link} ${styles.linkCategory}`}
+                >
                   {cat.navTitle}
                 </Link>
                 {categoryServices.length ? (
@@ -47,6 +51,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
                         <Link
                           href={`/services/${cat.slug}/${service.slug}`}
                           onClick={toggleBurger}
+                          className={`${styles.link} ${styles.linkService}`}
                         >
                           {service.navTitle}
                         </Link>
@@ -60,7 +65,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
         </ul>
       </div>
 
-      <Link className={styles.Link} href="/problemes" onClick={toggleBurger}>
+      <Link className={styles.link} href="/problemes" onClick={toggleBurger}>
         Problèmes
       </Link>
 

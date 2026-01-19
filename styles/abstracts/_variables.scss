@@ -1,25 +1,62 @@
 /* styles/abstracts/_variables.scss */
+
+/* Polices */
 $font-primary: "Montserrat", sans-serif;
 $font-secondary: "Arial", sans-serif;
 
+/* Font weights */
 $font-weight-light: 100;
 $font-weight-regular: 400;
 $font-weight-semiBold: 600;
 $font-weight-bold: 700;
 $font-weight-black: 900;
 
+/* Tailles de police */
 $font-size-normal: 1rem;
 $font-size-medium: 1.414rem;
 $font-size-title: 2.827rem;
 $font-size-big: 3.998rem;
 
-$c-green: #18988b;
-$c-grey: hsl(174, 13%, 55%);
-$c-red: hsl(0, 13%, 55%);
-$c-yellow: #fdc224;
+/* Couleurs de base SCSS */
 
+/* Breakpoints / screens */
 $screen-sm: 600px;
 $screen-md: 800px;
 $screen-lg: 1000px;
 $screen-xl: 1200px;
 $screen-custom: 1100px;
+
+/* -----------------------------------------------------------
+   Variables CSS personnalisées (custom properties)
+   — Définies ici en variables SCSS et exportées dans :root
+   ----------------------------------------------------------- */
+
+$text: #0f172a;
+$text-blue: hsl(200, 80%, 20%);
+$muted: #475569;
+$border: #e2e8f0;
+$bg: #ffffff;
+$primary: #0f172a;
+$primary-text: #ffffff;
+$radius: 14px;
+$container: 1120px;
+
+$text-grey: rgba(135, 135, 135, 1);
+$text-orange: #f59f0a;
+$bg-blue: rgba(12, 70, 100, 1);
+
+/* Émission des custom properties pour le runtime */
+:root {
+  --text: #{$text};
+  --muted: #{$muted};
+  --border: #{$border};
+  --bg: #{$bg};
+  --primary: #{$primary};
+  --primaryText: #{$primary-text};
+  --radius: #{$radius};
+  --container: #{$container};
+
+  --text-grey: #{$text-grey};
+  --text-orange: #{$text-orange};
+  --bg-blue: #{$bg-blue};
+}
