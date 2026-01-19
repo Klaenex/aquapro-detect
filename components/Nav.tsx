@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 import { CATEGORIES, SERVICES, type Service } from "@/lib/content";
@@ -11,9 +12,7 @@ type Props = {
 export default function Nav({ nav, toggleBurger }: Props) {
   const servicesByCategory = SERVICES.reduce<Record<string, Service[]>>(
     (acc, service) => {
-      if (!acc[service.categorySlug]) {
-        acc[service.categorySlug] = [];
-      }
+      if (!acc[service.categorySlug]) acc[service.categorySlug] = [];
       acc[service.categorySlug].push(service);
       return acc;
     },
@@ -22,36 +21,50 @@ export default function Nav({ nav, toggleBurger }: Props) {
 
   return (
     <nav
-      className={`${styles.nav} ${nav === "inactive" ? styles.inactive : ""}`}
+      className={`${styles.nav} ${
+        nav === "inactive" ? styles["nav--inactive"] : ""
+      }`}
     >
-      <Link className={styles.link} href="/services" onClick={toggleBurger}>
+      <Link
+        className={styles["nav__link"]}
+        href="/services"
+        onClick={toggleBurger}
+      >
         Services
       </Link>
 
-      <div className={styles.servicesWrap}>
-        <ul className={styles.dropdown}>
+      <div className={styles["nav__services-wrap"]}>
+        <ul className={styles["nav__dropdown"]}>
           {CATEGORIES.map((cat) => {
             const categoryServices = servicesByCategory[cat.slug] ?? [];
+            const hasSubmenu = categoryServices.length > 0;
+
             return (
               <li
                 key={cat.slug}
-                className={`${styles.dropdownItem} ${styles.titleSubmenu}`}
+                className={`${styles["nav__item"]} ${
+                  hasSubmenu ? styles["nav__item--has-submenu"] : ""
+                }`}
               >
                 <Link
                   href={`/services/${cat.slug}`}
                   onClick={toggleBurger}
-                  className={`${styles.link} ${styles.linkCategory}`}
+                  className={`${styles["nav__link"]} ${styles["nav__link--category"]}`}
                 >
                   {cat.navTitle}
                 </Link>
-                {categoryServices.length ? (
-                  <ul className={styles.submenu}>
+
+                {hasSubmenu ? (
+                  <ul className={styles["nav__submenu"]}>
                     {categoryServices.map((service) => (
-                      <li key={service.slug}>
+                      <li
+                        key={service.slug}
+                        className={styles["nav__submenu-item"]}
+                      >
                         <Link
                           href={`/services/${cat.slug}/${service.slug}`}
                           onClick={toggleBurger}
-                          className={`${styles.link} ${styles.linkService}`}
+                          className={`${styles["nav__link"]} ${styles["nav__link--service"]}`}
                         >
                           {service.navTitle}
                         </Link>
@@ -65,27 +78,43 @@ export default function Nav({ nav, toggleBurger }: Props) {
         </ul>
       </div>
 
-      <Link className={styles.link} href="/problemes" onClick={toggleBurger}>
+      <Link
+        className={styles["nav__link"]}
+        href="/problemes"
+        onClick={toggleBurger}
+      >
         Problèmes
       </Link>
 
       <Link
-        className={styles.link}
+        className={styles["nav__link"]}
         href="/assurances-rapports"
         onClick={toggleBurger}
       >
         Assurances & Rapports
       </Link>
 
-      <Link className={styles.link} href="/a-propos" onClick={toggleBurger}>
+      <Link
+        className={styles["nav__link"]}
+        href="/a-propos"
+        onClick={toggleBurger}
+      >
         À propos
       </Link>
 
-      <Link className={styles.link} href="/contact" onClick={toggleBurger}>
+      <Link
+        className={styles["nav__link"]}
+        href="/contact"
+        onClick={toggleBurger}
+      >
         Contact
       </Link>
 
-      <Link className={styles.link} href="/urgence-24-7" onClick={toggleBurger}>
+      <Link
+        className={styles["nav__link"]}
+        href="/urgence-24-7"
+        onClick={toggleBurger}
+      >
         Urgence 24/7
       </Link>
     </nav>
