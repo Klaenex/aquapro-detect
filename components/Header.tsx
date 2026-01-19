@@ -54,9 +54,9 @@ export default function Header() {
             aria-label="Ouvrir / fermer le menu"
             aria-expanded={nav !== "inactive"}
           >
-            <div className={styles.bar1}></div>
-            <div className={styles.bar2}></div>
-            <div className={styles.bar3}></div>
+            <span className={styles.bar1}></span>
+            <span className={styles.bar2}></span>
+            <span className={styles.bar3}></span>
           </button>
 
           <nav
