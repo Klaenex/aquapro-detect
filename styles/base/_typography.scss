@@ -10,29 +10,16 @@ h6 {
 }
 
 h1 {
-  font-size: 2.827rem;
-
-  @include md {
-    font-size: 5.653rem;
-  }
+  font-size: 3.998rem;
 }
 
 h2 {
-  font-size: 1.999rem;
-
-  @include md {
-    font-size: 3.998rem;
-  }
+  font-size: 2.827rem;
 }
 
 h3 {
-  font-size: 1.414rem;
+  font-size: 1.999rem;
   margin-bottom: 0.75rem;
-
-  @include lg {
-    font-size: 1.999rem;
-    margin-bottom: 1rem;
-  }
 }
 
 p,

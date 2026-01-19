@@ -65,7 +65,7 @@ export default function Header() {
             }`}
           >
             <Link
-              className={styles.servicesLink}
+              className={styles.link}
               href="/services"
               onClick={toggleBurger}
             >
@@ -76,7 +76,10 @@ export default function Header() {
                 {CATEGORIES.map((cat) => {
                   const categoryServices = servicesByCategory[cat.slug] ?? [];
                   return (
-                    <li key={cat.slug} className={styles.dropdownItem}>
+                    <li
+                      key={cat.slug}
+                      className={`${styles.dropdownItem}, ${styles.titleSubmenu}`}
+                    >
                       <Link
                         href={`/services/${cat.slug}`}
                         onClick={toggleBurger}
@@ -103,28 +106,40 @@ export default function Header() {
               </ul>
             </div>
 
-            <Link className="pill" href="/problemes" onClick={toggleBurger}>
+            <Link
+              className={styles.Link}
+              href="/problemes"
+              onClick={toggleBurger}
+            >
               Problèmes
             </Link>
 
             <Link
-              className="pill"
+              className={styles.link}
               href="/assurances-rapports"
               onClick={toggleBurger}
             >
               Assurances & Rapports
             </Link>
 
-            <Link className="pill" href="/a-propos" onClick={toggleBurger}>
+            <Link
+              className={styles.link}
+              href="/a-propos"
+              onClick={toggleBurger}
+            >
               À propos
             </Link>
 
-            <Link className="pill" href="/contact" onClick={toggleBurger}>
+            <Link
+              className={styles.link}
+              href="/contact"
+              onClick={toggleBurger}
+            >
               Contact
             </Link>
 
             <Link
-              className="pill pillPrimary"
+              className={styles.link}
               href="/urgence-24-7"
               onClick={toggleBurger}
             >
