@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo_horizontal from "@/public/img/aquapro_logo_horizontal.svg";
 import styles from "./Header.module.scss";
 import Nav from "./Nav";
@@ -19,6 +19,15 @@ export default function Header() {
       setNav("inactive");
     }
   }
+
+  useEffect(() => {
+    if (nav === "active") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [nav]);
+
   return (
     <header className={styles.topbar}>
       <div className="container">

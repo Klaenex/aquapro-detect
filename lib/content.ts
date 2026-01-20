@@ -541,3 +541,13 @@ export const EMERGENCY = {
   title: "Urgence Débouchage 24h/7j",
   paragraph: "Intervention rapide partout en région bruxelloise",
 };
+
+export const WHYAQUA = {
+  title: "Pourquoi choisir AquaPro-Detect?",
+  paragraph: [
+    "Si vous recherchez une équipe sérieuse, professionnelle et efficace, ne  cherchez plus : vous êtes au bon endroit.",
+    "Nous travaillons avec respect, transparence et professionnalisme.",
+    "Nos tarifs sont clairs, détaillés et sans suppléments inattendus. Aucune mauvaise surprise : tout est annoncé à l’avance.",
+    "En faisant appel à nos services, vous faites le choix de la tranquillité et de la qualité. Vous ne le regretterez pas, bien au contraire."
+  ]
+}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Nav.module.scss";
-import { CATEGORIES, SERVICES, type Service } from "@/lib/content";
+import { PROBLEMS, CATEGORIES, SERVICES, type Service } from "@/lib/content";
 
 type Props = {
   nav: string;
@@ -16,7 +16,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       acc[service.categorySlug].push(service);
       return acc;
     },
-    {}
+    {},
   );
 
   return (
