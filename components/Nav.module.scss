@@ -1,25 +1,35 @@
-// Nav.module.scss
-@import "../styles/abstracts/variables";
+@use "../styles/abstracts/variables" as *;
+@use "../styles/abstracts/mixins" as *;
 
 .nav {
   position: absolute;
   top: 0;
   right: 0;
   box-sizing: border-box;
-
   padding-top: 6rem;
   padding-left: 2rem;
   width: 90vw;
   min-height: 100vh;
   overflow-y: scroll;
   background-color: var(--bg);
-
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-
   box-shadow: 0px 65px 110px rgba(0, 0, 0, 1);
   z-index: 1;
+
+  @include md {
+    position: unset;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: transparent;
+    box-shadow: none;
+    min-height: unset;
+    padding: unset;
+    overflow: unset;
+    display: flex;
+  }
 
   ul {
     list-style: none;
@@ -30,11 +40,25 @@
 
 .nav--inactive {
   display: none;
+
+  @include md {
+    display: flex;
+  }
+}
+
+.nav__dropdown {
+  @include md {
+    display: none;
+  }
 }
 
 .nav__link {
   font-size: $font-size-medium;
   font-weight: 600;
+
+  @include md {
+    font-size: $font-size-normal;
+  }
 }
 
 .nav__link--category {
