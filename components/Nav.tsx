@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "./Nav.module.scss";
-import { PROBLEMS, CATEGORIES, SERVICES, type Service } from "@/lib/content";
+import { CATEGORIES, SERVICES, type Service } from "@/lib/content";
 
 type Props = {
   nav: string;
