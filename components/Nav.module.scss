@@ -30,12 +30,6 @@
     overflow: unset;
     display: flex;
   }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .nav--inactive {
@@ -65,10 +59,14 @@
   font-weight: 400;
   font-size: $font-size-normal;
   margin-left: 1rem;
+  @include md {
+    margin-left: 0;
+  }
 }
 
 .nav__services-wrap {
   position: relative;
+  height: max-content;
 }
 
 .nav__dropdown {
@@ -90,6 +88,16 @@
     background: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     z-index: 50;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    width: max-content;
+    .nav__submenu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
