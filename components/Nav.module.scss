@@ -66,29 +66,30 @@
 
 .nav__services-wrap {
   position: relative;
-  height: max-content;
 }
 
 .nav__dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   @include md {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translateY(8px);
     transition:
-      opacity 150ms ease,
-      transform 150ms ease,
-      visibility 150ms ease;
+      opacity 150ms ease-in-out,
+      transform 150ms ease-in-out,
+      visibility 150ms ease-in-out;
     position: absolute;
-    top: 100%;
-    left: 0;
+    left: -50%;
     min-width: 260px;
     padding: 2rem;
     border-radius: 12px;
     background: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     z-index: 50;
-    list-style: none;
+
     display: flex;
     flex-direction: row;
     gap: 3rem;
@@ -110,6 +111,9 @@
 }
 
 .nav__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   li {
     margin: 0.75rem 0;
   }

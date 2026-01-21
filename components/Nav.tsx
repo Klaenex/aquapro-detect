@@ -36,20 +36,28 @@ function buildServicesChildren() {
   });
 }
 
+// Helper identique au header pour garder le breakpoint synchrone
+const isMobile = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(max-width: 1023px)").matches;
+
 export default function Nav({ nav, toggleBurger }: Props) {
   const servicesCategories = buildServicesChildren();
 
+  // Wrapper qui n'appelle toggleBurger que sur mobile (pratique pour tous les links)
+  const maybeToggle = () => {
+    if (isMobile()) toggleBurger();
+  };
+
   return (
     <nav
-      className={`${styles.nav} ${
-        nav === "inactive" ? styles["nav--inactive"] : ""
-      }`}
+      className={`${styles.nav} ${nav === "inactive" ? styles["nav--inactive"] : ""}`}
     >
       <div className={styles["nav__services-wrap"]}>
         <Link
           className={styles["nav__link"]}
           href="/services"
-          onClick={toggleBurger}
+          onClick={maybeToggle}
           aria-haspopup="menu"
           aria-expanded="false"
         >
@@ -70,7 +78,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
               >
                 <Link
                   href={cat.href}
-                  onClick={toggleBurger}
+                  onClick={maybeToggle}
                   className={`${styles["nav__link"]} ${styles["nav__link--category"]}`}
                   role="menuitem"
                 >
@@ -87,7 +95,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
                       >
                         <Link
                           href={child.href}
-                          onClick={toggleBurger}
+                          onClick={maybeToggle}
                           className={`${styles["nav__link"]} ${styles["nav__link--service"]}`}
                           role="menuitem"
                         >
@@ -106,7 +114,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       <Link
         className={styles["nav__link"]}
         href="/problemes"
-        onClick={toggleBurger}
+        onClick={maybeToggle}
       >
         Problèmes
       </Link>
@@ -114,7 +122,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       <Link
         className={styles["nav__link"]}
         href="/assurances-rapports"
-        onClick={toggleBurger}
+        onClick={maybeToggle}
       >
         Assurances & Rapports
       </Link>
@@ -122,7 +130,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       <Link
         className={styles["nav__link"]}
         href="/a-propos"
-        onClick={toggleBurger}
+        onClick={maybeToggle}
       >
         À propos
       </Link>
@@ -130,7 +138,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       <Link
         className={styles["nav__link"]}
         href="/contact"
-        onClick={toggleBurger}
+        onClick={maybeToggle}
       >
         Contact
       </Link>
@@ -138,7 +146,7 @@ export default function Nav({ nav, toggleBurger }: Props) {
       <Link
         className={styles["nav__link"]}
         href="/urgence-24-7"
-        onClick={toggleBurger}
+        onClick={maybeToggle}
       >
         Urgence 24/7
       </Link>

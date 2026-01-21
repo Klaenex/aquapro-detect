@@ -7,17 +7,26 @@ import styles from "./Header.module.scss";
 import Nav from "./Nav";
 
 export default function Header() {
-  const [nav, setNav] = useState("inactive");
-  const [burger, setBurger] = useState("");
+  const [nav, setNav] = useState<"inactive" | "active">("inactive");
+  const [burger, setBurger] = useState<"" | "cross">("");
+
+  // Helper : garder le breakpoint synchrone avec le CSS (ici 1024px)
+  const isMobile = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 800px)").matches;
 
   function toggleBurger() {
-    if (burger === "") {
-      setBurger("cross");
-      setNav("active");
-    } else {
+    // Si on est en desktop, ne pas ouvrir/fermer le menu depuis les liens.
+    // On s'assure aussi que l'état reste cohérent (fermé) en desktop.
+    if (!isMobile()) {
       setBurger("");
       setNav("inactive");
+      return;
     }
+
+    // Basculer l'état uniquement si on est en mobile
+    setBurger((prev) => (prev === "" ? "cross" : ""));
+    setNav((prev) => (prev === "inactive" ? "active" : "inactive"));
   }
 
   useEffect(() => {
@@ -28,12 +37,25 @@ export default function Header() {
     }
   }, [nav]);
 
+  // Si on redimensionne en desktop, s'assurer que tout est bien fermé
+  useEffect(() => {
+    function onResize() {
+      if (!isMobile()) {
+        setNav("inactive");
+        setBurger("");
+      }
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <header className={styles.topbar}>
       <div className="container">
         <div className={styles.navWrap}>
           <h1 className={styles.title}>
             <span className={styles["title--hide"]}>AquaPro-Détect</span>
+            {/* Le logo ne doit pas ouvrir le burger en desktop => toggleBurger gère ça */}
             <Link href="/" className={styles.logo} onClick={toggleBurger}>
               <Image
                 src={logo_horizontal}
@@ -44,9 +66,7 @@ export default function Header() {
           </h1>
 
           <button
-            className={`${styles.burger} ${
-              burger === "cross" ? styles.cross : ""
-            }`}
+            className={`${styles.burger} ${burger === "cross" ? styles.cross : ""}`}
             onClick={toggleBurger}
             type="button"
             aria-label="Ouvrir / fermer le menu"
