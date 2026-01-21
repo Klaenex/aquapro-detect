@@ -1,9 +1,8 @@
 /* styles/globals.scss */
-
+@use "base/_reset" as *;
 @use "abstracts/_variables" as *;
 @use "abstracts/_mixins" as *;
 @use "base/_typography" as *;
-@use "base/_reset" as *;
 
 html,
 body {
