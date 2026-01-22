@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { SERVICES } from "@/lib/content";
 import { getCategory, getService } from "@/lib/utils";
 import RequestForm from "@/components/RequestForm";
+import Hero from "@/components/Hero";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -63,6 +64,7 @@ export default async function ServicePage({
 
   return (
     <div>
+      <Hero category={category} service={service} />
       <div
         style={{
           display: "flex",
