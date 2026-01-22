@@ -2,18 +2,20 @@
 import { HERO } from "@/lib/content";
 import styles from "./Hero.module.scss";
 import { useEffect } from "react";
+import Link from "next/link";
 
-export default function Hero(category, service) {
+
+export default function Hero({category, service}) {
 
   useEffect(()=>{
     // console.log(window.location.href)
     // console.log(category)
-    console.log(service)
+    console.log(category)
   },[])
 
   return (
     <section className={styles.hero}>
-      { category ?
+      { service ?
         <></>
         :
         <svg
@@ -26,12 +28,26 @@ export default function Hero(category, service) {
       }
       <div className={styles.container}>
         <div className={styles.textContainer}>
-          <h2 className={styles.title}>
+          { service ?
+          <>
+            <Link className={styles.pill} href={`/services/${category.slug}`}>
+            ← {category.title}
+            </Link>
+            <h2 className={styles.title}>
+              {service.title}
+            </h2>
+            <p className={styles.paragraph}>{service.hero}</p>
+          </>
+          :
+          <>
+            <h2 className={styles.title}>
             {HERO.title[0]}
             <span className={styles.highlight}>{HERO.title[1]}</span>
-          </h2>
-          <p className={styles.paragraph}>{HERO.first_paragraph}</p>
-          <p className={styles.paragraph}>{HERO.second_paragraph}</p>
+            </h2>
+            <p className={styles.paragraph}>{HERO.first_paragraph}</p>
+            <p className={styles.paragraph}>{HERO.second_paragraph}</p>
+          </>
+          }
         </div>
       </div>
     </section>
