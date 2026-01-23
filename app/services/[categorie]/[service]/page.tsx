@@ -75,17 +75,6 @@ export default async function ServicePage({
         <Documents documents={service.documents}/>
       </div>
 
-      {/* {service.documents?.length ? (
-        <div className="section card">
-          <h2 className="h2">Documents fournis (sur demande)</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.documents.map((d) => (
-              <li key={d}>{d}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null} */}
-
       {service.advantages?.length ? (
         <div className="section card">
           <h2 className="h2">Avantages client</h2>

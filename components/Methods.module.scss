@@ -28,6 +28,7 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     padding: 0.25rem;
+    margin: 1rem 0 1rem 0;
     @include lg {
         gap: 1rem;
     }
@@ -36,7 +37,7 @@
         box-sizing: border-box;
         list-style: none;
         padding: 1rem;
-        background-color: var(--bg-lightgrey);
+        background-color: var(--card-grey);
         border-radius: 0.25rem;
         @include lg {
             width: 45%;
