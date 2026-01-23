@@ -3,6 +3,8 @@ import styles from "./Process.module.scss";
 
 export default function Process({process}) {
     return(
+        <>
+        { process ?
         <section className={styles.Process}>
             <div className={styles["Process__title"]}>
                 <div className={styles["Process__icon"]}>
@@ -22,18 +24,18 @@ export default function Process({process}) {
                 </div>
                 <h3 className="h3">Processus d’intervention</h3>
             </div>
-            {process ?
-                <div className={styles.Process__lead}>
-                    {process.map((p,i) => (
-                        <div className={styles.Process__li}>
-                            <p key={p} className={styles.Process__numbers}>{i+1}</p>
-                            <p key={p}>{p}</p>
-                        </div>
-                    ))}
-                </div>
-            :
-                null
-            }
+            <div className={styles.Process__lead}>
+                {process.map((p,i) => (
+                    <div className={styles.Process__li}>
+                        <p key={p} className={styles.Process__numbers}>{i+1}</p>
+                        <p key={p}>{p}</p>
+                    </div>
+                ))}
+            </div>
         </section>
+        :
+        null
+        }
+        </>
     )
 }

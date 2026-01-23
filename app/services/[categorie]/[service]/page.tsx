@@ -6,6 +6,7 @@ import RequestForm from "@/components/RequestForm";
 import Hero from "@/components/Hero";
 import Methods from "@/components/Methods";
 import Process from "@/components/Process";
+import Documents from "@/components/Documents";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -65,26 +66,16 @@ export default async function ServicePage({
   if (!category || !service) return <div>Service introuvable.</div>;
 
   return (
-    <div>
+    <div style={{backgroundColor:"var(--bg-lightgrey)"}}>
       <Hero category={category} service={service} />
 
       <div className="container">
         <Methods methods={service.methods}/>
         <Process process={service.process}/>
+        <Documents documents={service.documents}/>
       </div>
 
-      {/* {service.process?.length ? (
-        <div className="section card">
-          <h2 className="h2">Processus d’intervention</h2>
-          <ol className="lead" style={{ marginTop: 12 }}>
-            {service.process.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ol>
-        </div>
-      ) : null} */}
-
-      {service.documents?.length ? (
+      {/* {service.documents?.length ? (
         <div className="section card">
           <h2 className="h2">Documents fournis (sur demande)</h2>
           <ul className="lead" style={{ marginTop: 12 }}>
@@ -93,7 +84,7 @@ export default async function ServicePage({
             ))}
           </ul>
         </div>
-      ) : null}
+      ) : null} */}
 
       {service.advantages?.length ? (
         <div className="section card">

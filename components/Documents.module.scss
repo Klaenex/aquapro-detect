@@ -1,0 +1,48 @@
+@use "../styles/abstracts/_mixins" as *;
+
+.Documents {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.Documents__title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    h3 {
+        margin: 0;
+    }
+}
+
+.Documents__icon {
+    padding: 0.5rem;
+    background-color: var(--bg-lightblue);
+    border-radius: 0.25rem;
+    svg {
+        stroke: var(--icon-blue);
+    }
+}
+
+.Documents__lead {
+    border: 1px solid var(--border-lightgrey);
+    border-radius: 0.5rem;
+    margin: 1rem 0.25rem 0.25rem 0.25rem;
+    padding: 1rem;
+}
+.Documents__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0;
+    padding-left: 1rem;
+    @include lg {
+        gap: 1rem;
+    }
+    li {
+        &::marker {
+            color: var(--icon-blue);
+            font-size: 1.414rem;
+        }
+    }
+}
