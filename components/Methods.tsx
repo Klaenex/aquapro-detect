@@ -5,7 +5,7 @@ export default function Methods({methods}) {
     return(
         <>
         { methods ?
-            <section className={`${styles.Methods} container`}>
+            <section className={`${styles.Methods}`}>
                 <div className={styles["Methods__title"]}>
                     <div className={styles["Methods__icon"]}>
                         <svg
@@ -31,7 +31,7 @@ export default function Methods({methods}) {
                 </ul>
             </section>
         :
-            ""
+            null
         }
         </>
     )

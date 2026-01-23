@@ -5,6 +5,7 @@ import { getCategory, getService } from "@/lib/utils";
 import RequestForm from "@/components/RequestForm";
 import Hero from "@/components/Hero";
 import Methods from "@/components/Methods";
+import Process from "@/components/Process";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -67,20 +68,12 @@ export default async function ServicePage({
     <div>
       <Hero category={category} service={service} />
 
-      <Methods methods={service.methods}/>
+      <div className="container">
+        <Methods methods={service.methods}/>
+        <Process process={service.process}/>
+      </div>
 
-      {/* {service.methods?.length ? (
-        <div className="section card">
-          <h2 className="h2">Méthodes & équipements</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.methods.map((m) => (
-              <li key={m}>{m}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null} */}
-
-      {service.process?.length ? (
+      {/* {service.process?.length ? (
         <div className="section card">
           <h2 className="h2">Processus d’intervention</h2>
           <ol className="lead" style={{ marginTop: 12 }}>
@@ -89,7 +82,7 @@ export default async function ServicePage({
             ))}
           </ol>
         </div>
-      ) : null}
+      ) : null} */}
 
       {service.documents?.length ? (
         <div className="section card">
