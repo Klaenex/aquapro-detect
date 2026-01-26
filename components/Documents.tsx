@@ -1,6 +1,10 @@
 import styles from "./Documents.module.scss";
 
-export default function Documents({documents}) {
+type Props = {
+    documents: string[];
+}
+
+export default function Documents({documents}: Props) {
     return(
         <>
         { documents ?

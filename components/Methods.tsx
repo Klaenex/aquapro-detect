@@ -1,7 +1,10 @@
 import styles from "./Methods.module.scss";
 
+type Props = {
+    methods: string[];
+}
 
-export default function Methods({methods}) {
+export default function Methods({methods}:Props) {
     return(
         <>
         { methods ?

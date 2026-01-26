@@ -5,10 +5,13 @@ import styles from "./ContactForm.module.scss";
 export default function ContactForm() {
     const [formInfo, setFormInfo] = useState({})
 
-    const handleInput = (e) => {
-        const {name, value} = e.target
-        setFormInfo({...formInfo, [name]:value})
-    }
+    const handleInput = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    ) => {
+        const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+        const { name, value } = target;
+        setFormInfo((prev) => ({ ...prev, [name]: value }));
+    };
 
     useEffect(()=>{
         console.log(formInfo)

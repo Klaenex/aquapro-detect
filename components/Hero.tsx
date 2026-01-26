@@ -4,14 +4,20 @@ import styles from "./Hero.module.scss";
 import { useEffect } from "react";
 import Link from "next/link";
 
+type Props = {
+  category : {
+  slug: string;
+  title: string;
+  navTitle: string;
+  excerpt: string;
+  } | null;
+  service: {
+    title: string;
+    hero: string;
+  } | null;
+}
 
-export default function Hero({category, service}) {
-
-  useEffect(()=>{
-    // console.log(window.location.href)
-    // console.log(category)
-    console.log(category)
-  },[])
+export default function Hero({category, service}:Props) {
 
   return (
     <section className={styles.hero}>
@@ -28,7 +34,7 @@ export default function Hero({category, service}) {
       }
       <div className={styles.container}>
         <div className={styles.textContainer}>
-          { service ?
+          { (service !== null) && (category !== null) ?
           <>
             <Link className={styles.pill} href={`/services/${category.slug}`}>
             ← {category.title}

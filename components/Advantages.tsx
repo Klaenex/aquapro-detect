@@ -1,7 +1,15 @@
+'use client'
+import { useEffect } from "react";
 import styles from "./Advantages.module.scss";
 
+type Props = {
+    advantages: string[];
+}
 
-export default function Advantages({advantages}) {
+export default function Advantages({advantages}:Props) {
+    useEffect(()=>{
+        console.log()
+    },[])
     return(
         <>
         { advantages ?

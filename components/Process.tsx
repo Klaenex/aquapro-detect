@@ -1,7 +1,11 @@
 import styles from "./Process.module.scss";
 
+type Props = {
+    process: string[];
+}
 
-export default function Process({process}) {
+
+export default function Process({process}:Props) {
     return(
         <>
         { process ?
@@ -26,9 +30,9 @@ export default function Process({process}) {
             </div>
             <div className={styles.Process__lead}>
                 {process.map((p,i) => (
-                    <div className={styles.Process__li}>
+                    <div className={styles.Process__li} key={p}>
                         <p key={p} className={styles.Process__numbers}>{i+1}</p>
-                        <p key={p}>{p}</p>
+                        <p>{p}</p>
                     </div>
                 ))}
             </div>

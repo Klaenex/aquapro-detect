@@ -16,12 +16,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function MerciPage({
+export default function MerciPage({
   searchParams,
 }: {
-  searchParams: Promise<{ service?: string }>;
+  searchParams: { service?: string };
 }) {
-  const { service } = await searchParams;
+  // searchParams est fourni comme un objet (pas une Promise) dans App Router
+  const { service } = searchParams ?? {};
 
   return (
     <div>
