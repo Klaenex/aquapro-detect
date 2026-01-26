@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div>
-      <Hero />
+      <Hero service={null} category={null}/>
       <h2 className="h2">AquaPro-Détect Belgium</h2>
       <p className="lead">
         Détection, inspection et entretien : recherche de fuite, inspection

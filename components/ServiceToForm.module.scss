@@ -1,0 +1,29 @@
+
+
+.ServiceToForm__card {
+    background-color: var(--bg-blue);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.ServiceToForm__title {
+    color: var(--primaryText);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.ServiceToForm__text {
+    color: var(--text-grey);
+    margin-bottom: 1.5rem;
+}
+
+.ServiceToForm__button {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    color: var(--primaryText);
+    background-color: var(--icon-blue);
+    border: none;
+    border-radius: 0.5rem;
+}

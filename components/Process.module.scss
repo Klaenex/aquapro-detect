@@ -1,0 +1,41 @@
+@use "../styles/abstracts/_mixins" as *;
+
+.Process {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.Process__title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    h3 {
+        margin: 0;
+    }
+}
+.Process__icon {
+    padding: 0.5rem;
+    background-color: var(--bg-lightblue);
+    border-radius: 0.25rem;
+    svg {
+        stroke: var(--icon-blue);
+    }
+}
+
+.Process__lead {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-left: 1rem;
+    margin: 1rem 0 1rem 0;
+}
+.Process__li {
+    display: flex;
+    gap: 1rem;
+}
+
+.Process__numbers {
+    font-weight: 700;
+    font-size: 1.414rem;
+    color: var(--bg-blue);
+}
