@@ -1,3 +1,4 @@
+@use "../styles/abstracts/_mixins" as *;
 
 .contactHero {
     background-color: var(--bg-blue);
@@ -16,13 +17,20 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     display: grid;
-    gap: 10
+    gap: 1rem;
+    @include lg {
+        gap: 2rem;
+    }
 }
 
 .cards {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 1rem;
+    @include md {
+        gap: 2rem;
+    }
 }
 
 .contact {
@@ -32,6 +40,10 @@
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid var(--border);
+    width: 100%;
+    @include md {
+        width: 45%;
+    }
     p {
         display: flex;
         flex-direction: column;
@@ -55,4 +67,7 @@
     height: 240px;
     border-radius: 0.5rem;
     border: 1px solid var(--border);
+    @include md {
+            height: 420px;
+        }
 }

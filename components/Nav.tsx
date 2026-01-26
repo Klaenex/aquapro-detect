@@ -18,7 +18,7 @@ function buildServicesChildren() {
       (acc[service.categorySlug] ??= []).push(service);
       return acc;
     },
-    {}
+    {},
   );
 
   return CATEGORIES.map((cat) => {
@@ -39,7 +39,7 @@ function buildServicesChildren() {
 // Helper identique au header pour garder le breakpoint synchrone
 const isMobile = () =>
   typeof window !== "undefined" &&
-  window.matchMedia("(max-width: 1023px)").matches;
+  window.matchMedia("(max-width: 800px)").matches;
 
 export default function Nav({ nav, toggleBurger }: Props) {
   const servicesCategories = buildServicesChildren();
@@ -57,13 +57,27 @@ export default function Nav({ nav, toggleBurger }: Props) {
     >
       <div className={styles["nav__services-wrap"]}>
         <Link
-          className={styles["nav__link"]}
+          className={`${styles["nav__link"]} ${styles["nav__link--services"]}`}
           href="/services"
           onClick={maybeToggle}
           aria-haspopup="menu"
           aria-expanded="false"
         >
           Services
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="feather feather-chevron-down"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </Link>
 
         <ul className={styles["nav__dropdown"]} role="menu">
