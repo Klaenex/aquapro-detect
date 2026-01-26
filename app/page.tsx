@@ -4,6 +4,7 @@ import { CATEGORIES, CONTACT } from "@/lib/content";
 import { Card, CardsGrid } from "@/components/Cards";
 import Hero from "@/components/Hero";
 import Emergency from "@/components/Emergency";
+import WhyAqua from "@/components/WhyAqua";
 
 export const metadata: Metadata = {
   title: "AquaPro-Détect Belgium | Détection, égouts, débouchage, nettoyage",
@@ -66,7 +67,7 @@ export default function HomePage() {
 
       <Emergency />
 
-      <div className="section">
+      {/* <div className="section">
         <h2 className="h2">Problèmes fréquents</h2>
         <p className="lead">
           Pages orientées client : trouvez rapidement le bon service.
@@ -83,7 +84,9 @@ export default function HomePage() {
             Fissures & stabilité
           </Link>
         </div>
-      </div>
+      </div> */}
+
+      <WhyAqua/>
     </div>
   );
 }

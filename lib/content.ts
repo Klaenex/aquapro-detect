@@ -9,7 +9,8 @@ export const CONTACT = {
 
 export type Category = {
   slug: string;
-  title: string;
+  title: string; // Titre page / marketing
+  navTitle: string; // Titre menu / navigation
   excerpt: string;
 };
 
@@ -22,7 +23,8 @@ export type ServiceFormType =
 
 export type Service = {
   slug: string;
-  title: string;
+  title: string; // Titre page / marketing
+  navTitle: string; // Titre menu / navigation
   excerpt: string;
   categorySlug: string;
   categoryTitle: string;
@@ -37,7 +39,8 @@ export type Service = {
 
 export type Problem = {
   slug: string;
-  title: string;
+  title: string; // Titre page / marketing
+  navTitle: string; // Titre menu / navigation
   excerpt: string;
   content: string[];
   relatedServices: Array<{ categorySlug: string; serviceSlug: string }>;
@@ -47,18 +50,21 @@ export const CATEGORIES: Category[] = [
   {
     slug: "detection-diagnostic",
     title: "Détection & Diagnostic",
+    navTitle: "Détection & Diagnostic",
     excerpt:
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
   },
   {
     slug: "egouts-canalisations",
     title: "Égouts & Canalisations",
+    navTitle: "Égouts & Canalisations",
     excerpt:
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
   },
   {
     slug: "nettoyage-sinistres",
     title: "Nettoyage & Sinistres",
+    navTitle: "Nettoyage & Sinistres",
     excerpt:
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
   },
@@ -72,6 +78,7 @@ export const SERVICES: Service[] = [
   {
     slug: "recherche-de-fuite",
     title: "Recherche de fuite",
+    navTitle: "Recherche de Fuite",
     excerpt:
       "Localisation précise des fuites d’eau (plomberie, toiture, chauffage, enterré) sans casse inutile.",
     categorySlug: "detection-diagnostic",
@@ -110,6 +117,7 @@ export const SERVICES: Service[] = [
   {
     slug: "camera-thermique",
     title: "Caméra thermique",
+    navTitle: "Caméra Thermique",
     excerpt:
       "Détection des ponts thermiques, pertes d’isolation, infiltrations et zones humides invisibles à l’œil nu.",
     categorySlug: "detection-diagnostic",
@@ -145,6 +153,7 @@ export const SERVICES: Service[] = [
   {
     slug: "test-fumigene",
     title: "Test fumigène",
+    navTitle: "Test Fumigène",
     excerpt:
       "Contrôle d’étanchéité : détection de fuites, reflux, défauts d’aération et prises d’air parasites.",
     categorySlug: "detection-diagnostic",
@@ -179,6 +188,7 @@ export const SERVICES: Service[] = [
   {
     slug: "detection-sonar",
     title: "Détection sonar",
+    navTitle: "Détection Sonar",
     excerpt:
       "Localisation précise de canalisations/éléments enterrés (regards, citernes, fosses, conduites non répertoriées).",
     categorySlug: "detection-diagnostic",
@@ -215,6 +225,7 @@ export const SERVICES: Service[] = [
   {
     slug: "inspection-camera",
     title: "Inspection caméra des égouts",
+    navTitle: "Inspection Caméra",
     excerpt:
       "Inspection vidéo : obstructions, fissures, effondrements, contre-pentes, infiltrations + schéma du réseau.",
     categorySlug: "egouts-canalisations",
@@ -251,6 +262,7 @@ export const SERVICES: Service[] = [
   {
     slug: "analyse-stabilite",
     title: "Analyse des problèmes de stabilité",
+    navTitle: "Analyse de Stabilité",
     excerpt:
       "Service complémentaire : vérifier un lien entre dégâts du bâtiment et anomalies du réseau d’égouts.",
     categorySlug: "egouts-canalisations",
@@ -284,6 +296,7 @@ export const SERVICES: Service[] = [
   {
     slug: "debouchage-24-7",
     title: "Débouchage + service d’urgence 24/7",
+    navTitle: "Débouchage 24/7",
     excerpt:
       "Débouchage rapide : canalisations, évacuations, colonnes, égouts. Urgence 24/7 selon la situation.",
     categorySlug: "egouts-canalisations",
@@ -316,6 +329,7 @@ export const SERVICES: Service[] = [
   {
     slug: "entretien-egouts",
     title: "Entretien des égouts",
+    navTitle: "Entretien des Égouts",
     excerpt:
       "Entretien préventif (collectivités, industries, immeubles) : nettoyage, hydrocurage, suivi des anomalies.",
     categorySlug: "egouts-canalisations",
@@ -348,6 +362,7 @@ export const SERVICES: Service[] = [
   {
     slug: "reparation-egouts",
     title: "Réparation d’égouts",
+    navTitle: "Réparation des Égouts",
     excerpt:
       "Réparation ciblée, remplacement de tronçons, scellement, manchons, réhabilitation partielle.",
     categorySlug: "egouts-canalisations",
@@ -385,6 +400,7 @@ export const SERVICES: Service[] = [
   {
     slug: "nettoyage-fin-de-bail",
     title: "Nettoyage fin de bail",
+    navTitle: "Nettoyage Fin de Bail",
     excerpt:
       "Remise en état complète logement/commerce : état des lieux sans contestation.",
     categorySlug: "nettoyage-sinistres",
@@ -418,6 +434,7 @@ export const SERVICES: Service[] = [
   {
     slug: "nettoyage-apres-sinistre",
     title: "Nettoyage après sinistre",
+    navTitle: "Nettoyage Après Sinistre",
     excerpt:
       "Après incendie, dégâts des eaux, squat, insalubrité, décès… : remise en état et décontamination.",
     categorySlug: "nettoyage-sinistres",
@@ -454,6 +471,7 @@ export const PROBLEMS: Problem[] = [
   {
     slug: "odeurs-egout",
     title: "Odeurs d’égout",
+    navTitle: "Odeurs d'égout",
     excerpt:
       "Mauvaises odeurs persistantes : identifier la source, vérifier étanchéité et ventilation.",
     content: [
@@ -472,6 +490,7 @@ export const PROBLEMS: Problem[] = [
   {
     slug: "humidite-moisissures",
     title: "Humidité & moisissures",
+    navTitle: "Humidité & moisissures",
     excerpt:
       "Taches, condensation, odeur de renfermé : détecter infiltration, fuite ou pont thermique.",
     content: [
@@ -489,6 +508,7 @@ export const PROBLEMS: Problem[] = [
   {
     slug: "fissures-stabilite",
     title: "Fissures & stabilité",
+    navTitle: "Fissures & stabilité",
     excerpt:
       "Fissures, affaissements, sols instables : vérifier un lien possible avec le réseau d’égouts.",
     content: [
@@ -509,14 +529,25 @@ export const PROBLEMS: Problem[] = [
   },
 ];
 
-
 export const HERO = {
   title: ["Votre service de ", "confiance"],
-  first_paragraph: "Avec plus de 15 ans d’expérience, AquaPro-Détect Belgium met son expertise au service des particuliers comme des professionnels.",
-  second_paragraph: "Nous sommes spécialisés dans de nombreux domaines liés à la détection, l’inspection et l’entretien des bâtiments."
-}
+  first_paragraph:
+    "Avec plus de 15 ans d’expérience, AquaPro-Détect Belgium met son expertise au service des particuliers comme des professionnels.",
+  second_paragraph:
+    "Nous sommes spécialisés dans de nombreux domaines liés à la détection, l’inspection et l’entretien des bâtiments.",
+};
 
 export const EMERGENCY = {
   title: "Urgence Débouchage 24h/7j",
   paragraph: "Intervention rapide partout en région bruxelloise",
+};
+
+export const WHYAQUA = {
+  title: "Pourquoi choisir AquaPro-Detect?",
+  paragraph: [
+    "Si vous recherchez une équipe sérieuse, professionnelle et efficace, ne  cherchez plus : vous êtes au bon endroit.",
+    "Nous travaillons avec respect, transparence et professionnalisme.",
+    "Nos tarifs sont clairs, détaillés et sans suppléments inattendus. Aucune mauvaise surprise : tout est annoncé à l’avance.",
+    "En faisant appel à nos services, vous faites le choix de la tranquillité et de la qualité. Vous ne le regretterez pas, bien au contraire."
+  ]
 }

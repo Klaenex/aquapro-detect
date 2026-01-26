@@ -1,0 +1,139 @@
+@use "../styles/abstracts/variables" as *;
+@use "../styles/abstracts/mixins" as *;
+@use "sass:color";
+
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding-top: 6rem;
+  padding-left: 2rem;
+  width: 90vw;
+  min-height: 100vh;
+  overflow-y: scroll;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0px 65px 110px rgba(0, 0, 0, 1);
+  z-index: 1;
+
+  @include md {
+    position: unset;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: transparent;
+    box-shadow: none;
+    min-height: unset;
+    padding: unset;
+    overflow: unset;
+    display: flex;
+  }
+}
+
+.nav--inactive {
+  display: none;
+
+  @include md {
+    display: flex;
+  }
+}
+
+.nav__link {
+  font-size: $font-size-medium;
+  font-weight: 600;
+
+  @include md {
+    font-size: $font-size-normal;
+  }
+  &--button {
+    padding: 0.75rem 1rem;
+    background-color: $blue;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 150ms ease-in-out;
+    &:hover {
+      background-color: color.scale($blue, $lightness: -11.6438356164%);
+    }
+  }
+  &--services {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    @include md {
+      gap: 0.25rem;
+    }
+  }
+}
+
+.nav__link--category {
+  color: $text-blue;
+  font-weight: 600;
+  font-size: $font-size-normal;
+}
+
+.nav__link--service {
+  font-weight: 400;
+  font-size: $font-size-normal;
+  margin-left: 1rem;
+  @include md {
+    margin-left: 0;
+  }
+}
+
+.nav__services-wrap {
+  position: relative;
+}
+
+.nav__dropdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include md {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition:
+      opacity 150ms ease-in-out,
+      transform 150ms ease-in-out,
+      visibility 150ms ease-in-out;
+    position: absolute;
+    left: -50%;
+    min-width: 260px;
+    padding: 2rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    z-index: 50;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    width: max-content;
+    .nav__submenu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.nav__services-wrap:hover .nav__dropdown,
+.nav__services-wrap:focus-within .nav__dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.nav__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 0.75rem 0;
+  }
+}

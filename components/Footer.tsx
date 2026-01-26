@@ -1,38 +1,39 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/content";
+import styles from "./Footer.module.scss";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="liens">
+    <footer className={styles.footer}>
+      <div className={`container ${styles.container}`}>
+        <div>
           <h3>Liens</h3>
-          <div className="pills">
-            <Link className="pill" href="/services">
+          <div className={styles.pills}>
+            <Link className={styles.pill} href="/services">
               Services
             </Link>
-            <Link className="pill" href="/problemes">
+            <Link className={styles.pill} href="/problemes">
               Problèmes
             </Link>
-            <Link className="pill" href="/assurances-rapports">
+            <Link className={styles.pill} href="/assurances-rapports">
               Assurances & Rapports
             </Link>
-            <Link className="pill" href="/a-propos">
+            <Link className={styles.pill} href="/a-propos">
               À propos
             </Link>
-            <Link className="pill" href="/contact">
+            <Link className={styles.pill} href="/contact">
               Contact
             </Link>
-            <Link className="pill pillPrimary" href="/urgence-24-7">
+            <Link className={`${styles.pill} pillPrimary`} href="/urgence-24-7">
               Urgence 24/7
             </Link>
           </div>
         </div>
 
-        <div className="contactContainer">
+        <div className={styles.contactContainer}>
           <h3>Nous contacter</h3>
-          <div className="contacts">
-            <div className="singleContact">
+          <div className={styles.contacts}>
+            <div className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -44,7 +45,7 @@ export default function Footer() {
               </svg>
               <p>{CONTACT.address}</p>
             </div>
-            <div className="singleContact">
+            <div className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlSpace="preserve"
@@ -58,7 +59,7 @@ export default function Footer() {
               </svg>
               <p>{CONTACT.vat}</p>
             </div>
-            <div className="singleContact">
+            <div className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -77,7 +78,7 @@ export default function Footer() {
                 {CONTACT.phone1} — {CONTACT.phone2}
               </p>
             </div>
-            <div className="singleContact">
+            <div className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -97,7 +98,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="container copyright">
+      <div className={`container ${styles.container} ${styles.copyright}`}>
         <p>© 2025 AquaPro-Detect</p>
       </div>
     </footer>

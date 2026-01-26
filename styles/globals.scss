@@ -1,28 +1,8 @@
 /* styles/globals.scss */
-
-/* --- Toutes les directives @use doivent être en haut du fichier --- */
+@use "base/_reset" as *;
 @use "abstracts/_variables" as *;
 @use "abstracts/_mixins" as *;
-@use "base/_reset" as *;
-@use "components/_header" as *;
-
-@use "components/footer" as *;
-
-/* Variables CSS runtime (fallback + thème) */
-:root {
-  --text: #0f172a;
-  --muted: #475569;
-  --border: #e2e8f0;
-  --bg: #ffffff;
-  --primary: #0f172a;
-  --primaryText: #ffffff;
-  --radius: 14px;
-  --container: 1120px;
-
-  --text-grey: rgba(135, 135, 135, 1);
-  --text-orange: #f59f0a;
-  --bg-blue: rgba(12, 70, 100, 1);
-}
+@use "base/_typography" as *;
 
 html,
 body {
@@ -30,7 +10,13 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Helvetica,
+    Arial;
 }
 
 a {
@@ -43,45 +29,4 @@ a {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 16px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-h1 {
-  font-size: 2.827rem;
-  @media screen and (min-width:1000px) {
-    font-size: 5.653rem;
-  }
-}
-
-h2 {
-  font-size: 1.999rem;
-  @media screen and (min-width:1000px) {
-    font-size: 3.998rem;
-  }
-}
-
-h3 {
-  font-size: 1.414rem;
-  margin-bottom: 0.75rem;
-  @media screen and (min-width:1000px) {
-    font-size: 1.999rem;
-    margin-bottom: 1rem;
-  }
-}
-
-
-p,a  {
-  font-size: 1rem;
-  margin: 0;
-  @media screen and (min-width:1000px) {
-    font-size: 1.424rem;
-  }
 }

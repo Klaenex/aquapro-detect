@@ -1,0 +1,30 @@
+@use "../abstracts/_mixins" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.998rem;
+}
+
+h2 {
+  font-size: 3.998rem;
+}
+
+h3 {
+  font-size: 2.827rem;
+  margin-bottom: 0.75rem;
+}
+
+p,
+a,
+input {
+  font-size: 1rem;
+  margin: 0;
+}

@@ -10,7 +10,6 @@ type CardProps = {
 export function Card({ title, text, href, badge }: CardProps) {
   return (
     <Link href={href} className="card">
-      {badge ? <div className="badge">{badge}</div> : null}
       <h3 className="cardTitle" style={{ marginTop: badge ? 10 : 0 }}>
         {title}
       </h3>

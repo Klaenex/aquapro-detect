@@ -8,34 +8,62 @@ import {
   getService,
   getServicesByCategory,
 } from "@/lib/utils";
-import styles from "./RequestPage.module.scss";
+import styles from "../../RequestPage.module.scss";
 
-export const metadata: Metadata = {
-  title: "Demande d’intervention | AquaPro-Détect Belgium",
-  description:
-    "Formulaire de demande d’intervention avec sélection du service adapté.",
-  alternates: { canonical: "/demande-intervention/" },
-  openGraph: {
-    title: "Demande d’intervention | AquaPro-Détect Belgium",
-    description:
-      "Choisissez un service dans le menu et remplissez le formulaire dédié.",
-    url: "/demande-intervention/",
-    type: "website",
-  },
-};
+export function generateStaticParams() {
+  return SERVICES.map((s) => ({
+    categorie: s.categorySlug,
+    service: s.slug,
+  }));
+}
 
-export default function RequestPage() {
-  const defaultService = SERVICES[0];
-  const defaultCategory = defaultService
-    ? getCategory(defaultService.categorySlug)
-    : null;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ categorie: string; service: string }>;
+}): Promise<Metadata> {
+  const { categorie, service: serviceSlug } = await params;
 
-  if (!defaultService || !defaultCategory) {
-    return <div>Service introuvable.</div>;
+  const category = getCategory(categorie);
+  const service = getService(categorie, serviceSlug);
+
+  if (!category || !service) {
+    return {
+      title: "Demande d’intervention | AquaPro-Détect Belgium",
+      description:
+        "Envoyez une demande d’intervention pour être recontacté rapidement.",
+    };
   }
 
-  const service = getService(defaultCategory.slug, defaultService.slug);
-  if (!service) return <div>Service introuvable.</div>;
+  const title = `Demande d’intervention | ${service.title} | AquaPro-Détect Belgium`;
+  const description = `Formulaire dédié pour ${service.title} (${category.title}).`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/demande-intervention/${categorie}/${serviceSlug}/`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/demande-intervention/${categorie}/${serviceSlug}/`,
+    },
+  };
+}
+
+export default async function RequestServicePage({
+  params,
+}: {
+  params: Promise<{ categorie: string; service: string }>;
+}) {
+  const { categorie, service: serviceSlug } = await params;
+
+  const category = getCategory(categorie);
+  const service = getService(categorie, serviceSlug);
+
+  if (!category || !service) return <div>Service introuvable.</div>;
 
   const menuGroups = CATEGORIES.map((cat) => ({
     category: cat,
@@ -47,7 +75,7 @@ export default function RequestPage() {
       <div style={{ display: "grid", gap: 8 }}>
         <h1 className="h1">Demande d’intervention</h1>
         <p className="lead">
-          Choisissez un service dans le menu pour changer de formulaire.
+          Sélectionnez un service dans le menu pour changer de formulaire.
         </p>
       </div>
 
@@ -64,7 +92,7 @@ export default function RequestPage() {
                     item.slug
                   );
                   const isActive =
-                    group.category.slug === defaultCategory.slug &&
+                    group.category.slug === category.slug &&
                     item.slug === service.slug;
 
                   return (
@@ -92,7 +120,7 @@ export default function RequestPage() {
             </span>
             <Link
               className="pill"
-              href={`/services/${defaultCategory.slug}/${service.slug}`}
+              href={`/services/${category.slug}/${service.slug}`}
             >
               Voir la page du service
             </Link>
@@ -101,7 +129,7 @@ export default function RequestPage() {
           <div className="section" style={{ marginTop: 16 }}>
             <RequestForm
               serviceTitle={service.title}
-              serviceCategory={defaultCategory.title}
+              serviceCategory={category.title}
               formType={service.formType}
             />
           </div>
