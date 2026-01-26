@@ -1,7 +1,16 @@
+import styles from "@/styles/pages/service.module.scss";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICES } from "@/lib/content";
-import { getCategory, getRequestUrl, getService } from "@/lib/utils";
+import { getCategory, getService } from "@/lib/utils";
+import RequestForm from "@/components/RequestForm";
+import Hero from "@/components/Hero";
+import Methods from "@/components/Methods";
+import Process from "@/components/Process";
+import Documents from "@/components/Documents";
+import ServiceToForm from "@/components/ServiceToForm";
+import Advantages from "@/components/Advantages";
+import SingleServiceLinks from "@/components/SingleServiceLinks";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -61,85 +70,20 @@ export default async function ServicePage({
   if (!category || !service) return <div>Service introuvable.</div>;
 
   return (
-    <div>
-      <div
-        style={{
-          display: "flex",
-          gap: 12,
-          flexWrap: "wrap",
-          alignItems: "center",
-        }}
-      >
-        <Link className="pill" href={`/services/${category.slug}`}>
-          ← {category.title}
-        </Link>
-        <Link
-          className="pill"
-          href={getRequestUrl(category.slug, service.slug)}
-        >
-          Demande d’intervention
-        </Link>
-        <Link className="pill pillPrimary" href="/urgence-24-7">
-          Urgence 24/7
-        </Link>
-      </div>
+    <div style={{backgroundColor:"var(--bg-lightgrey)"}}>
+      <Hero category={category} service={service} />
 
-      <h1 className="h1" style={{ marginTop: 16 }}>
-        {service.title}
-      </h1>
-      <p className="lead">{service.hero}</p>
-
-      {service.methods?.length ? (
-        <div className="section card">
-          <h2 className="h2">Méthodes & équipements</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.methods.map((m) => (
-              <li key={m}>{m}</li>
-            ))}
-          </ul>
+      <div className={`container ${styles.Services__categories}`}>
+        <div className={styles.leftContainer}>
+          <Methods methods={service.methods}/>
+          <Process process={service.process}/>
+          <Documents documents={service.documents}/>
         </div>
-      ) : null}
-
-      {service.process?.length ? (
-        <div className="section card">
-          <h2 className="h2">Processus d’intervention</h2>
-          <ol className="lead" style={{ marginTop: 12 }}>
-            {service.process.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ol>
+        <div className={styles.rightContainer}>
+          <ServiceToForm/>
+          <Advantages advantages={service.advantages}/>
+          <SingleServiceLinks />
         </div>
-      ) : null}
-
-      {service.documents?.length ? (
-        <div className="section card">
-          <h2 className="h2">Documents fournis (sur demande)</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.documents.map((d) => (
-              <li key={d}>{d}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      {service.advantages?.length ? (
-        <div className="section card">
-          <h2 className="h2">Avantages client</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.advantages.map((a) => (
-              <li key={a}>{a}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      <div className="section">
-        <Link
-          className="pill pillPrimary"
-          href={getRequestUrl(category.slug, service.slug)}
-        >
-          Ouvrir le formulaire pour {service.title}
-        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,28 @@
+@use "../styles/abstracts/_mixins" as *;
+
+.Advantages__card {
+    padding: 1.5rem;
+    border: 1px solid var(--border-lightgrey);
+    border-radius: 0.5rem;
+}
+
+.Advantages__title {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    h3 {
+        margin: 0;
+    }
+}
+.Advantages__icon {
+    svg {
+        stroke: var(--icon-blue);
+    }
+}
+.Advantages__ul {
+    padding: 0;
+    list-style: none;
+    li {
+        margin-bottom: 1rem;
+    }
+}

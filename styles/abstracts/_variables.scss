@@ -45,6 +45,13 @@ $text-grey: rgba(135, 135, 135, 1);
 $text-orange: #f59f0a;
 $bg-blue: rgba(12, 70, 100, 1);
 $blue: #10b5cb;
+$text-lightgrey: #d0dbe1;
+$bg-lightblue: #e7f7fa;
+$bg-lightgrey: #f6f8f9;
+$card-grey: rgb(238, 238, 238);
+$icon-blue: #10b5cb;
+$border-lightgrey: rgb(192, 192, 192);
+
 /* Émission des custom properties pour le runtime */
 :root {
   --text: #{$text};
@@ -59,4 +66,11 @@ $blue: #10b5cb;
   --text-grey: #{$text-grey};
   --text-orange: #{$text-orange};
   --bg-blue: #{$bg-blue};
+  --text-lightgrey: #{$text-lightgrey};
+  --bg-lightblue: #{$bg-lightblue};
+  --bg-lightgrey: #{$bg-lightgrey};
+  --card-grey: #{$card-grey};
+  --icon-blue: #{$icon-blue};
+  --border-lightgrey: #{$border-lightgrey};
+
 }
