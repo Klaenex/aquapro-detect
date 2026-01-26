@@ -1,3 +1,4 @@
+import styles from "@/styles/pages/service.module.scss";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICES } from "@/lib/content";
@@ -7,6 +8,9 @@ import Hero from "@/components/Hero";
 import Methods from "@/components/Methods";
 import Process from "@/components/Process";
 import Documents from "@/components/Documents";
+import ServiceToForm from "@/components/ServiceToForm";
+import Advantages from "@/components/Advantages";
+import SingleServiceLinks from "@/components/SingleServiceLinks";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -69,29 +73,17 @@ export default async function ServicePage({
     <div style={{backgroundColor:"var(--bg-lightgrey)"}}>
       <Hero category={category} service={service} />
 
-      <div className="container">
-        <Methods methods={service.methods}/>
-        <Process process={service.process}/>
-        <Documents documents={service.documents}/>
-      </div>
-
-      {service.advantages?.length ? (
-        <div className="section card">
-          <h2 className="h2">Avantages client</h2>
-          <ul className="lead" style={{ marginTop: 12 }}>
-            {service.advantages.map((a) => (
-              <li key={a}>{a}</li>
-            ))}
-          </ul>
+      <div className={`container ${styles.Services__categories}`}>
+        <div className={styles.leftContainer}>
+          <Methods methods={service.methods}/>
+          <Process process={service.process}/>
+          <Documents documents={service.documents}/>
         </div>
-      ) : null}
-
-      <div className="section">
-        <RequestForm
-          serviceTitle={service.title}
-          serviceCategory={category.title}
-          formType={service.formType}
-        />
+        <div className={styles.rightContainer}>
+          <ServiceToForm/>
+          <Advantages advantages={service.advantages}/>
+          <SingleServiceLinks />
+        </div>
       </div>
     </div>
   );
