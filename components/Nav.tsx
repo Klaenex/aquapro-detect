@@ -18,7 +18,7 @@ function buildServicesChildren() {
       (acc[service.categorySlug] ??= []).push(service);
       return acc;
     },
-    {},
+    {}
   );
 
   return CATEGORIES.map((cat) => {
@@ -51,7 +51,9 @@ export default function Nav({ nav, toggleBurger }: Props) {
 
   return (
     <nav
-      className={`${styles.nav} ${nav === "inactive" ? styles["nav--inactive"] : ""}`}
+      className={`${styles.nav} ${
+        nav === "inactive" ? styles["nav--inactive"] : ""
+      }`}
     >
       <div className={styles["nav__services-wrap"]}>
         <Link
@@ -144,11 +146,11 @@ export default function Nav({ nav, toggleBurger }: Props) {
       </Link>
 
       <Link
-        className={styles["nav__link"]}
-        href="/urgence-24-7"
+        href="/demande-intervention"
         onClick={maybeToggle}
+        className={`${styles["nav__link"]} ${styles["nav__link--button"]}`}
       >
-        Urgence 24/7
+        Demander une intervention
       </Link>
     </nav>
   );

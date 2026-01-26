@@ -47,6 +47,17 @@
   @include md {
     font-size: $font-size-normal;
   }
+  &--button {
+    padding: 0.75rem 1.5rem;
+    background-color: $blue;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 150ms ease-in-out;
+
+    &:hover {
+      background-color: darken($blue, 5%);
+    }
+  }
 }
 
 .nav__link--category {
@@ -77,9 +88,7 @@
     visibility: hidden;
     pointer-events: none;
     transform: translateY(8px);
-    transition:
-      opacity 150ms ease-in-out,
-      transform 150ms ease-in-out,
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out,
       visibility 150ms ease-in-out;
     position: absolute;
     left: -50%;

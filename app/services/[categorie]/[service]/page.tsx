@@ -1,8 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICES } from "@/lib/content";
-import { getCategory, getService } from "@/lib/utils";
-import RequestForm from "@/components/RequestForm";
+import { getCategory, getRequestUrl, getService } from "@/lib/utils";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({
@@ -74,7 +73,10 @@ export default async function ServicePage({
         <Link className="pill" href={`/services/${category.slug}`}>
           ← {category.title}
         </Link>
-        <Link className="pill" href="/demande-intervention">
+        <Link
+          className="pill"
+          href={getRequestUrl(category.slug, service.slug)}
+        >
           Demande d’intervention
         </Link>
         <Link className="pill pillPrimary" href="/urgence-24-7">
@@ -132,11 +134,12 @@ export default async function ServicePage({
       ) : null}
 
       <div className="section">
-        <RequestForm
-          serviceTitle={service.title}
-          serviceCategory={category.title}
-          formType={service.formType}
-        />
+        <Link
+          className="pill pillPrimary"
+          href={getRequestUrl(category.slug, service.slug)}
+        >
+          Ouvrir le formulaire pour {service.title}
+        </Link>
       </div>
     </div>
   );

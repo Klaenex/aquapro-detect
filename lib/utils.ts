@@ -23,3 +23,7 @@ export function getProblem(slug: string) {
 export function getServiceUrl(categorySlug: string, serviceSlug: string) {
   return `/services/${categorySlug}/${serviceSlug}`;
 }
+
+export function getRequestUrl(categorySlug: string, serviceSlug: string) {
+  return `/demande-intervention/${categorySlug}/${serviceSlug}`;
+}
