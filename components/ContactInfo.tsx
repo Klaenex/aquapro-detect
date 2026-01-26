@@ -5,8 +5,10 @@ export default function ContactInfo() {
     return (
         <section className={styles.ContactInfo}>
             <div className={styles.contactHero}>
-                <h1>Contact</h1>
-                <p>Une question ? Une intervention ? Contactez-nous.</p>
+                <div className="container">
+                    <h1>Contact</h1>
+                    <p>Une question ? Une intervention ? Contactez-nous.</p>
+                </div>
             </div>
 
             <div className={`${styles.contacts} container`}>
