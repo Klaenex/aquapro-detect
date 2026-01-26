@@ -44,7 +44,7 @@ $container: 1120px;
 $text-grey: rgba(135, 135, 135, 1);
 $text-orange: #f59f0a;
 $bg-blue: rgba(12, 70, 100, 1);
-
+$blue: #10b5cb;
 /* Émission des custom properties pour le runtime */
 :root {
   --text: #{$text};

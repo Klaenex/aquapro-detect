@@ -1,9 +1,8 @@
 /* styles/globals.scss */
-
+@use "base/_reset" as *;
 @use "abstracts/_variables" as *;
 @use "abstracts/_mixins" as *;
 @use "base/_typography" as *;
-@use "base/_reset" as *;
 
 html,
 body {
@@ -30,31 +29,4 @@ a {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 16px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-h1 {
-  font-size: 2.827rem;
-}
-
-h2 {
-  font-size: 1.999rem;
-}
-
-h3 {
-  font-size: 1.414rem;
-}
-
-p,
-a {
-  font-size: 1rem;
-  margin: 0;
 }
