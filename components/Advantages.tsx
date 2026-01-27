@@ -32,7 +32,7 @@ export default function Advantages({advantages}:Props) {
                             <path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12" />
                         </svg>
                     </div>
-                    <h3 className="h3">Avantages client</h3>
+                    <p>Avantages client</p>
                 </div>
                 <ul className={styles.Advantages__ul}>
                     {advantages.map((a) => (

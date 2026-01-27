@@ -82,7 +82,7 @@ export default async function ServicePage({
         <div className={styles.rightContainer}>
           <ServiceToForm/>
           <Advantages advantages={service.advantages}/>
-          <SingleServiceLinks />
+          <SingleServiceLinks category={category} service={service.slug}/>
         </div>
       </div>
     </div>
