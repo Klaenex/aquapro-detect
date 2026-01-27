@@ -55,7 +55,7 @@
     border-radius: 8px;
     transition: background-color 150ms ease-in-out;
     &:hover {
-      background-color: color.scale($blue, $lightness: -11.6438356164%);
+      background-color: color.scale($blue, $lightness: -10%);
     }
   }
   &--services {
