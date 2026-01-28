@@ -21,7 +21,7 @@ export default function Hero({category, service}:Props) {
 
   return (
     <section className={styles.hero}>
-      { service ?
+      { service || category ?
         <></>
         :
         <svg
@@ -34,15 +34,29 @@ export default function Hero({category, service}:Props) {
       }
       <div className={styles.container}>
         <div className={styles.textContainer}>
-          { (service !== null) && (category !== null) ?
+          { service?
           <>
+            { category ?
             <Link className={styles.pill} href={`/services/${category.slug}`}>
             ← {category.title}
             </Link>
+            :
+            null
+            }
             <h2 className={styles.title}>
               {service.title}
             </h2>
             <p className={styles.paragraph}>{service.hero}</p>
+          </>
+          :
+          category ?
+          <>
+            <Link className={styles.pill__category} href={`/`}>
+              ← revenir à l'accueil
+            </Link>
+            <h2 className={styles.title}>
+            {category.title}</h2>
+            <p className={styles.paragraph}>{category.excerpt}</p>
           </>
           :
           <>
