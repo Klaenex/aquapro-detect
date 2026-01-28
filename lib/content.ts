@@ -12,6 +12,8 @@ export type Category = {
   title: string; // Titre page / marketing
   navTitle: string; // Titre menu / navigation
   excerpt: string;
+  imageURL: string;
+  imageName: string;
 };
 
 export type ServiceFormType =
@@ -53,6 +55,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Détection & Diagnostic",
     excerpt:
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
   {
     slug: "egouts-canalisations",
@@ -60,6 +64,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Égouts & Canalisations",
     excerpt:
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
   {
     slug: "nettoyage-sinistres",
@@ -67,6 +73,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Nettoyage & Sinistres",
     excerpt:
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 ];
 
