@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, CardsGrid } from "@/components/Cards";
 import { CATEGORIES } from "@/lib/content";
 import { getCategory, getServicesByCategory, getServiceUrl } from "@/lib/utils";
+import ServiceCard from "@/components/ServicesCard";
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ categorie: c.slug }));
@@ -58,9 +59,9 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <h1 className="h1">{category.title}</h1>
+        <ServiceCard services={services} categories={null}/>
+      {/* <h1 className="h1">{category.title}</h1>
       <p className="lead">{category.excerpt}</p>
-
       <div className="section">
         <CardsGrid>
           {services.map((s) => (
@@ -73,7 +74,7 @@ export default async function CategoryPage({
             />
           ))}
         </CardsGrid>
-      </div>
+      </div> */}
     </div>
   );
 }

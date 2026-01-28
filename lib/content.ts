@@ -30,6 +30,8 @@ export type Service = {
   excerpt: string;
   categorySlug: string;
   categoryTitle: string;
+  imageURL: string;
+  imageName: string;
 
   hero: string;
   methods: string[];
@@ -120,6 +122,8 @@ export const SERVICES: Service[] = [
       "Rapport utilisable pour l’assurance et/ou pour établir un devis de réparation",
     ],
     formType: "fuite",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -156,6 +160,8 @@ export const SERVICES: Service[] = [
       "Réduit les risques de récidive (condensation/ventilation)",
     ],
     formType: "fuite",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -191,6 +197,8 @@ export const SERVICES: Service[] = [
       "Document exploitable pour assurance / architecte / entrepreneur",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -224,6 +232,8 @@ export const SERVICES: Service[] = [
       "Très utile quand aucun accès n’est visible",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   // ============================
@@ -265,6 +275,8 @@ export const SERVICES: Service[] = [
       "Permet de prioriser les travaux",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -299,6 +311,8 @@ export const SERVICES: Service[] = [
       "Permet de confirmer/écarter la piste « réseau d’égouts »",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -332,6 +346,8 @@ export const SERVICES: Service[] = [
       "Possibilité d’urgence 24/7",
     ],
     formType: "debouchage",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -365,6 +381,8 @@ export const SERVICES: Service[] = [
       "Approche préventive = coûts maîtrisés",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -399,6 +417,8 @@ export const SERVICES: Service[] = [
       "Devis clair avec alternatives",
     ],
     formType: "inspection",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   // ============================
@@ -437,6 +457,8 @@ export const SERVICES: Service[] = [
       "Bâtiment prêt à être restitué / reloué / vendu",
     ],
     formType: "nettoyage",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -472,6 +494,8 @@ export const SERVICES: Service[] = [
       "Lieu prêt à être réhabité / reloué / sécurisé",
     ],
     formType: "nettoyage",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 ];
 

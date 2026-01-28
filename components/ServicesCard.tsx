@@ -1,14 +1,30 @@
 import styles from "./ServiceCard.module.scss";
-import {Category} from "@/lib/content";
+import {Category, Service} from "@/lib/content";
 
 type Props = {
-    categories: Category[];
+    categories: Category[] | null;
+    services: Service[] | null;
 }
 
-export default function ServiceCard({categories}:Props) {
+export default function ServiceCard({categories, services}:Props) {
     return(
         <section className={`${styles.ServiceCard} container`}>
-            { categories ?
+            { services ?
+            <>
+                <div className={styles.ServiceCard__body}>
+                    {services.map((s, i)=>(
+                        <div key={i} className={styles.ServiceCard__category}>
+                            <img src={s.imageURL} alt="" className={styles.ServiceCard__image}/>
+                            <div className={styles.ServiceCard__text}>
+                                <h3>{s.title}</h3>
+                                <p>{s.excerpt}</p>
+                                <a href={`/services/${s.slug}`}>voir →</a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </>
+            :
             <>
                 <div className={styles.ServiceCard__title}>
                     <h2 className="h2">Nos services</h2>
@@ -17,7 +33,8 @@ export default function ServiceCard({categories}:Props) {
                     </p>
                 </div>
                 <div className={styles.ServiceCard__body}>
-                    {categories.map((c, i)=>(
+                    { categories ?
+                    categories.map((c, i)=>(
                         <div key={i} className={styles.ServiceCard__category}>
                             <img src={c.imageURL} alt="" className={styles.ServiceCard__image}/>
                             <div className={styles.ServiceCard__text}>
@@ -26,11 +43,12 @@ export default function ServiceCard({categories}:Props) {
                                 <a href={`/services/${c.slug}`}>voir →</a>
                             </div>
                         </div>
-                    ))}
+                    ))
+                    :
+                    null
+                    }
                 </div>
             </>
-            :
-            null
             }
         </section>
     )
