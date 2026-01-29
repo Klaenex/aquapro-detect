@@ -61,7 +61,7 @@ export default async function CategoryPage({
   return (
     <div>
         <Hero category={category} service={null}/>
-        <ServiceCard services={services} categories={null}/>
+        <ServiceCard services={services} categories={null} categorySlug={category.slug}/>
     </div>
   );
 }

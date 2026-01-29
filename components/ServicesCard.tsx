@@ -4,9 +4,10 @@ import {Category, Service} from "@/lib/content";
 type Props = {
     categories: Category[] | null;
     services: Service[] | null;
+    categorySlug: string;
 }
 
-export default function ServiceCard({categories, services}:Props) {
+export default function ServiceCard({categories, services, categorySlug}:Props) {
     return(
         <section className={`${styles.ServiceCard} container`}>
             { services ?
@@ -18,7 +19,7 @@ export default function ServiceCard({categories, services}:Props) {
                             <div className={styles.ServiceCard__text}>
                                 <h3>{s.title}</h3>
                                 <p>{s.excerpt}</p>
-                                <a href={`/services/${s.slug}`}>voir →</a>
+                                <a href={`/services/${categorySlug}/${s.slug}`}>voir →</a>
                             </div>
                         </div>
                     ))}
