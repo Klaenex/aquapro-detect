@@ -49,5 +49,9 @@
   .paragraph {
     color: var(--primaryText);
     font-size: x-large;
+    line-height: 1.5;
   }
+}
+.pill__category {
+  margin-bottom: 1rem;
 }

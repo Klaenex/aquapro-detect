@@ -55,8 +55,8 @@ export default function Header() {
         <div className={styles.navWrap}>
           <h1 className={styles.title}>
             <span className={styles["title--hide"]}>AquaPro-Détect</span>
-            {/* Le logo ne doit pas ouvrir le burger en desktop => toggleBurger gère ça */}
-            <Link href="/" className={styles.logo} onClick={toggleBurger}>
+            
+            <Link href="/" className={styles.logo}>
               <Image
                 src={logo_horizontal}
                 alt="AquaPro-Détect"
