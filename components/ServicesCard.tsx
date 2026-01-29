@@ -4,7 +4,7 @@ import {Category, Service} from "@/lib/content";
 type Props = {
     categories: Category[] | null;
     services: Service[] | null;
-    categorySlug: string;
+    categorySlug: string | null;
 }
 
 export default function ServiceCard({categories, services, categorySlug}:Props) {

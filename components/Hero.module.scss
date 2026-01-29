@@ -45,6 +45,12 @@
   .title {
     line-height: 0.85;
   }
+  .pill {
+    color: var(--text-grey);
+    &:hover {
+      color: var(--primaryText);
+    }
+  }
 
   .paragraph {
     color: var(--primaryText);

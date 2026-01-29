@@ -26,7 +26,7 @@ export default function HomePage() {
     <div>
       <Hero service={null} category={null}/>
 
-      <ServiceCard categories={CATEGORIES} services={null}/>
+      <ServiceCard categories={CATEGORIES} services={null} categorySlug={null}/>
 
       <Emergency />
 

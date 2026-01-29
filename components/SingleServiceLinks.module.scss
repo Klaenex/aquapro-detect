@@ -20,5 +20,8 @@
     padding-left: 1rem;
     a {
         color: var(--text-grey);
+        &:hover {
+            color: var(--primary);
+        }
     }
 }

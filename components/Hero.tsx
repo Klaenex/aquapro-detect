@@ -51,7 +51,7 @@ export default function Hero({category, service}:Props) {
           :
           category ?
           <>
-            <Link className={styles.pill__category} href={`/`}>
+            <Link className={`${styles["pill__category"]} ${styles["pill"]}`} href={`/`}>
               ← revenir à l'accueil
             </Link>
             <h2 className={styles.title}>

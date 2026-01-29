@@ -1,4 +1,6 @@
-
+@use "../styles/abstracts/variables" as *;
+@use "../styles/abstracts/mixins" as *;
+@use "sass:color";
 
 .ServiceToForm__card {
     background-color: var(--bg-blue);
@@ -26,4 +28,8 @@
     background-color: var(--icon-blue);
     border: none;
     border-radius: 0.5rem;
+    transition: background-color 150ms ease-in-out;
+    &:hover {
+        background-color: color.scale($blue, $lightness: -10%);
+    }
 }

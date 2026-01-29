@@ -1,5 +1,4 @@
-'use client'
-import { useEffect } from "react";
+
 import styles from "./SingleServiceLinks.module.scss";
 import {getServicesByCategory, getServiceUrl} from "@/lib/utils";
 
@@ -15,10 +14,6 @@ type Props = {
 
 export default function SingleServiceLinks({category, service}:Props) {
     const services = getServicesByCategory(category.slug)
-
-    useEffect(()=>{
-        console.log(services)
-    },[services])
 
     return(
         <section className={styles.SingleServiceLinks}>
