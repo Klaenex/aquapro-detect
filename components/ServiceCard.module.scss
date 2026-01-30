@@ -1,4 +1,6 @@
 @use "../styles/abstracts/_mixins" as *;
+@use "../styles/abstracts/variables" as *;
+@use "sass:color";
 
 .ServiceCard {
     margin-top: 6em;
@@ -31,6 +33,10 @@
         a {
             position: absolute;
             right: 0;
+            transition: background-color 150ms ease-in-out;
+            &:hover {
+                background-color: color.scale($blue, $lightness: -10%);
+            }
         }
     }
     }
