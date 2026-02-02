@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  max-height: 128px;
   .icon {
     height: 89px;
     width: 286px;
@@ -28,10 +28,10 @@
 }
 
 .logo {
+  flex: 0 0 auto;
   img {
     height: 65px;
     overflow: hidden;
-    max-width: 100%;
   }
 }
 
