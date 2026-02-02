@@ -1,6 +1,9 @@
+// components/ServicesCard.tsx
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./ServiceCard.module.scss";
 import { Category, Service } from "@/lib/content";
-import Image from "next/image";
+
 type Props = {
   categories: Category[] | null;
   services: Service[] | null;
@@ -12,27 +15,31 @@ export default function ServiceCard({
   services,
   categorySlug,
 }: Props) {
+  const hasServices = Array.isArray(services) && services.length > 0;
+  const hasCategories = Array.isArray(categories) && categories.length > 0;
+
   return (
     <section className={`${styles.ServiceCard} container`}>
-      {services ? (
-        <>
-          <div className={styles.ServiceCard__body}>
-            {services.map((s, i) => (
-              <div key={i} className={styles.ServiceCard__category}>
-                <Image
-                  src={s.imageURL}
-                  alt=""
-                  className={styles.ServiceCard__image}
-                />
-                <div className={styles.ServiceCard__text}>
-                  <h3>{s.title}</h3>
-                  <p>{s.excerpt}</p>
-                  <a href={`/services/${categorySlug}/${s.slug}`}>voir →</a>
-                </div>
+      {hasServices ? (
+        <div className={styles.ServiceCard__body}>
+          {services!.map((s) => (
+            <div key={s.slug} className={styles.ServiceCard__category}>
+              <Image
+                src={s.imageURL}
+                alt={s.title ?? ""}
+                width={640}
+                height={420}
+                className={styles.ServiceCard__image}
+              />
+
+              <div className={styles.ServiceCard__text}>
+                <h3>{s.title}</h3>
+                <p>{s.excerpt}</p>
+                <Link href={`/services/${categorySlug}/${s.slug}`}>voir →</Link>
               </div>
-            ))}
-          </div>
-        </>
+            </div>
+          ))}
+        </div>
       ) : (
         <>
           <div className={styles.ServiceCard__title}>
@@ -41,19 +48,23 @@ export default function ServiceCard({
               Choisissez une catégorie pour accéder aux services détaillés.
             </p>
           </div>
+
           <div className={styles.ServiceCard__body}>
-            {categories
-              ? categories.map((c, i) => (
-                  <div key={i} className={styles.ServiceCard__category}>
+            {hasCategories
+              ? categories!.map((c) => (
+                  <div key={c.slug} className={styles.ServiceCard__category}>
                     <Image
                       src={c.imageURL}
-                      alt=""
+                      alt={c.title ?? ""}
+                      width={640}
+                      height={420}
                       className={styles.ServiceCard__image}
                     />
+
                     <div className={styles.ServiceCard__text}>
                       <h3>{c.title}</h3>
                       <p>{c.excerpt}</p>
-                      <a href={`/services/${c.slug}`}>voir →</a>
+                      <Link href={`/services/${c.slug}`}>voir →</Link>
                     </div>
                   </div>
                 ))
