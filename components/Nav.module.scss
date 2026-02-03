@@ -20,6 +20,8 @@
   z-index: 1;
 
   @include md {
+    width: auto;
+    height: auto;
     position: unset;
     flex-direction: row;
     align-items: center;

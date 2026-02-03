@@ -1,5 +1,6 @@
 @use "../styles/abstracts/_mixins" as *;
-
+@use "../styles/abstracts/_variables" as *;
+@use "sass:color";
 .ServiceCard {
   margin: 3rem auto;
 }
@@ -57,5 +58,19 @@
   }
   @include md {
     height: 100%;
+  }
+}
+
+.link__button {
+  padding: 0.75rem 1rem;
+  background-color: $blue;
+  color: white;
+  border-radius: 8px;
+  transition: background-color 150ms ease-in-out;
+  text-align: center;
+  max-width: 100%;
+  font-weight: 600;
+  &:hover {
+    background-color: color.scale($blue, $lightness: -10%);
   }
 }
