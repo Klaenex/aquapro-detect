@@ -39,7 +39,7 @@ export default function ServiceCard({
                   href={`/services/${categorySlug}/${s.slug}`}
                   className={styles.link__button}
                 >
-                  voir →
+                  Plus d&apos;informations →
                 </Link>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function ServiceCard({
                         href={`/services/${c.slug}`}
                         className={styles.link__button}
                       >
-                        Plus d&apos;info →
+                        Plus d&apos;informations →
                       </Link>
                     </div>
                   </div>

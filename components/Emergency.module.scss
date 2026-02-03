@@ -64,7 +64,7 @@
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-
+  white-space: nowrap;
   &:hover {
     background-color: #fff2db;
   }
