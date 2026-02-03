@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CATEGORIES, CONTACT } from "@/lib/content";
-import { Card, CardsGrid } from "@/components/Cards";
+import { CATEGORIES } from "@/lib/content";
 import Hero from "@/components/Hero";
 import Emergency from "@/components/Emergency";
 import WhyAqua from "@/components/WhyAqua";
@@ -24,13 +22,13 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div>
-      <Hero service={null} category={null}/>
+      <Hero service={null} category={null} />
 
-      <ServiceCard categories={CATEGORIES} services={null}/>
+      <ServiceCard categories={CATEGORIES} services={null} />
 
       <Emergency />
 
-      <WhyAqua/>
+      <WhyAqua />
     </div>
   );
 }

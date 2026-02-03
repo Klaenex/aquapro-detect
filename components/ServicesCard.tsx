@@ -5,9 +5,9 @@ import styles from "./ServiceCard.module.scss";
 import { Category, Service } from "@/lib/content";
 
 type Props = {
-  categories: Category[] | null;
-  services: Service[] | null;
-  categorySlug: string;
+  categories?: Category[] | null;
+  services?: Service[] | null;
+  categorySlug?: string;
 };
 
 export default function ServiceCard({

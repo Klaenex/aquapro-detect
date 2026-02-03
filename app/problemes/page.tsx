@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PROBLEMS } from "@/lib/content";
-import { Card, CardsGrid } from "@/components/Cards";
 
 export const metadata: Metadata = {
   title: "Problèmes | AquaPro-Détect Belgium",
@@ -25,19 +24,7 @@ export default function ProblemsPage() {
         bon service.
       </p>
 
-      <div className="section">
-        <CardsGrid>
-          {PROBLEMS.map((p) => (
-            <Card
-              key={p.slug}
-              title={p.title}
-              text={p.excerpt}
-              href={`/problemes/${p.slug}`}
-              badge="Problème"
-            />
-          ))}
-        </CardsGrid>
-      </div>
+      <div className="section"></div>
     </div>
   );
 }
