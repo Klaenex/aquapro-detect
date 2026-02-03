@@ -27,10 +27,6 @@
   &:nth-child(odd) {
     @include md {
       flex-direction: row-reverse;
-      a {
-        position: absolute;
-        right: 0;
-      }
     }
   }
 }

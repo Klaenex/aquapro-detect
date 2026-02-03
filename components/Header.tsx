@@ -10,21 +10,17 @@ export default function Header() {
   const [nav, setNav] = useState<"inactive" | "active">("inactive");
   const [burger, setBurger] = useState<"" | "cross">("");
 
-  // Helper : garder le breakpoint synchrone avec le CSS (ici 1024px)
   const isMobile = () =>
     typeof window !== "undefined" &&
     window.matchMedia("(max-width: 800px)").matches;
 
   function toggleBurger() {
-    // Si on est en desktop, ne pas ouvrir/fermer le menu depuis les liens.
-    // On s'assure aussi que l'état reste cohérent (fermé) en desktop.
     if (!isMobile()) {
       setBurger("");
       setNav("inactive");
       return;
     }
 
-    // Basculer l'état uniquement si on est en mobile
     setBurger((prev) => (prev === "" ? "cross" : ""));
     setNav((prev) => (prev === "inactive" ? "active" : "inactive"));
   }
@@ -37,7 +33,6 @@ export default function Header() {
     }
   }, [nav]);
 
-  // Si on redimensionne en desktop, s'assurer que tout est bien fermé
   useEffect(() => {
     function onResize() {
       if (!isMobile()) {
@@ -55,7 +50,7 @@ export default function Header() {
         <div className={styles.navWrap}>
           <h1 className={styles.title}>
             <span className={styles["title--hide"]}>AquaPro-Détect</span>
-            
+
             <Link href="/" className={styles.logo}>
               <Image
                 src={logo_horizontal}
