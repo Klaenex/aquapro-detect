@@ -11,7 +11,8 @@ export type Category = {
   slug: string;
   title: string; // Titre page / marketing
   navTitle: string; // Titre menu / navigation
-  excerpt: string;
+  excerpt: string; // court
+  excerptLong: string; // long
   imageURL: string;
   imageName: string;
 };
@@ -27,7 +28,8 @@ export type Service = {
   slug: string;
   title: string; // Titre page / marketing
   navTitle: string; // Titre menu / navigation
-  excerpt: string;
+  excerpt: string; // court
+  excerptLong: string; // long
   categorySlug: string;
   categoryTitle: string;
   imageURL: string;
@@ -57,6 +59,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Détection & Diagnostic",
     excerpt:
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
+    excerptLong:
+      "Nous réalisons des missions de détection et de diagnostic précises afin d’identifier l’origine des problèmes liés à l’eau, à l’humidité ou aux réseaux, sans casse inutile. Grâce à des méthodes adaptées et à des équipements professionnels, nous fournissons des constats fiables et exploitables pour orienter efficacement les réparations ou les démarches auprès des assurances.",
     imageURL: "/img/stock/worker.jpg",
     imageName: "worker.jpg",
   },
@@ -66,6 +70,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Égouts & Canalisations",
     excerpt:
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
+    excerptLong:
+      "Nous intervenons sur les réseaux d’égouts et de canalisations pour l’inspection vidéo, le débouchage rapide 24/7, l’entretien préventif et les réparations ciblées. Nos interventions permettent de diagnostiquer précisément les anomalies, de limiter les dégâts (reflux, débordements) et d’assurer un fonctionnement durable et sécurisé du réseau.",
     imageURL: "/img/stock/worker.jpg",
     imageName: "worker.jpg",
   },
@@ -75,6 +81,8 @@ export const CATEGORIES: Category[] = [
     navTitle: "Nettoyage & Sinistres",
     excerpt:
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
+    excerptLong:
+      "Nous assurons la remise en état complète des logements, commerces ou bâtiments après une fin de bail ou un sinistre. Nos interventions incluent le nettoyage approfondi, la désinfection si nécessaire et l’évacuation des déchets afin de restituer des lieux propres, sains et directement exploitables.",
     imageURL: "/img/stock/worker.jpg",
     imageName: "worker.jpg",
   },
@@ -91,6 +99,8 @@ export const SERVICES: Service[] = [
     navTitle: "Recherche de Fuite",
     excerpt:
       "Localisation précise des fuites d’eau (plomberie, toiture, chauffage, enterré) sans casse inutile.",
+    excerptLong:
+      "Nous localisons précisément les fuites d’eau (plomberie, canalisations enterrées, chauffage, toiture, etc.) sans casse inutile, en utilisant la méthode la plus adaptée à chaque situation. Cette approche permet d’identifier rapidement l’origine du problème, d’éviter les travaux inutiles et de fournir un diagnostic fiable, exploitable pour les réparations et les démarches auprès des assurances.",
     categorySlug: "detection-diagnostic",
     categoryTitle: "Détection & Diagnostic",
     hero: "Nous localisons précisément les fuites d’eau (plomberie, canalisations enterrées, chauffage, toiture, etc.) sans casse inutile, en utilisant la méthode la plus adaptée à chaque situation.",
@@ -132,6 +142,8 @@ export const SERVICES: Service[] = [
     navTitle: "Caméra Thermique",
     excerpt:
       "Détection des ponts thermiques, pertes d’isolation, infiltrations et zones humides invisibles à l’œil nu.",
+    excerptLong:
+      "Grâce à l’imagerie infrarouge, nous détectons les ponts thermiques, pertes d’isolation, infiltrations d’eau, zones humides et anomalies invisibles à l’œil nu (murs, plafonds, sols, conduites, etc.). L’analyse thermique permet d’obtenir un diagnostic rapide et sans destruction, de prioriser les travaux réellement nécessaires et de réduire les risques de récidive liés à la condensation ou à une ventilation insuffisante.",
     categorySlug: "detection-diagnostic",
     categoryTitle: "Détection & Diagnostic",
     hero: "Grâce à l’imagerie infrarouge, nous détectons les ponts thermiques, pertes d’isolation, infiltrations d’eau, humidité et anomalies invisibles à l’œil nu (murs, plafonds, sols, conduites, etc.).",
@@ -170,6 +182,8 @@ export const SERVICES: Service[] = [
     navTitle: "Test Fumigène",
     excerpt:
       "Contrôle d’étanchéité : détection de fuites, reflux, défauts d’aération et prises d’air parasites.",
+    excerptLong:
+      "Nous réalisons des tests fumigènes pour vérifier l’étanchéité des réseaux d’évacuation et détecter les fuites, reflux, défauts d’aération ou prises d’air parasites. La fumée permet de visualiser rapidement les anomalies, de localiser précisément les zones concernées et de faciliter des réparations ciblées, sans recherches destructives, avec un rapport clair sur demande.",
     categorySlug: "detection-diagnostic",
     categoryTitle: "Détection & Diagnostic",
     hero: "Nous réalisons des tests fumigènes afin de vérifier l’étanchéité des réseaux d’évacuation et détecter les points de fuite, reflux, défauts d’aération ou prises d’air parasites. Aussi utile pour ventilation, hottes, conduits de cheminée/chaudière, etc.",
@@ -207,6 +221,8 @@ export const SERVICES: Service[] = [
     navTitle: "Détection Sonar",
     excerpt:
       "Localisation précise de canalisations/éléments enterrés (regards, citernes, fosses, conduites non répertoriées).",
+    excerptLong:
+      "Nous utilisons la détection sonar pour localiser avec précision les canalisations et éléments enterrés, même lorsqu’ils ne sont pas accessibles (regards invisibles, citernes, fosses septiques, conduites non répertoriées…). Cette méthode permet d’éviter les creusements inutiles, de réduire les coûts liés aux recherches destructives et de sécuriser les travaux en identifiant le réseau avant intervention.",
     categorySlug: "detection-diagnostic",
     categoryTitle: "Détection & Diagnostic",
     hero: "Nous utilisons la détection sonar pour localiser avec précision canalisations et éléments enterrés, même lorsqu’ils ne sont pas accessibles (regards enterrés/invisibles, citernes, fosses septiques, conduites non répertoriées…).",
@@ -246,6 +262,8 @@ export const SERVICES: Service[] = [
     navTitle: "Inspection Caméra",
     excerpt:
       "Inspection vidéo : obstructions, fissures, effondrements, contre-pentes, infiltrations + schéma du réseau.",
+    excerptLong:
+      "Nous réalisons une inspection vidéo complète des canalisations et du réseau d’égouttage afin d’en vérifier l’état général et de détecter les obstructions, fissures, effondrements, contre-pentes ou infiltrations. Un relevé du réseau (schéma, matériaux, diamètres, profondeurs) peut être établi sur demande, afin de faciliter la planification des travaux et de cibler les réparations avec un minimum de casse.",
     categorySlug: "egouts-canalisations",
     categoryTitle: "Égouts & Canalisations",
     hero: "Nous réalisons une inspection vidéo complète des canalisations et du réseau d’égouttage afin de vérifier l’état général, détecter les obstructions, fissures, effondrements, contre-pentes et infiltrations.",
@@ -285,6 +303,8 @@ export const SERVICES: Service[] = [
     navTitle: "Analyse de Stabilité",
     excerpt:
       "Service complémentaire : vérifier un lien entre dégâts du bâtiment et anomalies du réseau d’égouts.",
+    excerptLong:
+      "Nous analysons l’état du réseau d’égouts pour vérifier s’il existe un lien possible avec des dégâts observés sur le bâtiment (affaissements, fissures murales, sols instables). L’objectif est de confirmer ou d’écarter la piste « réseau » avant d’engager d’autres expertises, et de recommander la suite la plus pertinente, y compris un bureau d’étude en stabilité si aucune anomalie n’est constatée.",
     categorySlug: "egouts-canalisations",
     categoryTitle: "Égouts & Canalisations",
     hero: "Nous analysons l’état du réseau d’égouts pour vérifier s’il existe un lien entre celui-ci et les dégâts observés (affaissements, fissures murales, sols instables). Si aucune anomalie n’est constatée, nous recommandons un bureau d’étude en stabilité.",
@@ -321,6 +341,8 @@ export const SERVICES: Service[] = [
     navTitle: "Débouchage 24/7",
     excerpt:
       "Débouchage rapide : canalisations, évacuations, colonnes, égouts. Urgence 24/7 selon la situation.",
+    excerptLong:
+      "Intervention rapide pour déboucher canalisations, évacuations, colonnes et réseaux d’égouts, avec un service d’urgence 24/7 selon la situation. Selon le cas, nous utilisons l’hydrocurage, le furet motorisé ou des outils mécaniques adaptés, puis nous vérifions l’écoulement (et caméra sur demande) afin de limiter les dégâts et réduire le risque de récidive.",
     categorySlug: "egouts-canalisations",
     categoryTitle: "Égouts & Canalisations",
     hero: "Intervention rapide pour déboucher canalisations, évacuations, colonnes et réseaux d’égouts. Service d’urgence 24/7 selon la situation.",
@@ -356,6 +378,8 @@ export const SERVICES: Service[] = [
     navTitle: "Entretien des Égouts",
     excerpt:
       "Entretien préventif (collectivités, industries, immeubles) : nettoyage, hydrocurage, suivi des anomalies.",
+    excerptLong:
+      "Nous mettons en place des programmes d’entretien préventif pour maintenir le bon fonctionnement des réseaux et limiter les risques de bouchage et de sinistres (collectivités, industries, immeubles). Selon la fréquence définie, nous réalisons le nettoyage, l’hydrocurage et le suivi des tronçons critiques, avec un rapport d’entretien sur demande pour planifier les actions à venir.",
     categorySlug: "egouts-canalisations",
     categoryTitle: "Égouts & Canalisations",
     hero: "Programmes d’entretien préventif pour maintenir le bon fonctionnement des réseaux et limiter les risques de bouchage et sinistres (collectivités, industries, immeubles).",
@@ -391,6 +415,8 @@ export const SERVICES: Service[] = [
     navTitle: "Réparation des Égouts",
     excerpt:
       "Réparation ciblée, remplacement de tronçons, scellement, manchons, réhabilitation partielle.",
+    excerptLong:
+      "Nous réalisons des réparations ciblées des conduites : remplacement de tronçons, scellement de fissures, pose de manchons ou réhabilitation partielle. Après diagnostic (souvent via inspection caméra), nous proposons des solutions adaptées (réparation locale ou remplacement) avec un devis clair, en privilégiant les méthodes limitant la casse lorsque c’est possible.",
     categorySlug: "egouts-canalisations",
     categoryTitle: "Égouts & Canalisations",
     hero: "Réparation ciblée des conduites : remplacement de tronçons, scellement de fissures, pose de manchons ou réhabilitation partielle. Solutions sans tranchée quand possible, ou ouverture locale si nécessaire.",
@@ -431,6 +457,8 @@ export const SERVICES: Service[] = [
     navTitle: "Nettoyage Fin de Bail",
     excerpt:
       "Remise en état complète logement/commerce : état des lieux sans contestation.",
+    excerptLong:
+      "Remise en état complète dans le cadre d’une fin de bail ou d’un état des lieux : nettoyage approfondi, désinfection si nécessaire, évacuation des déchets et remise au propre. L’objectif est de restituer des lieux conformes aux exigences des agences et propriétaires, avec une intervention rapide, discrète et clé-en-main, et des photos avant/après sur demande.",
     categorySlug: "nettoyage-sinistres",
     categoryTitle: "Nettoyage & Sinistres",
     hero: "Remise en état complète dans le cadre d’une fin de bail / état des lieux : nettoyage approfondi, désinfection si nécessaire, évacuation des déchets et remise au propre.",
@@ -467,6 +495,8 @@ export const SERVICES: Service[] = [
     navTitle: "Nettoyage Après Sinistre",
     excerpt:
       "Après incendie, dégâts des eaux, squat, insalubrité, décès… : remise en état et décontamination.",
+    excerptLong:
+      "Intervention après sinistre (incendie, dégâts des eaux, squat, insalubrité, décès, etc.) : nettoyage approfondi, désinfection/décontamination si nécessaire, évacuation et remise en état afin de retrouver un lieu sain et exploitable. Selon la situation, nous adaptons le matériel et les produits, et pouvons fournir un rapport ainsi que des photos avant/après sur demande.",
     categorySlug: "nettoyage-sinistres",
     categoryTitle: "Nettoyage & Sinistres",
     hero: "Intervention après sinistre (incendie, dégâts des eaux, squat, insalubrité, décès, etc.) : nettoyage approfondi, désinfection, évacuation et remise en état pour retrouver un lieu sain et exploitable.",
@@ -580,6 +610,6 @@ export const WHYAQUA = {
     "Si vous recherchez une équipe sérieuse, professionnelle et efficace, ne  cherchez plus : vous êtes au bon endroit.",
     "Nous travaillons avec respect, transparence et professionnalisme.",
     "Nos tarifs sont clairs, détaillés et sans suppléments inattendus. Aucune mauvaise surprise : tout est annoncé à l’avance.",
-    "En faisant appel à nos services, vous faites le choix de la tranquillité et de la qualité. Vous ne le regretterez pas, bien au contraire."
-  ]
-}
+    "En faisant appel à nos services, vous faites le choix de la tranquillité et de la qualité. Vous ne le regretterez pas, bien au contraire.",
+  ],
+};
