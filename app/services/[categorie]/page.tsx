@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Card, CardsGrid } from "@/components/Cards";
 import { CATEGORIES } from "@/lib/content";
 import { getCategory, getServicesByCategory, getServiceUrl } from "@/lib/utils";
 import ServiceCard from "@/components/ServicesCard";
@@ -54,14 +53,19 @@ export default async function CategoryPage({
   const { categorie } = await params;
 
   const category = getCategory(categorie);
+
   if (!category) return <div>Catégorie introuvable.</div>;
 
   const services = getServicesByCategory(category.slug);
 
   return (
-    <div>
-        <Hero category={category} service={null}/>
-        <ServiceCard services={services} categories={null} categorySlug={category.slug}/>
-    </div>
+    <>
+      <Hero category={category} service={null} />
+      <ServiceCard
+        services={services}
+        categories={null}
+        categorySlug={category.slug}
+      />
+    </>
   );
 }

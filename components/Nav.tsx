@@ -136,14 +136,6 @@ export default function Nav({ nav, toggleBurger }: Props) {
 
       <Link
         className={styles["nav__link"]}
-        href="/assurances-rapports"
-        onClick={maybeToggle}
-      >
-        Assurances & Rapports
-      </Link>
-
-      <Link
-        className={styles["nav__link"]}
         href="/a-propos"
         onClick={maybeToggle}
       >

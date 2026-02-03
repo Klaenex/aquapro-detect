@@ -1,9 +1,7 @@
 import styles from "@/styles/pages/service.module.scss";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICES } from "@/lib/content";
 import { getCategory, getService } from "@/lib/utils";
-import RequestForm from "@/components/RequestForm";
 import Hero from "@/components/Hero";
 import Methods from "@/components/Methods";
 import Process from "@/components/Process";
@@ -70,19 +68,19 @@ export default async function ServicePage({
   if (!category || !service) return <div>Service introuvable.</div>;
 
   return (
-    <div style={{backgroundColor:"var(--bg-lightgrey)"}}>
+    <div style={{ backgroundColor: "var(--bg-lightgrey)" }}>
       <Hero category={category} service={service} />
 
       <div className={`container ${styles.Services__categories}`}>
         <div className={styles.leftContainer}>
-          <Methods methods={service.methods}/>
-          <Process process={service.process}/>
-          <Documents documents={service.documents}/>
+          <Methods methods={service.methods} />
+          <Process process={service.process} />
+          <Documents documents={service.documents} />
         </div>
         <div className={styles.rightContainer}>
-          <ServiceToForm/>
-          <Advantages advantages={service.advantages}/>
-          <SingleServiceLinks category={category} service={service.slug}/>
+          <ServiceToForm />
+          <Advantages advantages={service.advantages} />
+          <SingleServiceLinks category={category} service={service.slug} />
         </div>
       </div>
     </div>

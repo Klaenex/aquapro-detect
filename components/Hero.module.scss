@@ -6,7 +6,11 @@
   position: relative;
   overflow: hidden;
   color: var(--primaryText);
-  background: linear-gradient(129deg, #0b4765, #3ab9cc);
+  background: linear-gradient(
+    130deg,
+    rgba(11, 71, 101, 1) 55%,
+    rgba(58, 185, 204, 1) 100%
+  );
   min-height: min-content;
   @include md {
     min-height: 55vh;
