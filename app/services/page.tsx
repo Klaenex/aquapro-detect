@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CATEGORIES } from "@/lib/content";
-import { Card, CardsGrid } from "@/components/Cards";
-
+import ServiceCard from "@/components/ServicesCard";
+import Hero from "@/components/Hero";
 export const metadata: Metadata = {
   title: "Services | AquaPro-Détect Belgium",
   description:
@@ -19,24 +19,9 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <div>
-      <h2 className="h2">Services</h2>
-      <p className="lead">
-        Accédez à chaque catégorie de services AquaPro-Détect.
-      </p>
-
-      <div className="section">
-        <CardsGrid>
-          {CATEGORIES.map((c) => (
-            <Card
-              key={c.slug}
-              title={c.title}
-              text={c.excerpt}
-              href={`/services/${c.slug}`}
-              badge="Catégorie"
-            />
-          ))}
-        </CardsGrid>
-      </div>
+      <Hero />
+      <ServiceCard categories={CATEGORIES} services={null} categorySlug="" />
+      <div className="section"></div>
     </div>
   );
 }

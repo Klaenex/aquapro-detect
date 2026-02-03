@@ -48,8 +48,11 @@
   align-items: center;
   gap: 1rem;
   @include md {
-    flex-direction: row;
+    flex-direction: column;
     gap: 2rem;
+  }
+  @include lg {
+    flex-direction: row;
   }
 }
 

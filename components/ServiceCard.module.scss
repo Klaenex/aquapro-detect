@@ -1,66 +1,65 @@
 @use "../styles/abstracts/_mixins" as *;
 
 .ServiceCard {
-    margin-top: 6em;
-    margin-bottom: 6em;
+  margin: 3rem auto;
 }
 
 .ServiceCard__title {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .ServiceCard__body {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin: 1rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem 0 1rem 0;
 }
 
 .ServiceCard__category {
-    border: 1px solid var(--border-lightgrey);
-    border-radius: 0.5rem;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.103);
-    overflow: hidden;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.103);
+  overflow: hidden;
+  @include md {
+    display: flex;
+    gap: 4rem;
+  }
+  &:nth-child(odd) {
     @include md {
-        display: flex;
-        gap: 4rem;
+      flex-direction: row-reverse;
+      a {
+        position: absolute;
+        right: 0;
+      }
     }
-    &:nth-child(odd){
-        @include md {
-        flex-direction: row-reverse;
-        a {
-            position: absolute;
-            right: 0;
-        }
-    }
-    }
+  }
 }
 
 .ServiceCard__image {
-    width: 100%;
-    @include md {
-        width: auto;
-        max-height: 20em;
-    }
+  width: 100%;
+  @include md {
+    width: auto;
+    max-height: 20em;
+  }
 }
 
 .ServiceCard__text {
-    padding: 1rem 1rem 2rem 1rem;
-    height: fit-content;
-    position: relative;
-    p {
-        margin-top: 1rem;
-        margin-bottom: 2rem;
-        line-height: 1.5;
-    }
-    a {
-        background-color: var(--icon-blue);
-        padding: 0.5rem 2rem 0.5rem 2rem;
-        border-radius: 0.5rem;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.103);
-        color: var(--primaryText);
-    }
-    @include md {
-        height: 100%;
-    }
+  padding: 1rem 1rem 2rem 1rem;
+  height: fit-content;
+  position: relative;
+  p {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+  }
+  a {
+    background-color: var(--icon-blue);
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.103);
+    color: var(--primaryText);
+  }
+  @include md {
+    height: 100%;
+  }
 }

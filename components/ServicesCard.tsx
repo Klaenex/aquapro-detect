@@ -34,7 +34,7 @@ export default function ServiceCard({
 
               <div className={styles.ServiceCard__text}>
                 <h3>{s.title}</h3>
-                <p>{s.excerpt}</p>
+                <p>{s.excerptLong}</p>
                 <Link href={`/services/${categorySlug}/${s.slug}`}>voir →</Link>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function ServiceCard({
 
                     <div className={styles.ServiceCard__text}>
                       <h3>{c.title}</h3>
-                      <p>{c.excerpt}</p>
+                      <p>{c.excerptLong}</p>
                       <Link href={`/services/${c.slug}`}>voir →</Link>
                     </div>
                   </div>
