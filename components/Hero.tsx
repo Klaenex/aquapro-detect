@@ -15,6 +15,8 @@ type Props = {
   service: {
     title: string;
     hero: string;
+    ctaHref?: string;
+    ctaLabel?: string;
   } | null;
 };
 
@@ -43,6 +45,10 @@ export default function Hero({ category, service }: Props) {
                   href={`/services/${category.slug}`}
                 >
                   ← {category.title}
+                </Link>
+              ) : service.ctaHref && service.ctaLabel ? (
+                <Link className={styles.pill} href={service.ctaHref}>
+                  {service.ctaLabel}
                 </Link>
               ) : category ? (
                 // Si pas de slug mais il y a une category, on affiche une "pill" non cliquable

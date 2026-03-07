@@ -1,0 +1,194 @@
+@use "../styles/abstracts/mixins" as *;
+
+.card {
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  background: var(--bg);
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.103);
+}
+
+.form {
+  max-width: 100%;
+}
+
+.h2 {
+  font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.lead {
+  color: var(--text-grey);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  background: var(--bg-lightgrey);
+}
+
+.pillPrimary {
+  background: var(--icon-blue);
+  border-color: var(--icon-blue);
+  color: var(--primaryText);
+}
+
+.label {
+  display: inline-block;
+  font-size: 0.92rem;
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  background: var(--bg-lightgrey);
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.4;
+  padding: 11px 12px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--icon-blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--icon-blue) 20%, transparent);
+}
+
+.textarea {
+  min-height: 126px;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--text-grey) 50%),
+    linear-gradient(135deg, var(--text-grey) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px);
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+}
+
+.formGrid2 {
+  display: grid;
+  gap: 1rem;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.btnPrimary {
+  border: 1px solid var(--icon-blue);
+  border-radius: var(--radius);
+  background: var(--icon-blue);
+  color: var(--primaryText);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--icon-blue) 88%, var(--bg-blue));
+}
+
+.btnPrimary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.header {
+  display: grid;
+  gap: 6px;
+}
+
+.leadTight {
+  margin-top: 0;
+}
+
+.sectionCard {
+  margin-top: 14px;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  background: var(--bg-lightgrey);
+  padding: 1rem;
+}
+
+.urgentCard {
+  border-style: dashed;
+}
+
+.urgentTitle {
+  font-weight: 800;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt12 {
+  margin-top: 12px;
+}
+
+.mt14 {
+  margin-top: 14px;
+}
+
+.sectionTitle {
+  font-weight: 750;
+  margin-bottom: 10px;
+}
+
+.actionsRow {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.errorText {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-weight: 650;
+}

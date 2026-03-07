@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
+import styles from "./RequestForm.module.scss";
 
 type Props = {
   serviceTitle: string;
@@ -174,35 +175,35 @@ export default function RequestForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="card">
-      <div style={{ display: "grid", gap: 6 }}>
-        <h2 className="h2">Demande d’intervention</h2>
-        <div className="lead" style={{ marginTop: 0 }}>
+    <form onSubmit={onSubmit} className={`${styles.card} ${styles.form}`}>
+      <div className={styles.header}>
+        <h2 className={styles.h2}>Demande d’intervention</h2>
+        <div className={`${styles.lead} ${styles.leadTight}`}>
           <strong>{serviceTitle}</strong> — {labelForType(formType)}
         </div>
       </div>
 
       {/* Bloc urgence visible */}
       {isUrgenceType ? (
-        <div className="card" style={{ marginTop: 14, borderStyle: "dashed" }}>
-          <div style={{ fontWeight: 800 }}>
+        <div className={`${styles.sectionCard} ${styles.urgentCard}`}>
+          <div className={styles.urgentTitle}>
             🚨 Urgence ? Appelez directement
           </div>
-          <div className="lead" style={{ marginTop: 8 }}>
+          <div className={`${styles.lead} ${styles.mt8}`}>
             <a
-              className="pill pillPrimary"
+              className={`${styles.pill} ${styles.pillPrimary}`}
               href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
             >
               {CONTACT.phone1}
             </a>{" "}
             <a
-              className="pill"
+              className={styles.pill}
               href={`tel:${CONTACT.phone2.replace(/\s/g, "")}`}
             >
               {CONTACT.phone2}
             </a>
           </div>
-          <div className="lead" style={{ marginTop: 10 }}>
+          <div className={`${styles.lead} ${styles.mt10}`}>
             Pour un reflux important / débordement, l’appel est plus rapide que
             le formulaire.
           </div>
@@ -210,45 +211,37 @@ export default function RequestForm({
       ) : null}
 
       {/* Honeypot anti-spam */}
-      <div
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          height: 0,
-          overflow: "hidden",
-        }}
-        aria-hidden="true"
-      >
-        <label className="label" htmlFor="website">
+      <div className={styles.honeypot} aria-hidden="true">
+        <label className={styles.label} htmlFor="website">
           Website
         </label>
         <input
           id="website"
           name="website"
-          className="input"
+          className={styles.input}
           tabIndex={-1}
           autoComplete="off"
         />
       </div>
 
-      <div style={{ marginTop: 14 }}>
-        <label className="label">Décrivez votre problème *</label>
+      <div className={styles.mt14}>
+        <label className={styles.label}>Décrivez votre problème *</label>
         <textarea
           name="description"
           required
-          className="textarea"
+          className={styles.textarea}
           rows={6}
           placeholder="Ex: évier bouché, reflux, odeurs, fuite plafond, humidité mur, etc."
         />
       </div>
 
-      <div className="formGrid2" style={{ marginTop: 14 }}>
+      <div className={`${styles.formGrid2} ${styles.mt14}`}>
         <div>
-          <label className="label">Urgence *</label>
+          <label className={styles.label}>Urgence *</label>
           <select
             name="urgence"
             required
-            className="select"
+            className={styles.select}
             defaultValue={urgenceOptions[0]?.value || "non-urgente"}
           >
             {urgenceOptions.map((o) => (
@@ -260,11 +253,11 @@ export default function RequestForm({
         </div>
 
         <div>
-          <label className="label">Type de bien *</label>
+          <label className={styles.label}>Type de bien *</label>
           <select
             name="logement"
             required
-            className="select"
+            className={styles.select}
             defaultValue="maison"
           >
             <option value="maison">Maison</option>
@@ -274,13 +267,13 @@ export default function RequestForm({
         </div>
 
         <div>
-          <label className="label">Étage (si appartement)</label>
-          <input name="etage" className="input" placeholder="Ex: 2e" />
+          <label className={styles.label}>Étage (si appartement)</label>
+          <input name="etage" className={styles.input} placeholder="Ex: 2e" />
         </div>
 
         <div>
-          <label className="label">Mode de paiement</label>
-          <select name="paiement" className="select" defaultValue="bancontact">
+          <label className={styles.label}>Mode de paiement</label>
+          <select name="paiement" className={styles.select} defaultValue="bancontact">
             <option value="bancontact">Bancontact</option>
             <option value="cash">Cash</option>
           </select>
@@ -289,16 +282,16 @@ export default function RequestForm({
 
       {/* Extras FUITE */}
       {showFuiteExtras ? (
-        <div className="card" style={{ marginTop: 14 }}>
-          <div style={{ fontWeight: 750, marginBottom: 10 }}>
+        <div className={styles.sectionCard}>
+          <div className={styles.sectionTitle}>
             Infos complémentaires — fuite / humidité
           </div>
-          <div className="formGrid2">
+          <div className={styles.formGrid2}>
             <div>
-              <label className="label">Type de fuite présumée</label>
+              <label className={styles.label}>Type de fuite présumée</label>
               <select
                 name="fuiteType"
-                className="select"
+                className={styles.select}
                 defaultValue="inconnu"
               >
                 <option value="inconnu">Inconnu</option>
@@ -309,19 +302,19 @@ export default function RequestForm({
               </select>
             </div>
             <div>
-              <label className="label">Signes visibles</label>
+              <label className={styles.label}>Signes visibles</label>
               <input
                 name="signes"
-                className="input"
+                className={styles.input}
                 placeholder="Ex: taches, moisissures, odeur, goutte à goutte…"
               />
             </div>
           </div>
 
           {showAssurance ? (
-            <div style={{ marginTop: 12 }}>
-              <label className="label">Assurance déjà contactée ?</label>
-              <select name="assurance" className="select" defaultValue="non">
+            <div className={styles.mt12}>
+              <label className={styles.label}>Assurance déjà contactée ?</label>
+              <select name="assurance" className={styles.select} defaultValue="non">
                 <option value="non">Non</option>
                 <option value="oui">Oui</option>
               </select>
@@ -332,24 +325,24 @@ export default function RequestForm({
 
       {/* Extras INSPECTION */}
       {showInspectionExtras ? (
-        <div className="card" style={{ marginTop: 14 }}>
-          <div style={{ fontWeight: 750, marginBottom: 10 }}>
+        <div className={styles.sectionCard}>
+          <div className={styles.sectionTitle}>
             Infos complémentaires — inspection / égouts
           </div>
-          <div className="formGrid2">
+          <div className={styles.formGrid2}>
             <div>
-              <label className="label">
+              <label className={styles.label}>
                 Accès existant (regard, cave, chambre de visite…)
               </label>
               <input
                 name="acces"
-                className="input"
+                className={styles.input}
                 placeholder="Ex: regard extérieur, cave, garage…"
               />
             </div>
             <div>
-              <label className="label">Odeurs présentes ?</label>
-              <select name="odeurs" className="select" defaultValue="inconnu">
+              <label className={styles.label}>Odeurs présentes ?</label>
+              <select name="odeurs" className={styles.select} defaultValue="inconnu">
                 <option value="inconnu">Je ne sais pas</option>
                 <option value="oui">Oui</option>
                 <option value="non">Non</option>
@@ -358,11 +351,11 @@ export default function RequestForm({
           </div>
 
           {showAssurance ? (
-            <div style={{ marginTop: 12 }}>
-              <label className="label">Assurance concernée ?</label>
+            <div className={styles.mt12}>
+              <label className={styles.label}>Assurance concernée ?</label>
               <select
                 name="assuranceInspection"
-                className="select"
+                className={styles.select}
                 defaultValue="non"
               >
                 <option value="non">Non</option>
@@ -375,16 +368,16 @@ export default function RequestForm({
 
       {/* Extras NETTOYAGE */}
       {showNettoyageExtras ? (
-        <div className="card" style={{ marginTop: 14 }}>
-          <div style={{ fontWeight: 750, marginBottom: 10 }}>
+        <div className={styles.sectionCard}>
+          <div className={styles.sectionTitle}>
             Infos complémentaires — nettoyage
           </div>
-          <div className="formGrid2">
+          <div className={styles.formGrid2}>
             <div>
-              <label className="label">Contexte</label>
+              <label className={styles.label}>Contexte</label>
               <select
                 name="contexteNettoyage"
-                className="select"
+                className={styles.select}
                 defaultValue="fin-de-bail"
               >
                 <option value="fin-de-bail">
@@ -398,8 +391,8 @@ export default function RequestForm({
               </select>
             </div>
             <div>
-              <label className="label">Niveau de saleté</label>
-              <select name="niveau" className="select" defaultValue="standard">
+              <label className={styles.label}>Niveau de saleté</label>
+              <select name="niveau" className={styles.select} defaultValue="standard">
                 <option value="standard">Standard</option>
                 <option value="intensif">Intensif</option>
                 <option value="extreme">Extrême</option>
@@ -407,9 +400,9 @@ export default function RequestForm({
             </div>
           </div>
 
-          <div style={{ marginTop: 12 }}>
-            <label className="label">Évacuation déchets/encombrants ?</label>
-            <select name="evacuation" className="select" defaultValue="inconnu">
+          <div className={styles.mt12}>
+            <label className={styles.label}>Évacuation déchets/encombrants ?</label>
+            <select name="evacuation" className={styles.select} defaultValue="inconnu">
               <option value="inconnu">Je ne sais pas</option>
               <option value="oui">Oui</option>
               <option value="non">Non</option>
@@ -418,69 +411,61 @@ export default function RequestForm({
         </div>
       ) : null}
 
-      <div style={{ marginTop: 14 }}>
-        <label className="label">Adresse complète *</label>
+      <div className={styles.mt14}>
+        <label className={styles.label}>Adresse complète *</label>
         <input
           name="adresse"
           required
-          className="input"
+          className={styles.input}
           placeholder="Rue, numéro, code postal, ville"
         />
       </div>
 
-      <div style={{ marginTop: 14 }}>
-        <label className="label">Disponibilités (jours & heures) *</label>
+      <div className={styles.mt14}>
+        <label className={styles.label}>Disponibilités (jours & heures) *</label>
         <input
           name="disponibilites"
           required
-          className="input"
+          className={styles.input}
           placeholder="Ex: Lun–Jeu après 17h, Sam matin"
         />
       </div>
 
-      <div className="formGrid2" style={{ marginTop: 14 }}>
+      <div className={`${styles.formGrid2} ${styles.mt14}`}>
         <div>
-          <label className="label">Nom & prénom *</label>
-          <input name="nom" required className="input" />
+          <label className={styles.label}>Nom & prénom *</label>
+          <input name="nom" required className={styles.input} />
         </div>
         <div>
-          <label className="label">Téléphone *</label>
+          <label className={styles.label}>Téléphone *</label>
           <input
             name="telephone"
             required
-            className="input"
+            className={styles.input}
             placeholder="Ex: 0471 32 57 24"
           />
         </div>
         <div>
-          <label className="label">Email *</label>
+          <label className={styles.label}>Email *</label>
           <input
             type="email"
             name="email"
             required
-            className="input"
+            className={styles.input}
             placeholder="vous@exemple.com"
           />
         </div>
       </div>
 
-      <div
-        style={{
-          marginTop: 16,
-          display: "flex",
-          gap: 12,
-          flexWrap: "wrap",
-          alignItems: "center",
-        }}
-      >
+      <div className={styles.actionsRow}>
         <button
           type="submit"
-          className="btnPrimary"
+          className={styles.btnPrimary}
           disabled={status === "loading"}
         >
           {status === "loading" ? "Envoi..." : "Envoyer la demande"}
         </button>
-        <span className="lead" style={{ marginTop: 0 }}>
+        <span className={`${styles.lead} ${styles.leadTight}`}>
           {feedback
             ? feedback
             : "Réponse rapide. Tarifs clairs annoncés à l’avance."}
@@ -488,7 +473,7 @@ export default function RequestForm({
       </div>
 
       {status === "error" ? (
-        <p style={{ marginTop: 10, color: "#b91c1c", fontWeight: 650 }}>
+        <p className={styles.errorText}>
           Si le formulaire ne fonctionne pas, appelez-nous directement.
         </p>
       ) : null}

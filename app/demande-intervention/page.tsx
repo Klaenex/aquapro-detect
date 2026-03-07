@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import RequestForm from "@/components/RequestForm";
+import Hero from "@/components/Hero";
 import { CATEGORIES, SERVICES } from "@/lib/content";
 import {
   getCategory,
@@ -43,15 +44,18 @@ export default function RequestPage() {
   }));
 
   return (
-    <div>
-      <div style={{ display: "grid", gap: 8 }}>
-        <h1 className="h1">Demande d’intervention</h1>
-        <p className="lead">
-          Choisissez un service dans le menu pour changer de formulaire.
-        </p>
-      </div>
+    <div className={styles.container}>
+      <Hero
+        category={null}
+        service={{
+          title: "Demande d'intervention",
+          hero: "Choisissez un service dans le menu pour changer de formulaire.",
+          ctaHref: `/services/${defaultCategory.slug}/${service.slug}`,
+          ctaLabel: "← Voir la page du service",
+        }}
+      />
 
-      <div className={styles.layout} style={{ marginTop: 20 }}>
+      <div className={`${styles.layout} ${styles.layoutWrapper}`}>
         <aside className={styles.menu} aria-label="Menu des services">
           <div className={styles.menuTitle}>Changer de service</div>
           {menuGroups.map((group) => (
@@ -59,10 +63,7 @@ export default function RequestPage() {
               <div className={styles.menuCategory}>{group.category.title}</div>
               <div className={styles.menuList}>
                 {group.services.map((item) => {
-                  const href = getRequestUrl(
-                    group.category.slug,
-                    item.slug
-                  );
+                  const href = getRequestUrl(group.category.slug, item.slug);
                   const isActive =
                     group.category.slug === defaultCategory.slug &&
                     item.slug === service.slug;
@@ -74,6 +75,7 @@ export default function RequestPage() {
                         isActive ? styles.menuLinkActive : ""
                       }`}
                       href={href}
+                      scroll={false}
                       aria-current={isActive ? "page" : undefined}
                     >
                       {item.title}
@@ -86,19 +88,7 @@ export default function RequestPage() {
         </aside>
 
         <section>
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <span className="lead" style={{ marginTop: 0 }}>
-              Service choisi : <strong>{service.title}</strong>
-            </span>
-            <Link
-              className="pill"
-              href={`/services/${defaultCategory.slug}/${service.slug}`}
-            >
-              Voir la page du service
-            </Link>
-          </div>
-
-          <div className="section" style={{ marginTop: 16 }}>
+          <div className={`section ${styles.formPane}`}>
             <RequestForm
               serviceTitle={service.title}
               serviceCategory={defaultCategory.title}

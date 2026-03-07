@@ -29,9 +29,10 @@
 }
 
 .container {
-  position: relative;
-  max-width: 600px;
+  width: 100%;
+  max-width: var(--container);
   margin: 0 auto;
+  padding: 0 16px;
 }
 
 .textContainer {
@@ -42,8 +43,6 @@
   gap: 1rem;
   @include md {
     margin-top: 5rem;
-    position: relative;
-    left: -10rem;
     margin-bottom: 5rem;
   }
   .title {
