@@ -8,7 +8,7 @@
   width: 100%;
   max-width: 1120px;
   margin-inline: auto;
-
+  padding: 3rem;
   @include md {
     grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
   }
@@ -20,6 +20,12 @@
   padding: 1.5rem;
   background: var(--bg-lightgrey);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.103);
+
+  @include md {
+    height: fit-content;
+    position: sticky;
+    top: 3rem;
+  }
 }
 
 .menuTitle {
@@ -63,13 +69,4 @@
 
 .container {
   background-color: var(--bg-lightgrey);
-}
-
-.layoutWrapper {
-  margin-top: 20px;
-  margin-bottom: 2rem;
-}
-
-.formPane {
-  margin-top: 16px;
 }

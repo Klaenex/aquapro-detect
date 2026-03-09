@@ -87,14 +87,12 @@ export default function RequestPage() {
           ))}
         </aside>
 
-        <section>
-          <div className={`section ${styles.formPane}`}>
-            <RequestForm
-              serviceTitle={service.title}
-              serviceCategory={defaultCategory.title}
-              formType={service.formType}
-            />
-          </div>
+        <section className={`section ${styles.formPane}`}>
+          <RequestForm
+            serviceTitle={service.title}
+            serviceCategory={defaultCategory.title}
+            formType={service.formType}
+          />
         </section>
       </div>
     </div>

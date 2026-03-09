@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CONTACT } from "@/lib/content";
 import ContactInfo from "@/components/ContactInfo";
 import ContactForm from "@/components/ContactForm";
 
