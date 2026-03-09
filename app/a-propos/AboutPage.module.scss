@@ -1,0 +1,133 @@
+@use "../../styles/abstracts/_mixins" as *;
+
+.page {
+  padding: 2.4rem 0 4rem;
+}
+
+.shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero {
+  border-radius: 16px;
+  background: linear-gradient(150deg, #0a5b8c 0%, #10b5cb 100%);
+  color: #fff;
+  padding: 1.4rem 1.2rem;
+  display: grid;
+  gap: 0.8rem;
+
+  @include md {
+    padding: 1.9rem 1.7rem;
+  }
+}
+
+.kicker {
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.18);
+  padding: 0.3rem 0.7rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.1;
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.97);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+
+  @include md {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  padding: 1rem;
+  display: grid;
+  gap: 0.8rem;
+
+  @include md {
+    padding: 1.2rem;
+  }
+}
+
+.h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.statItem {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem;
+  background: #f8fbff;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0a5b8c;
+}
+
+.statLabel {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.95rem;
+  font-weight: 700;
+  transition: 160ms ease;
+
+  &:hover {
+    border-color: #0a5b8c;
+    color: #0a5b8c;
+  }
+}
+
+.pillPrimary {
+  background: #0a5b8c;
+  color: #fff;
+  border-color: #0a5b8c;
+}

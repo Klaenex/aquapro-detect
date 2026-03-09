@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./ContactForm.module.scss";
+import { getFormsUrl } from "@/lib/forms";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
@@ -45,7 +46,7 @@ export default function ContactForm() {
     }
 
     try {
-      const res = await fetch("/forms/contact.php", {
+      const res = await fetch(getFormsUrl("/forms/contact.php"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

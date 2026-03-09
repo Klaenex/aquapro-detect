@@ -1,0 +1,112 @@
+@use "../../styles/abstracts/_mixins" as *;
+@use "../../styles/abstracts/_variables" as *;
+
+.page {
+  padding: 2.5rem 0 4rem;
+}
+
+.shell {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero {
+  background: linear-gradient(150deg, #0a5b8c 0%, #10b5cb 100%);
+  color: #fff;
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem;
+  display: grid;
+  gap: 0.8rem;
+
+  @include md {
+    padding: 1.8rem 1.6rem;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.35rem 0.7rem;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.title {
+  font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+  line-height: 1.1;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  display: grid;
+  gap: 0.9rem;
+
+  @include md {
+    padding: 1.3rem;
+  }
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.phones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  padding: 0.55rem 0.95rem;
+  font-weight: 700;
+  transition: 160ms ease;
+
+  &:hover {
+    border-color: #0a5b8c;
+    color: #0a5b8c;
+  }
+}
+
+.pillPrimary {
+  border-color: #0a5b8c;
+  background: #0a5b8c;
+  color: #fff;
+}

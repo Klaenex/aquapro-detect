@@ -1,0 +1,19 @@
+TO: contact@aquapro-detect.be
+SUBJECT: Nouveau message de contact — Test contact
+HEADERS:
+From: AquaPro-Détect <no-reply@aquapro-detect.be>
+Reply-To: jean.dupont@example.com
+Content-Type: text/plain; charset=utf-8
+
+Nouveau message reçu (site AquaPro-Détect)
+----------------------------------------
+Nom : Dupont Jean
+Email : jean.dupont@example.com
+Page : /contact
+Date : 2026-03-09T21:30:00.000Z
+
+OBJET
+Test contact
+
+MESSAGE
+Message de test

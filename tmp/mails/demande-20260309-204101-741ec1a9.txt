@@ -1,0 +1,35 @@
+TO: contact@aquapro-detect.be
+SUBJECT: Nouvelle demande d’intervention — Analyse des problèmes de stabilité
+HEADERS:
+From: AquaPro-Détect <no-reply@aquapro-detect.be>
+Reply-To: klaenex.29@gmail.com
+Content-Type: text/html; charset=utf-8
+
+Nouvelle demande reçue (site AquaPro-Détect)
+----------------------------------------
+Service : Analyse des problèmes de stabilité
+Catégorie : Égouts & Canalisations
+Type formulaire : inspection
+Page : /demande-intervention/egouts-canalisations/analyse-stabilite/
+Date : 2026-03-09T20:41:01.420Z
+
+DESCRIPTION
+fmklfgdkmgfdskdfgmkfgdml
+
+INFOS INTERVENTION
+Urgence : aujourdhui
+Type de bien : maison
+Étage : 3
+Adresse : Avenue de la Couronne,95 Ixelles
+Disponibilités : mardi
+Paiement : bancontact
+
+CONTACT
+Nom : Vincenzo Cuozzo
+Téléphone : 0479396546
+Email : klaenex.29@gmail.com
+
+INFOS COMPLEMENTAIRES
+Accès existant : test acces
+Odeurs : oui
+Assurance concernée : oui

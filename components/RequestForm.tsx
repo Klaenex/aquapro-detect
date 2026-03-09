@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
+import { getFormsUrl } from "@/lib/forms";
 import styles from "./RequestForm.module.scss";
 
 type Props = {
@@ -150,7 +151,7 @@ export default function RequestForm({
     }
 
     try {
-      const res = await fetch("/forms/demande.php", {
+      const res = await fetch(getFormsUrl("/forms/demande.php"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
