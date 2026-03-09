@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Hero from "@/components/Hero";
 import ContactInfo from "@/components/ContactInfo";
 import ContactForm from "@/components/ContactForm";
 
@@ -19,8 +20,15 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <ContactInfo/>
-      <ContactForm/>
+      <Hero
+        category={null}
+        service={{
+          title: "Contact",
+          hero: "Besoin d’aide ? Contactez-nous pour une demande d’intervention ou une urgence.",
+        }}
+      />
+      <ContactInfo />
+      <ContactForm />
     </>
   );
 }
