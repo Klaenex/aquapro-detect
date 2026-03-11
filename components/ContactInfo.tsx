@@ -1,12 +1,46 @@
+"use client";
+
+import { motion } from "motion/react";
 import styles from "./ContactInfo.module.scss";
 import { CONTACT } from "@/lib/content";
 
+const listVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function ContactInfo() {
   return (
-    <section className={styles.ContactInfo}>
+    <motion.section
+      className={styles.ContactInfo}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
       <div className={`${styles.contacts} container`}>
-        <div className={styles.cards}>
-          <div className={styles.contact}>
+        <motion.div
+          className={styles.cards}
+          variants={listVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+        >
+          <motion.div
+            className={styles.contact}
+            variants={itemVariants}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
             <div className={styles.icon}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +55,13 @@ export default function ContactInfo() {
             <p>
               <strong>Adresse</strong> {CONTACT.address}
             </p>
-          </div>
-          <div className={styles.contact}>
+          </motion.div>
+
+          <motion.div
+            className={styles.contact}
+            variants={itemVariants}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
             <div className={styles.icon}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +81,13 @@ export default function ContactInfo() {
             <p>
               <strong>Téléphone</strong> {CONTACT.phone1} — {CONTACT.phone2}
             </p>
-          </div>
-          <div className={styles.contact}>
+          </motion.div>
+
+          <motion.div
+            className={styles.contact}
+            variants={itemVariants}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
             <div className={styles.icon}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +107,13 @@ export default function ContactInfo() {
             <p>
               <strong>Email</strong> {CONTACT.email}
             </p>
-          </div>
-          <div className={styles.contact}>
+          </motion.div>
+
+          <motion.div
+            className={styles.contact}
+            variants={itemVariants}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
             <div className={styles.icon}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -79,15 +128,20 @@ export default function ContactInfo() {
             <p>
               <strong>TVA</strong> {CONTACT.vat}
             </p>
-          </div>
-        </div>
-        <iframe
+          </motion.div>
+        </motion.div>
+
+        <motion.iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2520.547958180925!2d4.504088577103054!3d50.821013471665324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3d96077ac4009%3A0x89abfbbd98ef885f!2sSint-Jansstraat%2039%2C%203080%20Tervuren!5e0!3m2!1sfr!2sbe!4v1768833059396!5m2!1sfr!2sbe"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           className={styles.iframe}
-        ></iframe>
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.12 }}
+        />
       </div>
-    </section>
+    </motion.section>
   );
 }

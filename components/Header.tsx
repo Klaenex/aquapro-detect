@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import logo_horizontal from "@/public/img/aquapro_logo_horizontal.svg";
 import styles from "./Header.module.scss";
 import Nav from "./Nav";
@@ -50,7 +51,12 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={styles.topbar}>
+    <motion.header
+      className={styles.topbar}
+      initial={{ opacity: 0, y: -18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+    >
       <div className="container">
         <div className={styles.navWrap}>
           <h1 className={styles.title}>
@@ -80,6 +86,6 @@ export default function Header() {
           <Nav nav={nav} toggleBurger={toggleBurger} />
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

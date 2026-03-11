@@ -1,8 +1,12 @@
+"use client";
+
 // components/ServicesCard.tsx
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from "./ServiceCard.module.scss";
 import { Category, Service } from "@/lib/content";
+import { FadeInSection, StaggerDiv, StaggerItemDiv } from "./animations";
 
 type Props = {
   categories?: Category[] | null;
@@ -17,13 +21,27 @@ export default function ServiceCard({
 }: Props) {
   const hasServices = Array.isArray(services) && services.length > 0;
   const hasCategories = Array.isArray(categories) && categories.length > 0;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 800px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  const sectionViewport = { once: true, amount: isMobile ? 0.08 : 0.2 };
 
   return (
-    <section className={`${styles.ServiceCard} container`}>
+    <FadeInSection
+      className={`${styles.ServiceCard} container`}
+      viewport={sectionViewport}
+    >
       {hasServices ? (
-        <div className={styles.ServiceCard__body}>
+        <StaggerDiv className={styles.ServiceCard__body} viewport={sectionViewport}>
           {services!.map((s) => (
-            <div key={s.slug} className={styles.ServiceCard__category}>
+            <StaggerItemDiv key={s.slug} className={styles.ServiceCard__category}>
               <Image
                 src={s.imageURL}
                 alt={s.title ?? ""}
@@ -37,22 +55,22 @@ export default function ServiceCard({
                 <p>{s.excerptLong}</p>
                 <Link href={`/services/${categorySlug}/${s.slug}`}>voir →</Link>
               </div>
-            </div>
+            </StaggerItemDiv>
           ))}
-        </div>
+        </StaggerDiv>
       ) : (
         <>
-          <div className={styles.ServiceCard__title}>
+          <StaggerItemDiv className={styles.ServiceCard__title}>
             <h2 className="h2">Nos services</h2>
             <p className="lead">
               Choisissez une catégorie pour accéder aux services détaillés.
             </p>
-          </div>
+          </StaggerItemDiv>
 
-          <div className={styles.ServiceCard__body}>
+          <StaggerDiv className={styles.ServiceCard__body} viewport={sectionViewport}>
             {hasCategories
               ? categories!.map((c) => (
-                  <div key={c.slug} className={styles.ServiceCard__category}>
+                  <StaggerItemDiv key={c.slug} className={styles.ServiceCard__category}>
                     <Image
                       src={c.imageURL}
                       alt={c.title ?? ""}
@@ -66,12 +84,12 @@ export default function ServiceCard({
                       <p>{c.excerptLong}</p>
                       <Link href={`/services/${c.slug}`}>voir →</Link>
                     </div>
-                  </div>
+                  </StaggerItemDiv>
                 ))
               : null}
-          </div>
+          </StaggerDiv>
         </>
       )}
-    </section>
+    </FadeInSection>
   );
 }

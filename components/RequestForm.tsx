@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
 import { getFormsUrl } from "@/lib/forms";
@@ -176,17 +177,36 @@ export default function RequestForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className={`${styles.card} ${styles.form}`}>
-      <div className={styles.header}>
+    <motion.form
+      onSubmit={onSubmit}
+      className={`${styles.card} ${styles.form}`}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      <motion.div
+        className={styles.header}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.35, ease: "easeOut", delay: 0.04 }}
+      >
         <h2 className={styles.h2}>Demande d’intervention</h2>
         <div className={`${styles.lead} ${styles.leadTight}`}>
           <strong>{serviceTitle}</strong> — {labelForType(formType)}
         </div>
-      </div>
+      </motion.div>
 
       {/* Bloc urgence visible */}
       {isUrgenceType ? (
-        <div className={`${styles.sectionCard} ${styles.urgentCard}`}>
+        <motion.div
+          className={`${styles.sectionCard} ${styles.urgentCard}`}
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.08 }}
+        >
           <div className={styles.urgentTitle}>
             🚨 Urgence ? Appelez directement
           </div>
@@ -208,7 +228,7 @@ export default function RequestForm({
             Pour un reflux important / débordement, l’appel est plus rapide que
             le formulaire.
           </div>
-        </div>
+        </motion.div>
       ) : null}
 
       {/* Honeypot anti-spam */}
@@ -466,11 +486,20 @@ export default function RequestForm({
         >
           {status === "loading" ? "Envoi..." : "Envoyer la demande"}
         </button>
-        <span className={`${styles.lead} ${styles.leadTight}`}>
-          {feedback
-            ? feedback
-            : "Réponse rapide. Tarifs clairs annoncés à l’avance."}
-        </span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={feedback || "default"}
+            className={`${styles.lead} ${styles.leadTight}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            {feedback
+              ? feedback
+              : "Réponse rapide. Tarifs clairs annoncés à l’avance."}
+          </motion.span>
+        </AnimatePresence>
       </div>
 
       {status === "error" ? (
@@ -478,6 +507,6 @@ export default function RequestForm({
           Si le formulaire ne fonctionne pas, appelez-nous directement.
         </p>
       ) : null}
-    </form>
+    </motion.form>
   );
 }

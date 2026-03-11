@@ -1,6 +1,7 @@
 import styles from "./ServiceToForm.module.scss";
 import Link from "next/link";
 import { getRequestUrl } from "@/lib/utils";
+import { FadeInSection, StaggerItemDiv } from "./animations";
 
 type ServiceToFormProps = {
   categorySlug: string;
@@ -14,8 +15,8 @@ export default function ServiceToForm({
   const requestUrl = getRequestUrl(categorySlug, serviceSlug);
 
   return (
-    <section className={styles.ServiceToForm}>
-      <div className={styles.ServiceToForm__card}>
+    <FadeInSection className={styles.ServiceToForm}>
+      <StaggerItemDiv className={styles.ServiceToForm__card}>
         <p className={styles.ServiceToForm__title}>Besoin de service ?</p>
         <p className={styles.ServiceToForm__text}>
           Remplissez notre formulaire de demande et nous vous recontacterons
@@ -24,7 +25,7 @@ export default function ServiceToForm({
         <Link href={requestUrl} className={styles.ServiceToForm__button}>
           Demander une Intervention →
         </Link>
-      </div>
-    </section>
+      </StaggerItemDiv>
+    </FadeInSection>
   );
 }

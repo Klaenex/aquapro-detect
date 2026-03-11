@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CATEGORIES } from "@/lib/content";
-import { getCategory, getServicesByCategory, getServiceUrl } from "@/lib/utils";
+import { getCategory, getServicesByCategory } from "@/lib/utils";
 import ServiceCard from "@/components/ServicesCard";
 import Hero from "@/components/Hero";
 

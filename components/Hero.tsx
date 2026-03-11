@@ -2,8 +2,8 @@
 "use client";
 import { HERO } from "@/lib/content";
 import styles from "./Hero.module.scss";
-
 import Link from "next/link";
+import { motion } from "motion/react";
 
 type Props = {
   category: {
@@ -35,7 +35,12 @@ export default function Hero({ category, service }: Props) {
         </svg>
       )}
       <div className={styles.container}>
-        <div className={styles.textContainer}>
+        <motion.div
+          className={styles.textContainer}
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
           {service ? (
             <>
               {/* On ne rend le Link que si category.slug est présent */}
@@ -75,7 +80,7 @@ export default function Hero({ category, service }: Props) {
               <p className={styles.paragraph}>{HERO.second_paragraph}</p>
             </>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

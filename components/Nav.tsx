@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "motion/react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import styles from "./Nav.module.scss";
 import { CATEGORIES, SERVICES, type Service } from "@/lib/content";
 
@@ -42,6 +45,14 @@ const isMobile = () =>
 
 export default function Nav({ nav, toggleBurger }: Props) {
   const servicesCategories = buildServicesChildren();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const active = document.activeElement;
+    if (active instanceof HTMLElement) {
+      active.blur();
+    }
+  }, [pathname]);
 
   // Wrapper qui n'appelle toggleBurger que sur mobile (pratique pour tous les links)
   const maybeToggle = () => {
@@ -49,10 +60,13 @@ export default function Nav({ nav, toggleBurger }: Props) {
   };
 
   return (
-    <nav
+    <motion.nav
       className={`${styles.nav} ${
         nav === "inactive" ? styles["nav--inactive"] : ""
       }`}
+      initial={false}
+      animate={nav === "active" ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
       <div className={styles["nav__services-wrap"]}>
         <Link
@@ -157,6 +171,6 @@ export default function Nav({ nav, toggleBurger }: Props) {
       >
         Demander une intervention
       </Link>
-    </nav>
+    </motion.nav>
   );
 }

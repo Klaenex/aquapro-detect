@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import styles from "./ContactForm.module.scss";
 import { getFormsUrl } from "@/lib/forms";
 
@@ -68,10 +69,31 @@ export default function ContactForm() {
   }
 
   return (
-    <section className={`${styles.ContactForm} container`}>
-      <h2>Nous Contacter</h2>
+    <motion.section
+      className={`${styles.ContactForm} container`}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.35, ease: "easeOut", delay: 0.05 }}
+      >
+        Nous Contacter
+      </motion.h2>
 
-      <form onSubmit={onSubmit} className={styles.form} id="contact">
+      <motion.form
+        onSubmit={onSubmit}
+        className={styles.form}
+        id="contact"
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.08 }}
+      >
         <div className={styles.honeypot} aria-hidden="true">
           <label htmlFor="website">Website</label>
           <input id="website" name="website" tabIndex={-1} autoComplete="off" />
@@ -99,15 +121,22 @@ export default function ContactForm() {
         <button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "ENVOI..." : "SOUMETTRE"}
         </button>
-        <p
-          className={`${styles.feedback} ${
-            status === "error" ? styles.feedbackError : styles.feedbackOk
-          }`}
-          aria-live="polite"
-        >
-          {feedback}
-        </p>
-      </form>
-    </section>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={feedback || "empty"}
+            className={`${styles.feedback} ${
+              status === "error" ? styles.feedbackError : styles.feedbackOk
+            }`}
+            aria-live="polite"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
+            {feedback}
+          </motion.p>
+        </AnimatePresence>
+      </motion.form>
+    </motion.section>
   );
 }

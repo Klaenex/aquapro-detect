@@ -1,11 +1,12 @@
 import {CONTACT, EMERGENCY} from "@/lib/content";
 import styles from "./Emergency.module.scss";
+import { FadeInSection, StaggerDiv, StaggerItemDiv } from "./animations";
 
 export default function Emergency() {
     return (
-        <section className={styles.emergency}>
+        <FadeInSection className={styles.emergency}>
             <div className={`container ${styles.container}`}>
-                <div className={styles.leftContainer}>
+                <StaggerItemDiv className={styles.leftContainer}>
                     <div className={styles.icon}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +26,9 @@ export default function Emergency() {
                         <h3>{EMERGENCY.title}</h3>
                         <p>{EMERGENCY.paragraph}</p>
                     </div>
-                </div>
-                <div className={styles.phoneNumbers}>
+                </StaggerItemDiv>
+                <StaggerDiv className={styles.phoneNumbers}>
+                    <StaggerItemDiv>
                     <a href="/contact" className={styles.phone}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +46,8 @@ export default function Emergency() {
                         </svg>
                         {CONTACT.phone1}
                     </a>
+                    </StaggerItemDiv>
+                    <StaggerItemDiv>
                     <a href="/contact" className={styles.phone}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +65,9 @@ export default function Emergency() {
                         </svg>
                         {CONTACT.phone2}
                     </a>
-                </div>
+                    </StaggerItemDiv>
+                </StaggerDiv>
             </div>
-        </section>
+        </FadeInSection>
     )
 }

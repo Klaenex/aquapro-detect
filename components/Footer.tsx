@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { CONTACT } from "@/lib/content";
 import styles from "./Footer.module.scss";
+import { FadeInSection, StaggerDiv, StaggerItemDiv } from "./animations";
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
+    <FadeInSection className={styles.footer}>
       <div className={`container ${styles.container}`}>
-        <div>
+        <StaggerItemDiv>
           <h3>Liens</h3>
           <div className={styles.pills}>
             <Link className={styles.pill} href="/services">
@@ -28,12 +29,12 @@ export default function Footer() {
               Urgence 24/7
             </Link>
           </div>
-        </div>
+        </StaggerItemDiv>
 
-        <div className={styles.contactContainer}>
+        <StaggerDiv className={styles.contactContainer}>
           <h3>Nous contacter</h3>
           <div className={styles.contacts}>
-            <div className={styles.singleContact}>
+            <StaggerItemDiv className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -44,8 +45,8 @@ export default function Footer() {
                 <path d="M4 12q0-3.264 1.6-6.016t4.384-4.352T16 0t6.016 1.632T26.4 5.984 28 12q0 1.376-.672 3.2t-1.696 3.68-2.336 3.776-2.56 3.584-2.336 2.944-1.728 2.08L16 32q-.256-.256-.672-.768t-1.696-2.016-2.368-3.008-2.528-3.52-2.368-3.84-1.696-3.616T4 12zm4 0q0 3.328 2.336 5.664T16 20t5.664-2.336T24 12t-2.336-5.632T16 4t-5.664 2.368T8 12z" />
               </svg>
               <p>{CONTACT.address}</p>
-            </div>
-            <div className={styles.singleContact}>
+            </StaggerItemDiv>
+            <StaggerItemDiv className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlSpace="preserve"
@@ -58,8 +59,8 @@ export default function Footer() {
                 />
               </svg>
               <p>{CONTACT.vat}</p>
-            </div>
-            <div className={styles.singleContact}>
+            </StaggerItemDiv>
+            <StaggerItemDiv className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -77,8 +78,8 @@ export default function Footer() {
               <p>
                 {CONTACT.phone1} — {CONTACT.phone2}
               </p>
-            </div>
-            <div className={styles.singleContact}>
+            </StaggerItemDiv>
+            <StaggerItemDiv className={styles.singleContact}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={800}
@@ -94,13 +95,13 @@ export default function Footer() {
                 />
               </svg>
               <p>{CONTACT.email}</p>
-            </div>
+            </StaggerItemDiv>
           </div>
-        </div>
+        </StaggerDiv>
       </div>
       <div className={`container ${styles.container} ${styles.copyright}`}>
         <p>© 2025 AquaPro-Detect</p>
       </div>
-    </footer>
+    </FadeInSection>
   );
 }

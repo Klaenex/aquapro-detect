@@ -1,0 +1,249 @@
+@use "../../styles/abstracts/_mixins" as *;
+
+.page {
+  padding: 2rem 1rem;
+}
+
+.intro {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  @include md {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    align-items: start;
+  }
+}
+
+.introCard,
+.asideCard,
+.problemCard,
+.ctaCard {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.introCard {
+  padding: 1.2rem;
+  display: grid;
+  gap: 0.85rem;
+  position: sticky;
+  top: 2rem;
+}
+
+.eyebrow {
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(16, 181, 203, 0.12);
+  color: var(--bg-blue);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.lead {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.checkList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.checkList li {
+  position: relative;
+  padding-left: 1.3rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.checkList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--icon-blue);
+}
+
+.asideCard {
+  padding: 1.2rem;
+  display: grid;
+  gap: 0.9rem;
+  background: linear-gradient(180deg, #f7fdff 0%, #ffffff 100%);
+}
+
+.asideTitle {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.statList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.statItem {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.85rem 0.9rem;
+  background: #fff;
+}
+
+.statValue {
+  margin: 0;
+  font-weight: 800;
+  color: var(--bg-blue);
+  font-size: 1.25rem;
+}
+
+.statLabel {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.problemCard {
+  padding: 1.15rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.problemTop {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.problemTitle {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.problemExcerpt {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.problemContent {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+.servicesBlock {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.servicesTitle {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--bg-blue);
+}
+
+.tagList,
+.actions,
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.tag,
+.button,
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+}
+
+.tag {
+  border: 1px solid rgba(16, 181, 203, 0.24);
+  background: rgba(16, 181, 203, 0.08);
+  color: var(--bg-blue);
+  font-size: 0.92rem;
+}
+
+.button,
+.buttonPrimary {
+  border: 1px solid var(--border);
+}
+
+.buttonPrimary {
+  background: var(--bg-blue);
+  border-color: var(--bg-blue);
+  color: var(--primaryText);
+}
+
+.ctaCard {
+  margin-top: 1.75rem;
+  padding: 1.3rem;
+  display: grid;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #0c4664 0%, #10b5cb 100%);
+  color: #fff;
+}
+
+.ctaTitle,
+.ctaText {
+  margin: 0;
+}
+
+.ctaTitle {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.ctaText {
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.ctaCard .button {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.ctaCard .buttonPrimary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--bg-blue);
+}
