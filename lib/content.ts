@@ -61,8 +61,8 @@ export const CATEGORIES: Category[] = [
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
     excerptLong:
       "Nous réalisons des missions de détection et de diagnostic précises afin d’identifier l’origine des problèmes liés à l’eau, à l’humidité ou aux réseaux, sans casse inutile. Grâce à des méthodes adaptées et à des équipements professionnels, nous fournissons des constats fiables et exploitables pour orienter efficacement les réparations ou les démarches auprès des assurances.",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/detection_diagnostic.PNG",
+    imageName: "detection_diagnostic.PNG",
   },
   {
     slug: "egouts-canalisations",
@@ -72,8 +72,8 @@ export const CATEGORIES: Category[] = [
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
     excerptLong:
       "Nous intervenons sur les réseaux d’égouts et de canalisations pour l’inspection vidéo, le débouchage rapide 24/7, l’entretien préventif et les réparations ciblées. Nos interventions permettent de diagnostiquer précisément les anomalies, de limiter les dégâts (reflux, débordements) et d’assurer un fonctionnement durable et sécurisé du réseau.",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Égouts & Canalisations/egout_canalisation.PNG",
+    imageName: "egout_canalisation.PNG",
   },
   {
     slug: "nettoyage-sinistres",
@@ -83,8 +83,8 @@ export const CATEGORIES: Category[] = [
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
     excerptLong:
       "Nous assurons la remise en état complète des logements, commerces ou bâtiments après une fin de bail ou un sinistre. Nos interventions incluent le nettoyage approfondi, la désinfection si nécessaire et l’évacuation des déchets afin de restituer des lieux propres, sains et directement exploitables.",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Nettoyage & Sinistres/nettoyage_sinistres.PNG",
+    imageName: "nettoyage_sinistres.PNG",
   },
 ];
 
@@ -132,8 +132,8 @@ export const SERVICES: Service[] = [
       "Rapport utilisable pour l’assurance et/ou pour établir un devis de réparation",
     ],
     formType: "fuite",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/2Recherche de fuite/recherche_de_fuite.PNG",
+    imageName: "recherche_de_fuite.PNG",
   },
 
   {
@@ -172,8 +172,8 @@ export const SERVICES: Service[] = [
       "Réduit les risques de récidive (condensation/ventilation)",
     ],
     formType: "fuite",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/3Caméra thermique/camera_thermique.PNG",
+    imageName: "camera_thermique.PNG",
   },
 
   {
@@ -211,8 +211,8 @@ export const SERVICES: Service[] = [
       "Document exploitable pour assurance / architecte / entrepreneur",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/4Test fumigène/test_fumigene.PNG",
+    imageName: "test_fumigene.PNG",
   },
 
   {
@@ -248,8 +248,8 @@ export const SERVICES: Service[] = [
       "Très utile quand aucun accès n’est visible",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/5Détection sonar/detection_sonar.PNG",
+    imageName: "detection_sonar.PNG",
   },
 
   // ============================
@@ -293,8 +293,8 @@ export const SERVICES: Service[] = [
       "Permet de prioriser les travaux",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/inspection_egout.PNG",
+    imageName: "inspection_egout.PNG",
   },
 
   {
@@ -331,8 +331,8 @@ export const SERVICES: Service[] = [
       "Permet de confirmer/écarter la piste « réseau d’égouts »",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Détection & Diagnostic/7Analyse des problèmes de stabilité/analyse_stabilite.PNG",
+    imageName: "analyse_stabilite.PNG",
   },
 
   {
@@ -368,8 +368,8 @@ export const SERVICES: Service[] = [
       "Possibilité d’urgence 24/7",
     ],
     formType: "debouchage",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Égouts & Canalisations/Débouchage + service d’urgence 24:7/debouchage_urgence.PNG",
+    imageName: "debouchage_urgence.PNG",
   },
 
   {
@@ -405,8 +405,8 @@ export const SERVICES: Service[] = [
       "Approche préventive = coûts maîtrisés",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Égouts & Canalisations/Entretien des égouts/entretien_egout.PNG",
+    imageName: "entretien_egout.PNG",
   },
 
   {
@@ -443,8 +443,8 @@ export const SERVICES: Service[] = [
       "Devis clair avec alternatives",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Égouts & Canalisations/Réparation d’égouts/reparation_egout.PNG",
+    imageName: "reparation_egout.PNG",
   },
 
   // ============================
@@ -485,8 +485,8 @@ export const SERVICES: Service[] = [
       "Bâtiment prêt à être restitué / reloué / vendu",
     ],
     formType: "nettoyage",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Nettoyage & Sinistres/Nettoyage fin de bail/nettoyage_fin_bail.PNG",
+    imageName: "nettoyage_fin_bail.PNG",
   },
 
   {
@@ -524,8 +524,8 @@ export const SERVICES: Service[] = [
       "Lieu prêt à être réhabité / reloué / sécurisé",
     ],
     formType: "nettoyage",
-    imageURL: "/img/stock/worker.jpg",
-    imageName: "worker.jpg",
+    imageURL: "/img/stock/Nettoyage & Sinistres/Nettoyage après sinistre/nettoyage_apres_sinistre.PNG",
+    imageName: "nettoyage_apres_sinistre.PNG",
   },
 ];
 
