@@ -61,8 +61,8 @@ export const CATEGORIES: Category[] = [
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
     excerptLong:
       "Nous réalisons des missions de détection et de diagnostic précises afin d’identifier l’origine des problèmes liés à l’eau, à l’humidité ou aux réseaux, sans casse inutile. Grâce à des méthodes adaptées et à des équipements professionnels, nous fournissons des constats fiables et exploitables pour orienter efficacement les réparations ou les démarches auprès des assurances.",
-    imageURL: "/img/stock/Détection & Diagnostic/detection_diagnostic.PNG",
-    imageName: "detection_diagnostic.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
   {
     slug: "egouts-canalisations",
@@ -72,8 +72,8 @@ export const CATEGORIES: Category[] = [
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
     excerptLong:
       "Nous intervenons sur les réseaux d’égouts et de canalisations pour l’inspection vidéo, le débouchage rapide 24/7, l’entretien préventif et les réparations ciblées. Nos interventions permettent de diagnostiquer précisément les anomalies, de limiter les dégâts (reflux, débordements) et d’assurer un fonctionnement durable et sécurisé du réseau.",
-    imageURL: "/img/stock/Égouts & Canalisations/egout_canalisation.PNG",
-    imageName: "egout_canalisation.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
   {
     slug: "nettoyage-sinistres",
@@ -83,8 +83,8 @@ export const CATEGORIES: Category[] = [
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
     excerptLong:
       "Nous assurons la remise en état complète des logements, commerces ou bâtiments après une fin de bail ou un sinistre. Nos interventions incluent le nettoyage approfondi, la désinfection si nécessaire et l’évacuation des déchets afin de restituer des lieux propres, sains et directement exploitables.",
-    imageURL: "/img/stock/Nettoyage & Sinistres/nettoyage_sinistres.PNG",
-    imageName: "nettoyage_sinistres.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 ];
 
@@ -132,8 +132,8 @@ export const SERVICES: Service[] = [
       "Rapport utilisable pour l’assurance et/ou pour établir un devis de réparation",
     ],
     formType: "fuite",
-    imageURL: "/img/stock/Détection & Diagnostic/2Recherche de fuite/recherche_de_fuite.PNG",
-    imageName: "recherche_de_fuite.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -172,8 +172,8 @@ export const SERVICES: Service[] = [
       "Réduit les risques de récidive (condensation/ventilation)",
     ],
     formType: "fuite",
-    imageURL: "/img/stock/Détection & Diagnostic/3Caméra thermique/camera_thermique.PNG",
-    imageName: "camera_thermique.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -211,8 +211,8 @@ export const SERVICES: Service[] = [
       "Document exploitable pour assurance / architecte / entrepreneur",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Détection & Diagnostic/4Test fumigène/test_fumigene.PNG",
-    imageName: "test_fumigene.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -248,8 +248,8 @@ export const SERVICES: Service[] = [
       "Très utile quand aucun accès n’est visible",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Détection & Diagnostic/5Détection sonar/detection_sonar.PNG",
-    imageName: "detection_sonar.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   // ============================
@@ -264,8 +264,8 @@ export const SERVICES: Service[] = [
       "Inspection vidéo : obstructions, fissures, effondrements, contre-pentes, infiltrations + schéma du réseau.",
     excerptLong:
       "Nous réalisons une inspection vidéo complète des canalisations et du réseau d’égouttage afin d’en vérifier l’état général et de détecter les obstructions, fissures, effondrements, contre-pentes ou infiltrations. Un relevé du réseau (schéma, matériaux, diamètres, profondeurs) peut être établi sur demande, afin de faciliter la planification des travaux et de cibler les réparations avec un minimum de casse.",
-    categorySlug: "egouts-canalisations",
-    categoryTitle: "Égouts & Canalisations",
+    categorySlug: "detection-diagnostic",
+    categoryTitle: "Détection & Diagnostic",
     hero: "Nous réalisons une inspection vidéo complète des canalisations et du réseau d’égouttage afin de vérifier l’état général, détecter les obstructions, fissures, effondrements, contre-pentes et infiltrations.",
     methods: [
       "Caméra d’inspection haute définition (avec sonde de localisation)",
@@ -293,8 +293,8 @@ export const SERVICES: Service[] = [
       "Permet de prioriser les travaux",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Détection & Diagnostic/inspection_egout.PNG",
-    imageName: "inspection_egout.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -305,8 +305,8 @@ export const SERVICES: Service[] = [
       "Service complémentaire : vérifier un lien entre dégâts du bâtiment et anomalies du réseau d’égouts.",
     excerptLong:
       "Nous analysons l’état du réseau d’égouts pour vérifier s’il existe un lien possible avec des dégâts observés sur le bâtiment (affaissements, fissures murales, sols instables). L’objectif est de confirmer ou d’écarter la piste « réseau » avant d’engager d’autres expertises, et de recommander la suite la plus pertinente, y compris un bureau d’étude en stabilité si aucune anomalie n’est constatée.",
-    categorySlug: "egouts-canalisations",
-    categoryTitle: "Égouts & Canalisations",
+    categorySlug: "detection-diagnostic",
+    categoryTitle: "Détection & Diagnostic",
     hero: "Nous analysons l’état du réseau d’égouts pour vérifier s’il existe un lien entre celui-ci et les dégâts observés (affaissements, fissures murales, sols instables). Si aucune anomalie n’est constatée, nous recommandons un bureau d’étude en stabilité.",
     methods: [
       "Inspection visuelle du bâtiment (intérieur et extérieur)",
@@ -331,8 +331,8 @@ export const SERVICES: Service[] = [
       "Permet de confirmer/écarter la piste « réseau d’égouts »",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Détection & Diagnostic/7Analyse des problèmes de stabilité/analyse_stabilite.PNG",
-    imageName: "analyse_stabilite.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -368,8 +368,8 @@ export const SERVICES: Service[] = [
       "Possibilité d’urgence 24/7",
     ],
     formType: "debouchage",
-    imageURL: "/img/stock/Égouts & Canalisations/Débouchage + service d’urgence 24:7/debouchage_urgence.PNG",
-    imageName: "debouchage_urgence.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -405,8 +405,8 @@ export const SERVICES: Service[] = [
       "Approche préventive = coûts maîtrisés",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Égouts & Canalisations/Entretien des égouts/entretien_egout.PNG",
-    imageName: "entretien_egout.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -443,8 +443,8 @@ export const SERVICES: Service[] = [
       "Devis clair avec alternatives",
     ],
     formType: "inspection",
-    imageURL: "/img/stock/Égouts & Canalisations/Réparation d’égouts/reparation_egout.PNG",
-    imageName: "reparation_egout.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   // ============================
@@ -485,8 +485,8 @@ export const SERVICES: Service[] = [
       "Bâtiment prêt à être restitué / reloué / vendu",
     ],
     formType: "nettoyage",
-    imageURL: "/img/stock/Nettoyage & Sinistres/Nettoyage fin de bail/nettoyage_fin_bail.PNG",
-    imageName: "nettoyage_fin_bail.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 
   {
@@ -524,8 +524,8 @@ export const SERVICES: Service[] = [
       "Lieu prêt à être réhabité / reloué / sécurisé",
     ],
     formType: "nettoyage",
-    imageURL: "/img/stock/Nettoyage & Sinistres/Nettoyage après sinistre/nettoyage_apres_sinistre.PNG",
-    imageName: "nettoyage_apres_sinistre.PNG",
+    imageURL: "/img/stock/worker.jpg",
+    imageName: "worker.jpg",
   },
 ];
 
@@ -579,11 +579,11 @@ export const PROBLEMS: Problem[] = [
     ],
     relatedServices: [
       {
-        categorySlug: "egouts-canalisations",
+        categorySlug: "detection-diagnostic",
         serviceSlug: "inspection-camera",
       },
       {
-        categorySlug: "egouts-canalisations",
+        categorySlug: "detection-diagnostic",
         serviceSlug: "analyse-stabilite",
       },
       { categorySlug: "detection-diagnostic", serviceSlug: "detection-sonar" },
