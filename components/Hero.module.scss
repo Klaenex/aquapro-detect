@@ -57,4 +57,15 @@
 }
 .pill__category {
   margin-bottom: 1rem;
+  color: var(--border-lightgrey);
+  &:hover {
+    color: var(--primary-text);
+  }
+}
+.pill {
+  margin-bottom: 1rem;
+  color: var(--border-lightgrey);
+  &:hover {
+    color: var(--primary-text);
+  }
 }

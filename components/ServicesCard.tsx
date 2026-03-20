@@ -42,11 +42,11 @@ export default function ServiceCard({
         <StaggerDiv className={styles.ServiceCard__body} viewport={sectionViewport}>
           {services!.map((s) => (
             <StaggerItemDiv key={s.slug} className={styles.ServiceCard__category}>
-              <Image
+              <img
                 src={s.imageURL}
                 alt={s.title ?? ""}
-                width={640}
-                height={420}
+                // width={640}
+                // height={420}
                 className={styles.ServiceCard__image}
               />
 
