@@ -23,14 +23,11 @@
   width: 100%;
   @include md {
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
   }
   &:nth-child(odd) {
     @include md {
       flex-direction: row-reverse;
-      .ServiceCard__text {
-        align-items: flex-end;
-      }
     }
   }
 }
@@ -38,10 +35,10 @@
 
 .ServiceCard__text {
   padding: 1rem 1rem 2rem 1rem;
-  height: 100%;
-  position: relative;
+  height: fit-content;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   p {
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -49,7 +46,7 @@
   }
   a {
     background-color: var(--icon-blue);
-    padding: 0.5rem 2rem 0.5rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
     border-radius: 0.5rem;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.103);
     color: var(--primaryText);
@@ -57,15 +54,30 @@
   }
   @include md {
     height: 100%;
+    width: 100%;
+  }
+}
+
+.ServiceCard__divImage {
+  height: 360px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  @include md {
+    height: 480px;
   }
 }
 
 .ServiceCard__image {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: auto;
+  height: 100%;
+  @include sm {
+    height: auto;
+    width: 100%;
+  }
   @include md {
-    max-width: 50%;
+    height: 100%;
+    width: auto;
   }
 }

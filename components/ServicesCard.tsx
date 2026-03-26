@@ -42,13 +42,13 @@ export default function ServiceCard({
         <StaggerDiv className={styles.ServiceCard__body} viewport={sectionViewport}>
           {services!.map((s) => (
             <StaggerItemDiv key={s.slug} className={styles.ServiceCard__category}>
-              <img
-                src={s.imageURL}
-                alt={s.title ?? ""}
-                // width={640}
-                // height={420}
-                className={styles.ServiceCard__image}
-              />
+              <div className={styles.ServiceCard__divImage}>
+                <img
+                  src={s.imageURL}
+                  alt={s.title ?? ""}
+                  className={styles.ServiceCard__image}
+                />
+              </div>
 
               <div className={styles.ServiceCard__text}>
                 <h3>{s.title}</h3>
@@ -71,13 +71,13 @@ export default function ServiceCard({
             {hasCategories
               ? categories!.map((c) => (
                   <StaggerItemDiv key={c.slug} className={styles.ServiceCard__category}>
-                    <Image
-                      src={c.imageURL}
-                      alt={c.title ?? ""}
-                      width={640}
-                      height={420}
-                      className={styles.ServiceCard__image}
-                    />
+                    <div className={styles.ServiceCard__divImage}>
+                      <img
+                        src={c.imageURL}
+                        alt={c.title ?? ""}
+                        className={styles.ServiceCard__image}
+                      />
+                    </div>
 
                     <div className={styles.ServiceCard__text}>
                       <h3>{c.title}</h3>
