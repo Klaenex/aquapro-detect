@@ -68,6 +68,9 @@
   @include md {
     height: 480px;
   }
+  @include lg {
+    height: 360px;
+  }
 }
 
 .ServiceCard__image {
