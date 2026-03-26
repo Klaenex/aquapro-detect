@@ -1,7 +1,7 @@
 export const CONTACT = {
   brand: "AquaPro-Détect Belgium",
   address: "Sint-Jansstraat 39, 3080 Tervuren",
-  phone1: "0471 32 57 24",
+  phone1: "0485 06 14 11",
   phone2: "0487 93 20 51",
   email: "contact@aquapro-detect.be",
   vat: "BE 1015.155.577",
