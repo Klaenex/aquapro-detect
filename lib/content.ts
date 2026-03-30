@@ -375,7 +375,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "debouchage",
     imageURL:
-      "/img/stock/Égouts & Canalisations/Débouchage + service d’urgence 24:7/debouchage_urgence.webp",
+      "/img/stock/egouts-canalisations/debouchage-urgence-24-7/debouchage_urgence.webp",
     imageName: "debouchage_urgence.webp",
   },
 
