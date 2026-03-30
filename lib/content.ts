@@ -133,7 +133,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "fuite",
     imageURL:
-      "/img/stock/Détection & Diagnostic/2Recherche de fuite/recherche_de_fuite.webp",
+      "/img/stock/detection-diagnostic/recherche-de-fuite/recherche_de_fuite.webp",
     imageName: "recherche_de_fuite.webp",
   },
 
@@ -174,7 +174,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "fuite",
     imageURL:
-      "/img/stock/Détection & Diagnostic/3Caméra thermique/camera_thermique.webp",
+      "/img/stock/detection-diagnostic/camera-thermique/camera_thermique.webp",
     imageName: "camera_thermique.webp",
   },
 
@@ -214,7 +214,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Détection & Diagnostic/4Test fumigène/test_fumigene.webp",
+      "/img/stock/detection-diagnostic/test-fumigene/test_fumigene.webp",
     imageName: "test_fumigene.webp",
   },
 
@@ -252,7 +252,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Détection & Diagnostic/5Détection sonar/detection_sonar.webp",
+      "/img/stock/detection-diagnostic/detection-sonar/detection_sonar.webp",
     imageName: "detection_sonar.webp",
   },
 
@@ -298,7 +298,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Détection & Diagnostic/6Inspection caméra des égouts/inspection_egout.webp",
+      "/img/stock/detection-diagnostic/inspection-camera-egouts/inspection_egout.webp",
     imageName: "inspection_egout.webp",
   },
 
@@ -337,7 +337,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Détection & Diagnostic/7Analyse des problèmes de stabilité/analyse_stabilite.webp",
+      "/img/stock/detection-diagnostic/analyse-stabilite/analyse_stabilite.webp",
     imageName: "analyse_stabilite.webp",
   },
 
@@ -413,7 +413,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Égouts & Canalisations/Entretien des égouts/entretien_egout.webp",
+      "/img/stock/egouts-canalisations/entretien-egouts/entretien_egout.webp",
     imageName: "entretien_egout.webp",
   },
 
@@ -452,7 +452,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL:
-      "/img/stock/Égouts & Canalisations/Réparation d’égouts/reparation_egout.webp",
+      "/img/stock/egouts-canalisations/reparation-egouts/reparation_egout.webp",
     imageName: "reparation_egout.webp",
   },
 
@@ -495,7 +495,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "nettoyage",
     imageURL:
-      "/img/stock/Nettoyage & Sinistres/Nettoyage fin de bail/nettoyage_fin_bail.webp",
+      "/img/stock/nettoyage-sinistres/nettoyage-fin-de-bail/nettoyage_fin_bail.webp",
     imageName: "nettoyage_fin_bail.webp",
   },
 
@@ -535,7 +535,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "nettoyage",
     imageURL:
-      "/img/stock/Nettoyage & Sinistres/Nettoyage après sinistre/nettoyage_apres_sinistre.webp",
+      "/img/stock/nettoyage-sinistres/nettoyage-apres-sinistre/nettoyage_apres_sinistre.webp",
     imageName: "nettoyage_apres_sinistre.webp",
   },
 ];

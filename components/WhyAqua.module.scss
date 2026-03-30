@@ -1,17 +1,109 @@
+@use "../styles/abstracts/_mixins" as *;
+
 .WhyAqua {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
-@media screen and (min-width:1000px) {
-    .WhyAqua {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-        h2 {
-            margin-bottom: 1rem;
-        }
-    }
+.card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.3rem;
+  display: grid;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #0c4664 0%, #10b5cb 100%);
+  color: #fff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.eyebrow {
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.8rem;
+}
+
+.title,
+.lead {
+  margin: 0;
+}
+
+.title {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.lead {
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.3rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.button,
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+.button {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.buttonPrimary {
+  background: #fff;
+  border-color: #fff;
+  color: var(--bg-blue);
+}
+
+@include md {
+  .WhyAqua {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .card {
+    padding: 1.6rem;
+  }
 }
