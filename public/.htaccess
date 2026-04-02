@@ -1,0 +1,33 @@
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|svg|ico|webp|png|jpg|jpeg|gif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /projets/aquapro-detect/
+
+  # Never rewrite static assets or form handlers.
+  RewriteRule ^(_next/|img/|forms/|favicon\.ico$|sitemap\.xml$|robot\.txt$) - [L]
+
+  # Serve existing files and directories directly.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Map clean URLs to exported directory indexes.
+  RewriteRule ^(.+[^/])$ $1/ [R=301,L]
+</IfModule>

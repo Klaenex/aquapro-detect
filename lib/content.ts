@@ -7,6 +7,20 @@ export const CONTACT = {
   vat: "BE 1015.155.577",
 };
 
+const defaultBasePath = "/projets/aquapro-detect";
+const rawBasePath =
+  process.env.NEXT_PUBLIC_BASE_PATH?.trim() || defaultBasePath;
+const basePath =
+  rawBasePath && rawBasePath !== "/" ? rawBasePath.replace(/\/+$/, "") : "";
+
+function withBasePath(path: string) {
+  if (!basePath || !path.startsWith("/")) {
+    return path;
+  }
+
+  return `${basePath}${path}`;
+}
+
 export type Category = {
   slug: string;
   title: string; // Titre page / marketing
@@ -61,7 +75,7 @@ export const CATEGORIES: Category[] = [
       "Localisation précise, sans casse inutile, avec méthodes adaptées et rapports exploitables.",
     excerptLong:
       "Nous réalisons des missions de détection et de diagnostic précises afin d’identifier l’origine des problèmes liés à l’eau, à l’humidité ou aux réseaux, sans casse inutile. Grâce à des méthodes adaptées et à des équipements professionnels, nous fournissons des constats fiables et exploitables pour orienter efficacement les réparations ou les démarches auprès des assurances.",
-    imageURL: "/img/stock/detection-diagnostic.webp",
+    imageURL: withBasePath("/img/stock/detection-diagnostic.webp"),
     imageName: "detection-diagnostic.webp",
   },
   {
@@ -72,7 +86,7 @@ export const CATEGORIES: Category[] = [
       "Inspection, débouchage 24/7, entretien, réparations et analyse de stabilité liée au réseau.",
     excerptLong:
       "Nous intervenons sur les réseaux d’égouts et de canalisations pour l’inspection vidéo, le débouchage rapide 24/7, l’entretien préventif et les réparations ciblées. Nos interventions permettent de diagnostiquer précisément les anomalies, de limiter les dégâts (reflux, débordements) et d’assurer un fonctionnement durable et sécurisé du réseau.",
-    imageURL: "/img/stock/egouts-canalisations.webp",
+    imageURL: withBasePath("/img/stock/egouts-canalisations.webp"),
     imageName: "egouts-canalisations.webp",
   },
   {
@@ -83,7 +97,7 @@ export const CATEGORIES: Category[] = [
       "Remise en état fin de bail ou après sinistre : intervention clé-en-main.",
     excerptLong:
       "Nous assurons la remise en état complète des logements, commerces ou bâtiments après une fin de bail ou un sinistre. Nos interventions incluent le nettoyage approfondi, la désinfection si nécessaire et l’évacuation des déchets afin de restituer des lieux propres, sains et directement exploitables.",
-    imageURL: "/img/stock/nettoyage-sinistres.webp",
+    imageURL: withBasePath("/img/stock/nettoyage-sinistres.webp"),
     imageName: "nettoyage-sinistres.webp",
   },
 ];
@@ -132,8 +146,9 @@ export const SERVICES: Service[] = [
       "Rapport utilisable pour l’assurance et/ou pour établir un devis de réparation",
     ],
     formType: "fuite",
-    imageURL:
-      "/img/stock/detection-diagnostic/recherche-de-fuite/recherche_de_fuite.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/recherche-de-fuite/recherche_de_fuite.webp"
+    ),
     imageName: "recherche_de_fuite.webp",
   },
 
@@ -173,8 +188,9 @@ export const SERVICES: Service[] = [
       "Réduit les risques de récidive (condensation/ventilation)",
     ],
     formType: "fuite",
-    imageURL:
-      "/img/stock/detection-diagnostic/camera-thermique/camera_thermique.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/camera-thermique/camera_thermique.webp"
+    ),
     imageName: "camera_thermique.webp",
   },
 
@@ -213,8 +229,9 @@ export const SERVICES: Service[] = [
       "Document exploitable pour assurance / architecte / entrepreneur",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/detection-diagnostic/test-fumigene/test_fumigene.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/test-fumigene/test_fumigene.webp"
+    ),
     imageName: "test_fumigene.webp",
   },
 
@@ -251,8 +268,9 @@ export const SERVICES: Service[] = [
       "Très utile quand aucun accès n’est visible",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/detection-diagnostic/detection-sonar/detection_sonar.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/detection-sonar/detection_sonar.webp"
+    ),
     imageName: "detection_sonar.webp",
   },
 
@@ -297,8 +315,9 @@ export const SERVICES: Service[] = [
       "Permet de prioriser les travaux",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/detection-diagnostic/inspection-camera-egouts/inspection_egout.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/inspection-camera-egouts/inspection_egout.webp"
+    ),
     imageName: "inspection_egout.webp",
   },
 
@@ -336,8 +355,9 @@ export const SERVICES: Service[] = [
       "Permet de confirmer/écarter la piste « réseau d’égouts »",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/detection-diagnostic/analyse-stabilite/analyse_stabilite.webp",
+    imageURL: withBasePath(
+      "/img/stock/detection-diagnostic/analyse-stabilite/analyse_stabilite.webp"
+    ),
     imageName: "analyse_stabilite.webp",
   },
 
@@ -374,8 +394,9 @@ export const SERVICES: Service[] = [
       "Possibilité d’urgence 24/7",
     ],
     formType: "debouchage",
-    imageURL:
-      "/img/stock/egouts-canalisations/debouchage-urgence-24-7/debouchage_urgence.webp",
+    imageURL: withBasePath(
+      "/img/stock/egouts-canalisations/debouchage-urgence-24-7/debouchage_urgence.webp"
+    ),
     imageName: "debouchage_urgence.webp",
   },
 
@@ -412,8 +433,9 @@ export const SERVICES: Service[] = [
       "Approche préventive = coûts maîtrisés",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/egouts-canalisations/entretien-egouts/entretien_egout.webp",
+    imageURL: withBasePath(
+      "/img/stock/egouts-canalisations/entretien-egouts/entretien_egout.webp"
+    ),
     imageName: "entretien_egout.webp",
   },
 
@@ -451,8 +473,9 @@ export const SERVICES: Service[] = [
       "Devis clair avec alternatives",
     ],
     formType: "inspection",
-    imageURL:
-      "/img/stock/egouts-canalisations/reparation-egouts/reparation_egout.webp",
+    imageURL: withBasePath(
+      "/img/stock/egouts-canalisations/reparation-egouts/reparation_egout.webp"
+    ),
     imageName: "reparation_egout.webp",
   },
 
@@ -494,8 +517,9 @@ export const SERVICES: Service[] = [
       "Bâtiment prêt à être restitué / reloué / vendu",
     ],
     formType: "nettoyage",
-    imageURL:
-      "/img/stock/nettoyage-sinistres/nettoyage-fin-de-bail/nettoyage_fin_bail.webp",
+    imageURL: withBasePath(
+      "/img/stock/nettoyage-sinistres/nettoyage-fin-de-bail/nettoyage_fin_bail.webp"
+    ),
     imageName: "nettoyage_fin_bail.webp",
   },
 
@@ -534,8 +558,9 @@ export const SERVICES: Service[] = [
       "Lieu prêt à être réhabité / reloué / sécurisé",
     ],
     formType: "nettoyage",
-    imageURL:
-      "/img/stock/nettoyage-sinistres/nettoyage-apres-sinistre/nettoyage_apres_sinistre.webp",
+    imageURL: withBasePath(
+      "/img/stock/nettoyage-sinistres/nettoyage-apres-sinistre/nettoyage_apres_sinistre.webp"
+    ),
     imageName: "nettoyage_apres_sinistre.webp",
   },
 ];

@@ -30,7 +30,7 @@ function format_submitted_at($value)
 
 function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
 {
-    $mode = strtolower((string)(getenv("MAIL_MODE") ?: "file"));
+    $mode = strtolower((string)(getenv("MAIL_MODE") ?: "send"));
 
     if ($mode === "file") {
         $root = dirname(__DIR__, 2);
@@ -59,7 +59,7 @@ function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
         ];
     }
 
-    $ok = @mail($to, $subject, $textBody, implode("\r\n", $headers));
+    $ok = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
     return ["ok" => $ok, "mode" => "send"];
 }
 
@@ -103,7 +103,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$to = "contact@aquapro-detect.be";
+$to = "hello@cuozzovincenzo.be";
 $subject = "Nouveau message de contact — " . $objet;
 
 $lines = [];
@@ -122,6 +122,13 @@ $lines[] = $message;
 
 $textBody = implode("\n", $lines);
 
+$metaRows = [];
+$metaRows[] = '<tr><td style="padding:0 12px 12px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Nom :</td><td style="padding:0 0 12px 0;">' . h($nom . ' ' . $prenom) . '</td></tr>';
+$metaRows[] = '<tr><td style="padding:0 12px 12px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Email :</td><td style="padding:0 0 12px 0;"><a href="mailto:' . h($email) . '" style="color:#0a5b8c;">' . h($email) . '</a></td></tr>';
+$metaRows[] = '<tr><td style="padding:0 12px 12px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Objet :</td><td style="padding:0 0 12px 0;">' . h($objet) . '</td></tr>';
+if ($submittedDate !== "") $metaRows[] = '<tr><td style="padding:0 12px 12px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Date :</td><td style="padding:0 0 12px 0;">' . h($submittedDate) . '</td></tr>';
+if ($submittedTime !== "") $metaRows[] = '<tr><td style="padding:0 12px 18px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Heure :</td><td style="padding:0 0 18px 0;">' . h($submittedTime) . '</td></tr>';
+
 $htmlBody = '<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>'
     . h($subject)
     . '</title></head><body style="margin:0;background:#f4f7fb;font-family:Arial,sans-serif;color:#122033;">'
@@ -129,16 +136,13 @@ $htmlBody = '<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta na
     . '<table role="presentation" width="640" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #d8e1ea;">'
     . '<tr><td style="background:#0a5b8c;color:#ffffff;padding:16px 20px;font-size:20px;font-weight:700;">Nouveau message de contact</td></tr>'
     . '<tr><td style="padding:20px;">'
-    . '<p style="margin:0 0 12px;"><strong>Nom :</strong> ' . h($nom . ' ' . $prenom) . '</p>'
-    . '<p style="margin:0 0 12px;"><strong>Email :</strong> <a href="mailto:' . h($email) . '" style="color:#0a5b8c;">' . h($email) . '</a></p>'
-    . '<p style="margin:0 0 12px;"><strong>Objet :</strong> ' . h($objet) . '</p>'
-    . (($submittedDate !== "") ? '<p style="margin:0 0 12px;"><strong>Date :</strong> ' . h($submittedDate) . '</p>' : '')
-    . (($submittedTime !== "") ? '<p style="margin:0 0 18px;"><strong>Heure :</strong> ' . h($submittedTime) . '</p>' : '')
+    . '<table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px 0;border-collapse:collapse;">' . implode("", $metaRows) . '</table>'
     . '<div style="margin-top:12px;padding:14px;border:1px solid #d8e1ea;border-radius:10px;background:#f9fbfe;white-space:pre-wrap;line-height:1.5;">' . h($message) . '</div>'
     . '</td></tr></table></td></tr></table></body></html>';
 
-$fromEmail = "no-reply@aquapro-detect.be";
+$fromEmail = "hello@cuozzovincenzo.be";
 $headers = [];
+$headers[] = "MIME-Version: 1.0";
 $headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";
 $headers[] = "Reply-To: " . $email;
 $headers[] = "Content-Type: text/html; charset=utf-8";

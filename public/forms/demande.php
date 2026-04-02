@@ -30,7 +30,7 @@ function format_submitted_at($value)
 
 function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
 {
-    $mode = strtolower((string)(getenv("MAIL_MODE") ?: "file"));
+    $mode = strtolower((string)(getenv("MAIL_MODE") ?: "send"));
 
     if ($mode === "file") {
         $root = dirname(__DIR__, 2);
@@ -59,7 +59,7 @@ function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
         ];
     }
 
-    $ok = @mail($to, $subject, $textBody, implode("\r\n", $headers));
+    $ok = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
     return ["ok" => $ok, "mode" => "send"];
 }
 
@@ -130,7 +130,7 @@ $niveau = trim((string)($data["niveau"] ?? ""));
 $evacuation = trim((string)($data["evacuation"] ?? ""));
 
 // >>>> DESTINATAIRE : remplace si besoin
-$to = "contact@aquapro-detect.be";
+$to = "hello@cuozzovincenzo.be";
 
 // Sujet
 $subject = "Nouvelle demande d’intervention — " . $serviceTitle;
@@ -181,17 +181,20 @@ if ($hasExtras) {
 
 $textBody = implode("\n", $lines);
 
+$metaRows = [];
+$metaRows[] = '<tr><td style="padding:0 12px 8px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Service :</td><td style="padding:0 0 8px 0;">' . h($serviceTitle) . '</td></tr>';
+if ($serviceCategory !== "") $metaRows[] = '<tr><td style="padding:0 12px 8px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Catégorie :</td><td style="padding:0 0 8px 0;">' . h($serviceCategory) . '</td></tr>';
+if ($formType !== "") $metaRows[] = '<tr><td style="padding:0 12px 8px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Type formulaire :</td><td style="padding:0 0 8px 0;">' . h($formType) . '</td></tr>';
+if ($submittedDate !== "") $metaRows[] = '<tr><td style="padding:0 12px 8px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Date :</td><td style="padding:0 0 8px 0;">' . h($submittedDate) . '</td></tr>';
+if ($submittedTime !== "") $metaRows[] = '<tr><td style="padding:0 12px 16px 0;font-weight:700;vertical-align:top;white-space:nowrap;">Heure :</td><td style="padding:0 0 16px 0;">' . h($submittedTime) . '</td></tr>';
+
 $html = [];
 $html[] = '<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>' . h($subject) . '</title></head><body style="margin:0;background:#f4f7fb;font-family:Arial,sans-serif;color:#122033;">';
 $html[] = '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="padding:24px 12px;"><tr><td align="center">';
 $html[] = '<table role="presentation" width="680" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #d8e1ea;">';
 $html[] = '<tr><td style="background:#0a5b8c;color:#ffffff;padding:16px 20px;font-size:20px;font-weight:700;">Nouvelle demande d’intervention</td></tr>';
 $html[] = '<tr><td style="padding:20px;">';
-$html[] = '<p style="margin:0 0 8px;"><strong>Service :</strong> ' . h($serviceTitle) . '</p>';
-if ($serviceCategory !== "") $html[] = '<p style="margin:0 0 8px;"><strong>Catégorie :</strong> ' . h($serviceCategory) . '</p>';
-if ($formType !== "") $html[] = '<p style="margin:0 0 8px;"><strong>Type formulaire :</strong> ' . h($formType) . '</p>';
-if ($submittedDate !== "") $html[] = '<p style="margin:0 0 8px;"><strong>Date :</strong> ' . h($submittedDate) . '</p>';
-if ($submittedTime !== "") $html[] = '<p style="margin:0 0 16px;"><strong>Heure :</strong> ' . h($submittedTime) . '</p>';
+$html[] = '<table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 12px 0;border-collapse:collapse;">' . implode("", $metaRows) . '</table>';
 $html[] = '<h2 style="margin:0 0 10px;font-size:16px;">Description</h2>';
 $html[] = '<div style="margin:0 0 16px;padding:14px;border:1px solid #d8e1ea;border-radius:10px;background:#f9fbfe;white-space:pre-wrap;line-height:1.5;">' . h($description) . '</div>';
 $html[] = '<h2 style="margin:0 0 10px;font-size:16px;">Infos intervention</h2>';
@@ -223,8 +226,9 @@ $html[] = '</td></tr></table></td></tr></table></body></html>';
 $htmlBody = implode("", $html);
 
 // Headers
-$fromEmail = "no-reply@aquapro-detect.be"; // idéalement une adresse existante du domaine
+$fromEmail = "hello@cuozzovincenzo.be";
 $headers = [];
+$headers[] = "MIME-Version: 1.0";
 $headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";
 $headers[] = "Reply-To: " . $email;
 $headers[] = "Content-Type: text/html; charset=utf-8";

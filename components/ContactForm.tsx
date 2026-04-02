@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import styles from "./ContactForm.module.scss";
-import { getFormsUrl } from "@/lib/forms";
+import { getFormsUrl, parseFormsResponse } from "@/lib/forms";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
@@ -52,7 +52,7 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = await res.json().catch(() => null);
+      const json = await parseFormsResponse(res);
       if (!res.ok || !json?.ok) {
         throw new Error(json?.error || "Erreur serveur");
       }

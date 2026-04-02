@@ -16,18 +16,18 @@ export default function Footer() {
             <Link className={styles.pill} href="/problemes">
               Problèmes
             </Link>
-            <Link className={styles.pill} href="/assurances-rapports">
-              Assurances & Rapports
-            </Link>
             <Link className={styles.pill} href="/a-propos">
               À propos
             </Link>
             <Link className={styles.pill} href="/contact">
               Contact
             </Link>
-            <Link className={`${styles.pill} pillPrimary`} href="/urgence-24-7">
+            <a
+              className={`${styles.pill} pillPrimary`}
+              href={`tel:${CONTACT.phone1.replace(/\s/g, "")}`}
+            >
               Urgence 24/7
-            </Link>
+            </a>
           </div>
         </StaggerItemDiv>
 

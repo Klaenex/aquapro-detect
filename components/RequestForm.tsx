@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
-import { getFormsUrl } from "@/lib/forms";
+import { getFormsUrl, getSiteUrl, parseFormsResponse } from "@/lib/forms";
 import styles from "./RequestForm.module.scss";
 
 type Props = {
@@ -94,9 +94,9 @@ export default function RequestForm({
     const hp = String(fd.get("website") || "");
     if (hp.trim().length > 0) {
       setStatus("ok");
-      window.location.href = `/merci?service=${encodeURIComponent(
-        serviceTitle
-      )}`;
+      window.location.href = getSiteUrl(
+        `/merci?service=${encodeURIComponent(serviceTitle)}`
+      );
       return;
     }
 
@@ -158,16 +158,16 @@ export default function RequestForm({
         body: JSON.stringify(payload),
       });
 
-      const json = await res.json().catch(() => null);
+      const json = await parseFormsResponse(res);
       if (!res.ok || !json?.ok)
         throw new Error(json?.error || "Erreur serveur");
 
       setStatus("ok");
 
       // redirection page Merci (plus pro + mieux pour l’utilisateur)
-      window.location.href = `/merci?service=${encodeURIComponent(
-        serviceTitle
-      )}`;
+      window.location.href = getSiteUrl(
+        `/merci?service=${encodeURIComponent(serviceTitle)}`
+      );
     } catch {
       setStatus("error");
       setFeedback(
