@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { ChangeEvent, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
@@ -70,6 +70,7 @@ export default function RequestForm({
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [feedback, setFeedback] = useState<string>("");
+  const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
 
   const urgenceOptions = useMemo(
     () => urgenceOptionsByType[formType],
@@ -80,8 +81,15 @@ export default function RequestForm({
   const showFuiteExtras = formType === "fuite";
   const showInspectionExtras = formType === "inspection";
   const showNettoyageExtras = formType === "nettoyage";
+  const maxPhotos = 5;
+  const maxPhotoSizeBytes = 8 * 1024 * 1024;
 
   const isUrgenceType = formType === "debouchage";
+
+  function onPhotosChange(e: ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files || []);
+    setSelectedPhotos(files.map((file) => file.name));
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -101,14 +109,6 @@ export default function RequestForm({
     }
 
     const payload = {
-      meta: {
-        serviceTitle,
-        serviceCategory,
-        formType,
-        page: typeof window !== "undefined" ? window.location.pathname : "",
-        submittedAt: new Date().toISOString(),
-      },
-
       description: String(fd.get("description") || ""),
       urgence: String(fd.get("urgence") || ""),
       logement: String(fd.get("logement") || ""),
@@ -151,11 +151,56 @@ export default function RequestForm({
       return;
     }
 
+    const photos = Array.from(fd.getAll("photos")).filter(
+      (value): value is File => value instanceof File && value.size > 0
+    );
+
+    if (photos.length > maxPhotos) {
+      setStatus("error");
+      setFeedback(`Merci de sélectionner au maximum ${maxPhotos} photos.`);
+      return;
+    }
+
+    for (const photo of photos) {
+      if (!photo.type.startsWith("image/")) {
+        setStatus("error");
+        setFeedback("Seuls les fichiers image sont acceptés.");
+        return;
+      }
+
+      if (photo.size > maxPhotoSizeBytes) {
+        setStatus("error");
+        setFeedback("Chaque photo doit faire moins de 8 Mo.");
+        return;
+      }
+    }
+
     try {
+      const requestData = new FormData();
+      requestData.append(
+        "meta",
+        JSON.stringify({
+          serviceTitle,
+          serviceCategory,
+          formType,
+          page: typeof window !== "undefined" ? window.location.pathname : "",
+          submittedAt: new Date().toISOString(),
+        })
+      );
+
+      for (const [key, value] of Object.entries(payload)) {
+        requestData.append(key, value);
+      }
+
+      requestData.append("website", hp);
+
+      for (const photo of photos) {
+        requestData.append("photos[]", photo, photo.name);
+      }
+
       const res = await fetch(getFormsUrl("/forms/demande.php"), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: requestData,
       });
 
       const json = await parseFormsResponse(res);
@@ -450,6 +495,28 @@ export default function RequestForm({
           className={styles.input}
           placeholder="Ex: Lun–Jeu après 17h, Sam matin"
         />
+      </div>
+
+      <div className={styles.mt14}>
+        <label className={styles.label}>Photos du problème</label>
+        <input
+          type="file"
+          name="photos"
+          accept="image/*"
+          multiple
+          className={styles.fileInput}
+          onChange={onPhotosChange}
+        />
+        <p className={`${styles.lead} ${styles.fileHelp}`}>
+          Vous pouvez joindre jusqu&apos;à 5 photos, 8 Mo maximum par fichier.
+        </p>
+        {selectedPhotos.length > 0 ? (
+          <ul className={styles.fileList}>
+            {selectedPhotos.map((photo) => (
+              <li key={photo}>{photo}</li>
+            ))}
+          </ul>
+        ) : null}
       </div>
 
       <div className={`${styles.formGrid2} ${styles.mt14}`}>

@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/site";
+
 export const CONTACT = {
   brand: "AquaPro-Détect Belgium",
   address: "Sint-Jansstraat 39, 3080 Tervuren",
@@ -6,20 +8,6 @@ export const CONTACT = {
   email: "contact@aquapro-detect.be",
   vat: "BE 1015.155.577",
 };
-
-const defaultBasePath = "/projets/aquapro-detect";
-const rawBasePath =
-  process.env.NEXT_PUBLIC_BASE_PATH?.trim() || defaultBasePath;
-const basePath =
-  rawBasePath && rawBasePath !== "/" ? rawBasePath.replace(/\/+$/, "") : "";
-
-function withBasePath(path: string) {
-  if (!basePath || !path.startsWith("/")) {
-    return path;
-  }
-
-  return `${basePath}${path}`;
-}
 
 export type Category = {
   slug: string;
@@ -147,7 +135,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "fuite",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/recherche-de-fuite/recherche_de_fuite.webp"
+      "/img/stock/detection-diagnostic/recherche-de-fuite/recherche_de_fuite.webp",
     ),
     imageName: "recherche_de_fuite.webp",
   },
@@ -189,7 +177,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "fuite",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/camera-thermique/camera_thermique.webp"
+      "/img/stock/detection-diagnostic/camera-thermique/camera_thermique.webp",
     ),
     imageName: "camera_thermique.webp",
   },
@@ -230,7 +218,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/test-fumigene/test_fumigene.webp"
+      "/img/stock/detection-diagnostic/test-fumigene/test_fumigene.webp",
     ),
     imageName: "test_fumigene.webp",
   },
@@ -269,7 +257,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/detection-sonar/detection_sonar.webp"
+      "/img/stock/detection-diagnostic/detection-sonar/detection_sonar.webp",
     ),
     imageName: "detection_sonar.webp",
   },
@@ -316,7 +304,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/inspection-camera-egouts/inspection_egout.webp"
+      "/img/stock/detection-diagnostic/inspection-camera-egouts/inspection_egout.webp",
     ),
     imageName: "inspection_egout.webp",
   },
@@ -356,7 +344,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/detection-diagnostic/analyse-stabilite/analyse_stabilite.webp"
+      "/img/stock/detection-diagnostic/analyse-stabilite/analyse_stabilite.webp",
     ),
     imageName: "analyse_stabilite.webp",
   },
@@ -395,7 +383,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "debouchage",
     imageURL: withBasePath(
-      "/img/stock/egouts-canalisations/debouchage-urgence-24-7/debouchage_urgence.webp"
+      "/img/stock/egouts-canalisations/debouchage-urgence-24-7/debouchage_urgence.webp",
     ),
     imageName: "debouchage_urgence.webp",
   },
@@ -434,7 +422,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/egouts-canalisations/entretien-egouts/entretien_egout.webp"
+      "/img/stock/egouts-canalisations/entretien-egouts/entretien_egout.webp",
     ),
     imageName: "entretien_egout.webp",
   },
@@ -474,7 +462,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "inspection",
     imageURL: withBasePath(
-      "/img/stock/egouts-canalisations/reparation-egouts/reparation_egout.webp"
+      "/img/stock/egouts-canalisations/reparation-egouts/reparation_egout.webp",
     ),
     imageName: "reparation_egout.webp",
   },
@@ -518,7 +506,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "nettoyage",
     imageURL: withBasePath(
-      "/img/stock/nettoyage-sinistres/nettoyage-fin-de-bail/nettoyage_fin_bail.webp"
+      "/img/stock/nettoyage-sinistres/nettoyage-fin-de-bail/nettoyage_fin_bail.webp",
     ),
     imageName: "nettoyage_fin_bail.webp",
   },
@@ -559,7 +547,7 @@ export const SERVICES: Service[] = [
     ],
     formType: "nettoyage",
     imageURL: withBasePath(
-      "/img/stock/nettoyage-sinistres/nettoyage-apres-sinistre/nettoyage_apres_sinistre.webp"
+      "/img/stock/nettoyage-sinistres/nettoyage-apres-sinistre/nettoyage_apres_sinistre.webp",
     ),
     imageName: "nettoyage_apres_sinistre.webp",
   },

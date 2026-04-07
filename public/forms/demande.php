@@ -28,7 +28,96 @@ function format_submitted_at($value)
     }
 }
 
-function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
+function normalize_uploaded_files($field)
+{
+    if (!isset($_FILES[$field])) return [];
+
+    $files = $_FILES[$field];
+    if (!is_array($files["name"])) {
+        return [$files];
+    }
+
+    $normalized = [];
+    $count = count($files["name"]);
+    for ($i = 0; $i < $count; $i++) {
+        $normalized[] = [
+            "name" => $files["name"][$i] ?? "",
+            "type" => $files["type"][$i] ?? "",
+            "tmp_name" => $files["tmp_name"][$i] ?? "",
+            "error" => $files["error"][$i] ?? UPLOAD_ERR_NO_FILE,
+            "size" => $files["size"][$i] ?? 0,
+        ];
+    }
+
+    return $normalized;
+}
+
+function collect_photo_attachments($field)
+{
+    $allowedMimeTypes = [
+        "image/jpeg" => "jpg",
+        "image/png" => "png",
+        "image/webp" => "webp",
+        "image/gif" => "gif",
+    ];
+    $maxFiles = 5;
+    $maxSize = 8 * 1024 * 1024;
+
+    $files = normalize_uploaded_files($field);
+    $attachments = [];
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+
+    foreach ($files as $file) {
+        if (($file["error"] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+            continue;
+        }
+
+        if (count($attachments) >= $maxFiles) {
+            return [null, "Maximum 5 photos autorisées."];
+        }
+
+        if (($file["error"] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK) {
+            return [null, "Erreur lors de l’envoi d’une photo."];
+        }
+
+        if (($file["size"] ?? 0) > $maxSize) {
+            return [null, "Chaque photo doit faire moins de 8 Mo."];
+        }
+
+        $tmpName = (string)($file["tmp_name"] ?? "");
+        if ($tmpName === "" || !is_uploaded_file($tmpName)) {
+            return [null, "Fichier photo invalide."];
+        }
+
+        $mimeType = $finfo->file($tmpName);
+        if (!isset($allowedMimeTypes[$mimeType])) {
+            return [null, "Seuls les fichiers JPG, PNG, WEBP ou GIF sont acceptés."];
+        }
+
+        $contents = @file_get_contents($tmpName);
+        if ($contents === false) {
+            return [null, "Impossible de lire une photo envoyée."];
+        }
+
+        $originalName = trim((string)($file["name"] ?? ""));
+        $safeName = preg_replace('/[^A-Za-z0-9._-]/', '-', $originalName);
+        $safeName = trim((string)$safeName, "-.");
+        if ($safeName === "") {
+            $safeName = "photo-" . (count($attachments) + 1) . "." . $allowedMimeTypes[$mimeType];
+        }
+
+        $attachments[] = [
+            "name" => $safeName,
+            "mime" => $mimeType,
+            "content" => $contents,
+            "size" => (int)($file["size"] ?? 0),
+        ];
+    }
+
+    return [$attachments, null];
+}
+
+function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $attachments = [])
 {
     $mode = strtolower((string)(getenv("MAIL_MODE") ?: "send"));
 
@@ -42,6 +131,7 @@ function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
         $base = "demande-" . date("Ymd-His") . "-" . bin2hex(random_bytes(4));
         $textPath = $dir . DIRECTORY_SEPARATOR . $base . ".txt";
         $htmlPath = $dir . DIRECTORY_SEPARATOR . $base . ".html";
+        $attachmentsDir = $dir . DIRECTORY_SEPARATOR . $base . "-attachments";
         $content = "TO: " . $to . "\n"
             . "SUBJECT: " . $subject . "\n"
             . "HEADERS:\n" . implode("\n", $headers) . "\n\n"
@@ -51,15 +141,82 @@ function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers)
 
         $okText = @file_put_contents($textPath, $content);
         $okHtml = @file_put_contents($htmlPath, $htmlContent);
+        $okAttachments = true;
+
+        if (!empty($attachments)) {
+            if (!is_dir($attachmentsDir)) {
+                @mkdir($attachmentsDir, 0775, true);
+            }
+
+            foreach ($attachments as $attachment) {
+                $saved = @file_put_contents(
+                    $attachmentsDir . DIRECTORY_SEPARATOR . $attachment["name"],
+                    $attachment["content"]
+                );
+                if ($saved === false) {
+                    $okAttachments = false;
+                    break;
+                }
+            }
+        }
+
         return [
-            "ok" => $okText !== false && $okHtml !== false,
+            "ok" => $okText !== false && $okHtml !== false && $okAttachments,
             "mode" => "file",
             "path" => $textPath,
             "htmlPath" => $htmlPath
         ];
     }
 
-    $ok = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+    $finalHeaders = $headers;
+    $messageBody = $htmlBody;
+
+    if (!empty($attachments)) {
+        $mixedBoundary = "mix-" . bin2hex(random_bytes(12));
+        $htmlBoundary = "alt-" . bin2hex(random_bytes(12));
+
+        $finalHeaders = array_values(array_filter(
+            $headers,
+            function ($header) {
+                return stripos($header, "Content-Type:") !== 0;
+            }
+        ));
+        $finalHeaders[] = 'Content-Type: multipart/mixed; boundary="' . $mixedBoundary . '"';
+
+        $parts = [];
+        $parts[] = "--" . $mixedBoundary;
+        $parts[] = 'Content-Type: multipart/alternative; boundary="' . $htmlBoundary . '"';
+        $parts[] = "";
+        $parts[] = "--" . $htmlBoundary;
+        $parts[] = 'Content-Type: text/plain; charset="utf-8"';
+        $parts[] = "Content-Transfer-Encoding: 8bit";
+        $parts[] = "";
+        $parts[] = $textBody;
+        $parts[] = "";
+        $parts[] = "--" . $htmlBoundary;
+        $parts[] = 'Content-Type: text/html; charset="utf-8"';
+        $parts[] = "Content-Transfer-Encoding: 8bit";
+        $parts[] = "";
+        $parts[] = $htmlBody;
+        $parts[] = "";
+        $parts[] = "--" . $htmlBoundary . "--";
+
+        foreach ($attachments as $attachment) {
+            $parts[] = "";
+            $parts[] = "--" . $mixedBoundary;
+            $parts[] = 'Content-Type: ' . $attachment["mime"] . '; name="' . $attachment["name"] . '"';
+            $parts[] = 'Content-Disposition: attachment; filename="' . $attachment["name"] . '"';
+            $parts[] = "Content-Transfer-Encoding: base64";
+            $parts[] = "";
+            $parts[] = chunk_split(base64_encode($attachment["content"]));
+        }
+
+        $parts[] = "--" . $mixedBoundary . "--";
+        $parts[] = "";
+        $messageBody = implode("\r\n", $parts);
+    }
+
+    $ok = @mail($to, $subject, $messageBody, implode("\r\n", $finalHeaders));
     return ["ok" => $ok, "mode" => "send"];
 }
 
@@ -69,8 +226,18 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$raw = file_get_contents("php://input");
-$data = json_decode($raw, true);
+$contentType = strtolower((string)($_SERVER["CONTENT_TYPE"] ?? ""));
+$data = null;
+
+if (strpos($contentType, "multipart/form-data") !== false) {
+    $metaRaw = (string)($_POST["meta"] ?? "");
+    $meta = json_decode($metaRaw, true);
+    $data = $_POST;
+    $data["meta"] = is_array($meta) ? $meta : [];
+} else {
+    $raw = file_get_contents("php://input");
+    $data = json_decode($raw, true);
+}
 
 if (!$data || !is_array($data)) {
     http_response_code(400);
@@ -129,6 +296,13 @@ $contexteNettoyage = trim((string)($data["contexteNettoyage"] ?? ""));
 $niveau = trim((string)($data["niveau"] ?? ""));
 $evacuation = trim((string)($data["evacuation"] ?? ""));
 
+[$photoAttachments, $photosError] = collect_photo_attachments("photos");
+if ($photosError !== null) {
+    http_response_code(400);
+    echo json_encode(["ok" => false, "error" => $photosError]);
+    exit;
+}
+
 // >>>> DESTINATAIRE : remplace si besoin
 $to = "hello@cuozzovincenzo.be";
 
@@ -155,6 +329,7 @@ if ($etage !== "") $lines[] = "Étage : " . $etage;
 $lines[] = "Adresse : " . $adresse;
 $lines[] = "Disponibilités : " . $disponibilites;
 if ($paiement !== "") $lines[] = "Paiement : " . $paiement;
+if (!empty($photoAttachments)) $lines[] = "Photos jointes : " . count($photoAttachments);
 
 $lines[] = "";
 $lines[] = "CONTACT";
@@ -204,6 +379,7 @@ if ($etage !== "") $html[] = '<p style="margin:0 0 8px;"><strong>Étage :</stron
 $html[] = '<p style="margin:0 0 8px;"><strong>Adresse :</strong> ' . h($adresse) . '</p>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Disponibilités :</strong> ' . h($disponibilites) . '</p>';
 if ($paiement !== "") $html[] = '<p style="margin:0 0 16px;"><strong>Paiement :</strong> ' . h($paiement) . '</p>';
+if (!empty($photoAttachments)) $html[] = '<p style="margin:0 0 16px;"><strong>Photos jointes :</strong> ' . count($photoAttachments) . '</p>';
 $html[] = '<h2 style="margin:0 0 10px;font-size:16px;">Contact</h2>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Nom :</strong> ' . h($nom) . '</p>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Téléphone :</strong> ' . h($telephone) . '</p>';
@@ -233,7 +409,7 @@ $headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";
 $headers[] = "Reply-To: " . $email;
 $headers[] = "Content-Type: text/html; charset=utf-8";
 
-$result = send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers);
+$result = send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $photoAttachments);
 
 if (!$result["ok"]) {
     http_response_code(500);

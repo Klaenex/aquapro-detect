@@ -1,12 +1,7 @@
 import type { NextConfig } from "next";
+import { getBasePath } from "./lib/site";
 
-const defaultBasePath = "/projets/aquapro-detect";
-const rawBasePath =
-  process.env.NEXT_PUBLIC_BASE_PATH?.trim() || defaultBasePath;
-const basePath =
-  rawBasePath && rawBasePath !== "/"
-    ? rawBasePath.replace(/\/+$/, "")
-    : "";
+const basePath = getBasePath();
 
 const nextConfig: NextConfig = {
   output: "export",

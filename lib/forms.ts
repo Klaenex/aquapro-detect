@@ -1,8 +1,8 @@
+import { getBasePath } from "@/lib/site";
+
 export function getFormsUrl(path: string) {
-  const defaultBasePath = "/projets/aquapro-detect";
   const formsBase = process.env.NEXT_PUBLIC_FORMS_BASE_URL?.trim() || "";
-  const siteBasePath =
-    process.env.NEXT_PUBLIC_BASE_PATH?.trim() || defaultBasePath;
+  const siteBasePath = getBasePath();
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   const cleanSiteBasePath =
     siteBasePath && siteBasePath !== "/"
@@ -14,7 +14,8 @@ export function getFormsUrl(path: string) {
       try {
         const formsUrl = new URL(formsBase);
         const isLocalFormsHost =
-          formsUrl.hostname === "localhost" || formsUrl.hostname === "127.0.0.1";
+          formsUrl.hostname === "localhost" ||
+          formsUrl.hostname === "127.0.0.1";
         const isCurrentHostLocal =
           window.location.hostname === "localhost" ||
           window.location.hostname === "127.0.0.1";
@@ -35,9 +36,7 @@ export function getFormsUrl(path: string) {
 }
 
 export function getSiteUrl(path: string) {
-  const defaultBasePath = "/projets/aquapro-detect";
-  const siteBasePath =
-    process.env.NEXT_PUBLIC_BASE_PATH?.trim() || defaultBasePath;
+  const siteBasePath = getBasePath();
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   const cleanSiteBasePath =
     siteBasePath && siteBasePath !== "/"
@@ -53,7 +52,7 @@ type FormsResponse = {
 };
 
 export async function parseFormsResponse(
-  response: Response
+  response: Response,
 ): Promise<FormsResponse | null> {
   const raw = await response.text();
   const trimmed = raw.trim();
