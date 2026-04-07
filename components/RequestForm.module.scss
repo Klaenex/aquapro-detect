@@ -195,11 +195,58 @@
   margin-top: 8px;
 }
 
-.fileList {
-  margin: 8px 0 0;
-  padding-left: 18px;
+.fileGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fileCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  background: var(--bg-lightgrey);
+}
+
+.filePreview {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--bg);
+}
+
+.fileName {
   color: var(--text-grey);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.fileRemove {
+  border: 0;
+  background: transparent;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 650;
+  padding: 0;
+  align-self: flex-start;
+}
+
+.fileRemove:hover {
+  text-decoration: underline;
+}
+
+.requiredNote {
+  margin-top: 10px;
+  font-size: 0.88rem;
 }
 
 .sectionTitle {

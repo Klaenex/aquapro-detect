@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
@@ -14,6 +14,12 @@ type Props = {
 };
 
 type Status = "idle" | "loading" | "ok" | "error";
+
+type SelectedPhoto = {
+  file: File;
+  id: string;
+  previewUrl: string;
+};
 
 const urgenceOptionsByType: Record<
   ServiceFormType,
@@ -70,7 +76,9 @@ export default function RequestForm({
 }: Props) {
   const [status, setStatus] = useState<Status>("idle");
   const [feedback, setFeedback] = useState<string>("");
-  const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
+  const [selectedPhotos, setSelectedPhotos] = useState<SelectedPhoto[]>([]);
+  const photosInputRef = useRef<HTMLInputElement | null>(null);
+  const selectedPhotosRef = useRef<SelectedPhoto[]>([]);
 
   const urgenceOptions = useMemo(
     () => urgenceOptionsByType[formType],
@@ -86,9 +94,56 @@ export default function RequestForm({
 
   const isUrgenceType = formType === "debouchage";
 
+  useEffect(() => {
+    selectedPhotosRef.current = selectedPhotos;
+  }, [selectedPhotos]);
+
+  useEffect(() => {
+    return () => {
+      for (const photo of selectedPhotosRef.current) {
+        URL.revokeObjectURL(photo.previewUrl);
+      }
+    };
+  }, []);
+
   function onPhotosChange(e: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(e.target.files || []);
-    setSelectedPhotos(files.map((file) => file.name));
+
+    if (files.length === 0) {
+      return;
+    }
+
+    setSelectedPhotos((current) => {
+      const next = [...current];
+
+      for (const file of files) {
+        const id = `${file.name}-${file.size}-${file.lastModified}`;
+        const alreadySelected = next.some((existing) => existing.id === id);
+
+        if (!alreadySelected) {
+          next.push({
+            file,
+            id,
+            previewUrl: URL.createObjectURL(file),
+          });
+        }
+      }
+
+      return next;
+    });
+
+    e.target.value = "";
+  }
+
+  function removePhoto(indexToRemove: number) {
+    setSelectedPhotos((current) => {
+      const photoToRemove = current[indexToRemove];
+      if (photoToRemove) {
+        URL.revokeObjectURL(photoToRemove.previewUrl);
+      }
+
+      return current.filter((_, index) => index !== indexToRemove);
+    });
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -151,9 +206,17 @@ export default function RequestForm({
       return;
     }
 
-    const photos = Array.from(fd.getAll("photos")).filter(
-      (value): value is File => value instanceof File && value.size > 0
-    );
+    // validation format téléphone belge (9-10 chiffres commençant par 0)
+    const normalizedPhone = payload.telephone.replace(/[\s\-\.\/]/g, "");
+    if (!/^0\d{8,9}$/.test(normalizedPhone)) {
+      setStatus("error");
+      setFeedback(
+        "Numéro de téléphone invalide. Format belge attendu, ex : 0471 32 57 24."
+      );
+      return;
+    }
+
+    const photos = selectedPhotos.map((photo) => photo.file);
 
     if (photos.length > maxPhotos) {
       setStatus("error");
@@ -208,6 +271,13 @@ export default function RequestForm({
         throw new Error(json?.error || "Erreur serveur");
 
       setStatus("ok");
+      for (const photo of selectedPhotos) {
+        URL.revokeObjectURL(photo.previewUrl);
+      }
+      setSelectedPhotos([]);
+      if (photosInputRef.current) {
+        photosInputRef.current.value = "";
+      }
 
       // redirection page Merci (plus pro + mieux pour l’utilisateur)
       window.location.href = getSiteUrl(
@@ -242,6 +312,11 @@ export default function RequestForm({
           <strong>{serviceTitle}</strong> — {labelForType(formType)}
         </div>
       </motion.div>
+
+      <p className={`${styles.lead} ${styles.leadTight} ${styles.requiredNote}`}>
+        Les champs marqués <span aria-hidden="true">*</span>
+        <span className="sr-only">d&apos;un astérisque</span> sont obligatoires.
+      </p>
 
       {/* Bloc urgence visible */}
       {isUrgenceType ? (
@@ -505,15 +580,30 @@ export default function RequestForm({
           accept="image/*"
           multiple
           className={styles.fileInput}
+          ref={photosInputRef}
           onChange={onPhotosChange}
         />
         <p className={`${styles.lead} ${styles.fileHelp}`}>
           Vous pouvez joindre jusqu&apos;à 5 photos, 8 Mo maximum par fichier.
         </p>
         {selectedPhotos.length > 0 ? (
-          <ul className={styles.fileList}>
-            {selectedPhotos.map((photo) => (
-              <li key={photo}>{photo}</li>
+          <ul className={styles.fileGrid}>
+            {selectedPhotos.map((photo, index) => (
+              <li key={photo.id} className={styles.fileCard}>
+                <img
+                  src={photo.previewUrl}
+                  alt={photo.file.name}
+                  className={styles.filePreview}
+                />
+                <span className={styles.fileName}>{photo.file.name}</span>
+                <button
+                  type="button"
+                  className={styles.fileRemove}
+                  onClick={() => removePhoto(index)}
+                >
+                  Retirer
+                </button>
+              </li>
             ))}
           </ul>
         ) : null}

@@ -1,5 +1,33 @@
 @use "../abstracts/mixins" as *;
 
+.breadcrumb {
+  padding: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+
+  a {
+    color: var(--muted);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .sep {
+    color: var(--muted);
+    user-select: none;
+  }
+
+  .current {
+    color: var(--text);
+  }
+}
+
 .Services__categories {
     display: flex;
     flex-direction: column;

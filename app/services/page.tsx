@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 export const metadata: Metadata = {
   title: "Services | AquaPro-Détect Belgium",
   description:
-    "Découvrez nos services : détection & diagnostic, égouts & canatertreterterlisations, nettoyage & sinistres. Recherche de fuite, inspection caméra, débouchage 24/7, etc.",
+    "Découvrez nos services : détection & diagnostic, égouts & canalisations, nettoyage & sinistres. Recherche de fuite, inspection caméra, débouchage 24/7, etc.",
   alternates: { canonical: "/services/" },
   openGraph: {
     title: "Services | AquaPro-Détect Belgium",

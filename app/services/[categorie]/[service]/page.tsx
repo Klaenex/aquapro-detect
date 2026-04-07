@@ -1,7 +1,9 @@
 import styles from "@/styles/pages/service.module.scss";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SERVICES } from "@/lib/content";
 import { getCategory, getService } from "@/lib/utils";
+import { getPublicSiteUrl } from "@/lib/site";
 import Hero from "@/components/Hero";
 import Methods from "@/components/Methods";
 import Process from "@/components/Process";
@@ -67,9 +69,59 @@ export default async function ServicePage({
 
   if (!category || !service) return <div>Service introuvable.</div>;
 
+  const siteUrl = getPublicSiteUrl();
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Accueil",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${siteUrl}/services/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: category.title,
+        item: `${siteUrl}/services/${categorie}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: service.title,
+        item: `${siteUrl}/services/${categorie}/${serviceSlug}/`,
+      },
+    ],
+  };
+
   return (
     <div style={{ backgroundColor: "var(--bg-lightgrey)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Hero category={category} service={service} />
+
+      <div className="container">
+        <nav aria-label="Fil d'Ariane" className={styles.breadcrumb}>
+          <Link href="/">Accueil</Link>
+          <span className={styles.sep} aria-hidden="true">›</span>
+          <Link href="/services/">Services</Link>
+          <span className={styles.sep} aria-hidden="true">›</span>
+          <Link href={`/services/${categorie}/`}>{category.title}</Link>
+          <span className={styles.sep} aria-hidden="true">›</span>
+          <span className={styles.current} aria-current="page">{service.title}</span>
+        </nav>
+      </div>
 
       <div className={`container ${styles.Services__categories}`}>
         <div className={styles.leftContainer}>

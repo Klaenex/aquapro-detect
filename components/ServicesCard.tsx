@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import styles from "./ServiceCard.module.scss";
 import { Category, Service } from "@/lib/content";
 import { FadeInSection, StaggerDiv, StaggerItemDiv } from "./animations";
+import { MOBILE_QUERY } from "@/lib/breakpoints";
 
 type Props = {
   categories?: Category[] | null;
@@ -24,7 +25,7 @@ export default function ServiceCard({
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia("(max-width: 800px)");
+    const media = window.matchMedia(MOBILE_QUERY);
     const update = () => setIsMobile(media.matches);
     update();
     media.addEventListener("change", update);
@@ -47,6 +48,7 @@ export default function ServiceCard({
                   src={s.imageURL}
                   alt={s.title ?? ""}
                   className={styles.ServiceCard__image}
+                  loading="lazy"
                 />
               </div>
 
@@ -76,6 +78,7 @@ export default function ServiceCard({
                         src={c.imageURL}
                         alt={c.title ?? ""}
                         className={styles.ServiceCard__image}
+                        loading="lazy"
                       />
                     </div>
 

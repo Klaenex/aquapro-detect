@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import logo_horizontal from "@/public/img/aquapro_logo_horizontal.svg";
 import styles from "./Header.module.scss";
 import Nav from "./Nav";
+import { MOBILE_QUERY } from "@/lib/breakpoints";
 
 export default function Header() {
   const [nav, setNav] = useState<"inactive" | "active">("inactive");
@@ -14,7 +15,7 @@ export default function Header() {
   // Helper : garder le breakpoint synchrone avec le CSS (ici 1024px)
   const isMobile = () =>
     typeof window !== "undefined" &&
-    window.matchMedia("(max-width: 800px)").matches;
+    window.matchMedia(MOBILE_QUERY).matches;
 
   function toggleBurger() {
     // Si on est en desktop, ne pas ouvrir/fermer le menu depuis les liens.

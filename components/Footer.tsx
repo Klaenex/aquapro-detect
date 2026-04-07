@@ -40,8 +40,10 @@ export default function Footer() {
                 width={800}
                 height={800}
                 viewBox="0 0 32 32"
+                role="img"
+                aria-label="Adresse"
               >
-                <title>{"pin"}</title>
+                <title>{"Adresse"}</title>
                 <path d="M4 12q0-3.264 1.6-6.016t4.384-4.352T16 0t6.016 1.632T26.4 5.984 28 12q0 1.376-.672 3.2t-1.696 3.68-2.336 3.776-2.56 3.584-2.336 2.944-1.728 2.08L16 32q-.256-.256-.672-.768t-1.696-2.016-2.368-3.008-2.528-3.52-2.368-3.84-1.696-3.616T4 12zm4 0q0 3.328 2.336 5.664T16 20t5.664-2.336T24 12t-2.336-5.632T16 4t-5.664 2.368T8 12z" />
               </svg>
               <p>{CONTACT.address}</p>
@@ -53,7 +55,10 @@ export default function Footer() {
                 width={800}
                 height={800}
                 viewBox="0 0 64 64"
+                role="img"
+                aria-label="Numéro de TVA"
               >
+                <title>{"Numéro de TVA"}</title>
                 <path
                   d="M56 0H8C5.789 0 4 1.789 4 4v56c0 2.211 1.789 4 4 4h20V48h8v16h20c2.211 0 4-1.789 4-4V4c0-2.211-1.789-4-4-4zM28 40h-8v-8h8v8zm0-16h-8v-8h8v8zm16 16h-8v-8h8v8zm0-16h-8v-8h8v8z"
                 />
@@ -67,7 +72,10 @@ export default function Footer() {
                 height={800}
                 fill="none"
                 viewBox="0 0 24 24"
+                role="img"
+                aria-label="Téléphone"
               >
+                <title>{"Téléphone"}</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -86,7 +94,10 @@ export default function Footer() {
                 height={800}
                 fill="none"
                 viewBox="0 0 24 24"
+                role="img"
+                aria-label="Email"
               >
+                <title>{"Email"}</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
