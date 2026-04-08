@@ -13,9 +13,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  border: 1px solid var(--border-lightgrey);
+  border-radius: var(--radius);
+  background: var(--bg);
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.103);
 
   @include md {
-    width: 80%;
+    justify-content: space-between;
   }
 
   div {
@@ -27,23 +32,34 @@
 
   div:nth-of-type(2),
   div:nth-of-type(3) {
-    width: 35%;
+    @include md {
+      width: 45%;
+    }
   }
 
   label {
-    font-weight: bold;
+    display: inline-block;
+    font-size: 0.92rem;
+    font-weight: 650;
+    margin-bottom: 6px;
   }
 
-  input {
-    border: 1px solid var(--border);
-    border-radius: 0.25rem;
-    padding: 0.25rem;
+  input, textarea {
+    width: 100%;
+    border: 1px solid var(--border-lightgrey);
+    border-radius: var(--radius);
+    background: var(--bg-lightgrey);
+    color: var(--text);
+    font-size: 0.98rem;
+    line-height: 1.4;
+    padding: 11px 12px;
+    outline: none;
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
   }
 
   textarea {
-    width: 100%;
-    border: 1px solid var(--border);
-    border-radius: 0.25rem;
     height: 10em;
     @include md {
       height: 16em;

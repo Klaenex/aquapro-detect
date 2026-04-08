@@ -100,23 +100,23 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="name">Nom</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="name" autoComplete="off" required />
         </div>
         <div>
           <label htmlFor="surname">Prénom</label>
-          <input type="text" id="surname" name="surname" required />
+          <input type="text" id="surname" name="surname"  autoComplete="off" required />
         </div>
         <div>
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email"  autoComplete="off" required />
         </div>
         <div>
           <label htmlFor="subject">Objet</label>
-          <input type="text" id="subject" name="subject" required />
+          <input type="text" id="subject" name="subject"  autoComplete="off" required />
         </div>
         <div>
           <label htmlFor="contact">Message</label>
-          <textarea name="comment" id="contact" required></textarea>
+          <textarea name="comment" id="contact"  autoComplete="off" required></textarea>
         </div>
         <button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "ENVOI..." : "SOUMETTRE"}
