@@ -4,7 +4,12 @@ import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import type { ServiceFormType } from "@/lib/content";
 import { CONTACT } from "@/lib/content";
-import { getFormsUrl, getSiteUrl, parseFormsResponse } from "@/lib/forms";
+import {
+  getFormsUrl,
+  getSiteUrl,
+  isFormsSubmissionSuccessful,
+  parseFormsResponse,
+} from "@/lib/forms";
 import styles from "./RequestForm.module.scss";
 
 type Props = {
@@ -267,7 +272,7 @@ export default function RequestForm({
       });
 
       const json = await parseFormsResponse(res);
-      if (!res.ok || !json?.ok)
+      if (!isFormsSubmissionSuccessful(res, json))
         throw new Error(json?.error || "Erreur serveur");
 
       setStatus("ok");

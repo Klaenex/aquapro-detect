@@ -51,6 +51,21 @@ type FormsResponse = {
   error?: string;
 };
 
+export function isFormsSubmissionSuccessful(
+  response: Response,
+  body: FormsResponse | null,
+) {
+  if (!response.ok) {
+    return false;
+  }
+
+  if (body == null) {
+    return true;
+  }
+
+  return body.ok !== false;
+}
+
 export async function parseFormsResponse(
   response: Response,
 ): Promise<FormsResponse | null> {

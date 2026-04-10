@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import styles from "./ContactForm.module.scss";
-import { getFormsUrl, parseFormsResponse } from "@/lib/forms";
+import {
+  getFormsUrl,
+  isFormsSubmissionSuccessful,
+  parseFormsResponse,
+} from "@/lib/forms";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
@@ -53,7 +57,7 @@ export default function ContactForm() {
         body: JSON.stringify(payload),
       });
       const json = await parseFormsResponse(res);
-      if (!res.ok || !json?.ok) {
+      if (!isFormsSubmissionSuccessful(res, json)) {
         throw new Error(json?.error || "Erreur serveur");
       }
 
@@ -115,8 +119,8 @@ export default function ContactForm() {
           <input type="text" id="subject" name="subject" required />
         </div>
         <div>
-          <label htmlFor="contact">Message</label>
-          <textarea name="comment" id="contact" required></textarea>
+          <label htmlFor="contact-message">Message</label>
+          <textarea name="comment" id="contact-message" required></textarea>
         </div>
         <button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "ENVOI..." : "SOUMETTRE"}
