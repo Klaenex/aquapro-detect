@@ -10,6 +10,9 @@ export const metadata = {
   description:
     "AquaPro-Détect Belgium : recherche de fuite, caméra thermique, inspection caméra, débouchage 24/7, test fumigène, détection sonar, entretien et réparation d'égouts, nettoyage fin de bail et après sinistre. Interventions en Belgique.",
   metadataBase: new URL(getPublicSiteUrl()),
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 const localBusinessSchema = {
