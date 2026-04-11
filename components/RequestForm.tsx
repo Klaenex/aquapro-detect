@@ -84,6 +84,8 @@ export default function RequestForm({
   const [selectedPhotos, setSelectedPhotos] = useState<SelectedPhoto[]>([]);
   const photosInputRef = useRef<HTMLInputElement | null>(null);
   const selectedPhotosRef = useRef<SelectedPhoto[]>([]);
+  const [selectedPlan, setSelectedPlan] = useState<File | null>(null);
+  const planInputRef = useRef<HTMLInputElement | null>(null);
 
   const urgenceOptions = useMemo(
     () => urgenceOptionsByType[formType],
@@ -138,6 +140,17 @@ export default function RequestForm({
     });
 
     e.target.value = "";
+  }
+
+  function onPlanChange(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    setSelectedPlan(file);
+    e.target.value = "";
+  }
+
+  function removePlan() {
+    setSelectedPlan(null);
+    if (planInputRef.current) planInputRef.current.value = "";
   }
 
   function removePhoto(indexToRemove: number) {
@@ -243,6 +256,20 @@ export default function RequestForm({
       }
     }
 
+    if (selectedPlan) {
+      const allowedPlanTypes = ["application/pdf", "image/jpeg", "image/png", "image/webp"];
+      if (!allowedPlanTypes.includes(selectedPlan.type)) {
+        setStatus("error");
+        setFeedback("Le plan doit être un fichier PDF, JPG, PNG ou WEBP.");
+        return;
+      }
+      if (selectedPlan.size > 10 * 1024 * 1024) {
+        setStatus("error");
+        setFeedback("Le plan doit faire moins de 10 Mo.");
+        return;
+      }
+    }
+
     try {
       const requestData = new FormData();
       requestData.append(
@@ -266,6 +293,10 @@ export default function RequestForm({
         requestData.append("photos[]", photo, photo.name);
       }
 
+      if (selectedPlan) {
+        requestData.append("plan", selectedPlan, selectedPlan.name);
+      }
+
       const res = await fetch(getFormsUrl("/forms/demande.php"), {
         method: "POST",
         body: requestData,
@@ -280,9 +311,9 @@ export default function RequestForm({
         URL.revokeObjectURL(photo.previewUrl);
       }
       setSelectedPhotos([]);
-      if (photosInputRef.current) {
-        photosInputRef.current.value = "";
-      }
+      if (photosInputRef.current) photosInputRef.current.value = "";
+      setSelectedPlan(null);
+      if (planInputRef.current) planInputRef.current.value = "";
 
       // redirection page Merci (plus pro + mieux pour l’utilisateur)
       window.location.href = getSiteUrl(
@@ -509,6 +540,28 @@ export default function RequestForm({
               </select>
             </div>
           ) : null}
+
+          <div className={styles.mt12}>
+            <label className={styles.label}>Plan des canalisations (facultatif)</label>
+            <input
+              type="file"
+              accept=".pdf,image/*"
+              className={styles.fileInput}
+              ref={planInputRef}
+              onChange={onPlanChange}
+            />
+            <p className={`${styles.lead} ${styles.fileHelp}`}>
+              PDF ou image, 10 Mo maximum. Utile pour guider l&apos;intervention.
+            </p>
+            {selectedPlan ? (
+              <div className={styles.fileCard} style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 8 }}>
+                <span className={styles.fileName}>{selectedPlan.name}</span>
+                <button type="button" className={styles.fileRemove} onClick={removePlan}>
+                  Retirer
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : null}
 

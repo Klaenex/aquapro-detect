@@ -103,7 +103,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$to = "hello@cuozzovincenzo.be";
+$to = "contact@aquapro-detect.be";
 $subject = "Nouveau message de contact — " . $objet;
 
 $lines = [];
@@ -140,7 +140,7 @@ $htmlBody = '<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta na
     . '<div style="margin-top:12px;padding:14px;border:1px solid #d8e1ea;border-radius:10px;background:#f9fbfe;white-space:pre-wrap;line-height:1.5;">' . h($message) . '</div>'
     . '</td></tr></table></td></tr></table></body></html>';
 
-$fromEmail = "hello@cuozzovincenzo.be";
+$fromEmail = "contact@aquapro-detect.be";
 $headers = [];
 $headers[] = "MIME-Version: 1.0";
 $headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";

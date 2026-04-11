@@ -303,8 +303,53 @@ if ($photosError !== null) {
     exit;
 }
 
+// Plan des canalisations (inspection uniquement, 1 fichier, PDF ou image, 10 Mo max)
+$planAttachment = null;
+if (isset($_FILES["plan"]) && ($_FILES["plan"]["error"] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE) {
+    $planFile = $_FILES["plan"];
+    $allowedPlanMimes = ["application/pdf" => "pdf", "image/jpeg" => "jpg", "image/png" => "png", "image/webp" => "webp"];
+    $maxPlanSize = 10 * 1024 * 1024;
+
+    if (($planFile["error"] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK) {
+        http_response_code(400);
+        echo json_encode(["ok" => false, "error" => "Erreur lors de l'envoi du plan."]);
+        exit;
+    }
+    if (($planFile["size"] ?? 0) > $maxPlanSize) {
+        http_response_code(400);
+        echo json_encode(["ok" => false, "error" => "Le plan doit faire moins de 10 Mo."]);
+        exit;
+    }
+    $planTmp = (string)($planFile["tmp_name"] ?? "");
+    if ($planTmp === "" || !is_uploaded_file($planTmp)) {
+        http_response_code(400);
+        echo json_encode(["ok" => false, "error" => "Fichier plan invalide."]);
+        exit;
+    }
+    $finfoPlan = new finfo(FILEINFO_MIME_TYPE);
+    $planMime = $finfoPlan->file($planTmp);
+    if (!isset($allowedPlanMimes[$planMime])) {
+        http_response_code(400);
+        echo json_encode(["ok" => false, "error" => "Le plan doit être un PDF, JPG, PNG ou WEBP."]);
+        exit;
+    }
+    $planContents = @file_get_contents($planTmp);
+    if ($planContents === false) {
+        http_response_code(400);
+        echo json_encode(["ok" => false, "error" => "Impossible de lire le plan envoyé."]);
+        exit;
+    }
+    $planOrigName = trim((string)($planFile["name"] ?? ""));
+    $planSafeName = preg_replace('/[^A-Za-z0-9._-]/', '-', $planOrigName);
+    $planSafeName = trim((string)$planSafeName, "-.");
+    if ($planSafeName === "") {
+        $planSafeName = "plan." . $allowedPlanMimes[$planMime];
+    }
+    $planAttachment = ["name" => $planSafeName, "mime" => $planMime, "content" => $planContents, "size" => (int)($planFile["size"] ?? 0)];
+}
+
 // >>>> DESTINATAIRE : remplace si besoin
-$to = "hello@cuozzovincenzo.be";
+$to = "intervention@aquapro-detect.be";
 
 // Sujet
 $subject = "Nouvelle demande d’intervention — " . $serviceTitle;
@@ -330,6 +375,7 @@ $lines[] = "Adresse : " . $adresse;
 $lines[] = "Disponibilités : " . $disponibilites;
 if ($paiement !== "") $lines[] = "Paiement : " . $paiement;
 if (!empty($photoAttachments)) $lines[] = "Photos jointes : " . count($photoAttachments);
+if ($planAttachment !== null) $lines[] = "Plan joint : " . $planAttachment["name"];
 
 $lines[] = "";
 $lines[] = "CONTACT";
@@ -379,7 +425,8 @@ if ($etage !== "") $html[] = '<p style="margin:0 0 8px;"><strong>Étage :</stron
 $html[] = '<p style="margin:0 0 8px;"><strong>Adresse :</strong> ' . h($adresse) . '</p>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Disponibilités :</strong> ' . h($disponibilites) . '</p>';
 if ($paiement !== "") $html[] = '<p style="margin:0 0 16px;"><strong>Paiement :</strong> ' . h($paiement) . '</p>';
-if (!empty($photoAttachments)) $html[] = '<p style="margin:0 0 16px;"><strong>Photos jointes :</strong> ' . count($photoAttachments) . '</p>';
+if (!empty($photoAttachments)) $html[] = '<p style="margin:0 0 8px;"><strong>Photos jointes :</strong> ' . count($photoAttachments) . '</p>';
+if ($planAttachment !== null) $html[] = '<p style="margin:0 0 16px;"><strong>Plan joint :</strong> ' . h($planAttachment["name"]) . '</p>';
 $html[] = '<h2 style="margin:0 0 10px;font-size:16px;">Contact</h2>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Nom :</strong> ' . h($nom) . '</p>';
 $html[] = '<p style="margin:0 0 8px;"><strong>Téléphone :</strong> ' . h($telephone) . '</p>';
@@ -402,14 +449,16 @@ $html[] = '</td></tr></table></td></tr></table></body></html>';
 $htmlBody = implode("", $html);
 
 // Headers
-$fromEmail = "hello@cuozzovincenzo.be";
+$fromEmail = "intervention@aquapro-detect.be";
 $headers = [];
 $headers[] = "MIME-Version: 1.0";
 $headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";
 $headers[] = "Reply-To: " . $email;
 $headers[] = "Content-Type: text/html; charset=utf-8";
 
-$result = send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $photoAttachments);
+$allAttachments = $photoAttachments ?? [];
+if ($planAttachment !== null) $allAttachments[] = $planAttachment;
+$result = send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $allAttachments);
 
 if (!$result["ok"]) {
     http_response_code(500);
