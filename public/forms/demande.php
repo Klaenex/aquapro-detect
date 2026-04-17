@@ -303,7 +303,7 @@ if ($photosError !== null) {
     exit;
 }
 
-// Plan des canalisations (inspection uniquement, 1 fichier, PDF ou image, 10 Mo max)
+// Plan de la maison (inspection uniquement, 1 fichier, PDF ou image, 10 Mo max)
 $planAttachment = null;
 if (isset($_FILES["plan"]) && ($_FILES["plan"]["error"] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_NO_FILE) {
     $planFile = $_FILES["plan"];

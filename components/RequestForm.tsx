@@ -542,7 +542,7 @@ export default function RequestForm({
           ) : null}
 
           <div className={styles.mt12}>
-            <label className={styles.label}>Plan des canalisations (facultatif)</label>
+            <label className={styles.label}>Plan de la maison (facultatif)</label>
             <input
               type="file"
               accept=".pdf,image/*"
