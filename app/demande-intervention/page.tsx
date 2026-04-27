@@ -91,6 +91,7 @@ export default function RequestPage() {
           <RequestForm
             serviceTitle={service.title}
             serviceCategory={defaultCategory.title}
+            serviceSlug={service.slug}
             formType={service.formType}
           />
         </section>

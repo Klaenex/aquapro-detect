@@ -18,7 +18,7 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /projets/aquapro-detect/
+  RewriteBase /
 
   # Never rewrite static assets or form handlers.
   RewriteRule ^(_next/|img/|forms/|favicon\.ico$|sitemap\.xml$|robot\.txt$) - [L]

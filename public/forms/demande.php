@@ -1,8 +1,18 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+
+$_allowedOrigins = [
+    'https://aquapro-detect.be',
+    'https://www.aquapro-detect.be',
+
+];
+$_origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+header('Access-Control-Allow-Origin: ' . (in_array($_origin, $_allowedOrigins, true) ? $_origin : 'https://aquapro-detect.be'));
+header('Vary: Origin');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
+
+require_once __DIR__ . '/mailer.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
@@ -119,105 +129,73 @@ function collect_photo_attachments($field)
 
 function send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $attachments = [])
 {
-    $mode = strtolower((string)(getenv("MAIL_MODE") ?: "send"));
+    $message = mailer_compose_message($textBody, $htmlBody, $headers, $attachments);
+    $ok = deliver_mail($to, $subject, $message["body"], implode("\r\n", $message["headers"]));
+    return [
+        "ok" => $ok,
+        "transport" => mailer_last_transport(),
+    ];
+}
 
-    if ($mode === "file") {
-        $root = dirname(__DIR__, 2);
-        $dir = $root . DIRECTORY_SEPARATOR . "tmp" . DIRECTORY_SEPARATOR . "mails";
-        if (!is_dir($dir)) {
-            @mkdir($dir, 0775, true);
-        }
+function send_customer_confirmation($email, $nom, $serviceTitle, $adresse, $submittedDate, $submittedTime, $fromEmail)
+{
+    $confirmationSubject = "Votre demande d’intervention a bien été prise en compte";
+    $confirmationTextLines = [];
+    $confirmationTextLines[] = "Bonjour " . $nom . ",";
+    $confirmationTextLines[] = "";
+    $confirmationTextLines[] = "Nous vous confirmons la bonne réception de votre demande d’intervention.";
+    $confirmationTextLines[] = "Elle a bien été prise en compte et sera traitée dans les plus brefs délais.";
+    $confirmationTextLines[] = "";
+    $confirmationTextLines[] = "Service : " . $serviceTitle;
+    if ($adresse !== "") $confirmationTextLines[] = "Adresse : " . $adresse;
+    if ($submittedDate !== "") $confirmationTextLines[] = "Date : " . $submittedDate;
+    if ($submittedTime !== "") $confirmationTextLines[] = "Heure : " . $submittedTime;
+    $confirmationTextLines[] = "";
+    $confirmationTextLines[] = "Si vous devez ajouter une précision, vous pouvez répondre à cet email ou nous contacter directement.";
+    $confirmationTextLines[] = "";
+    $confirmationTextLines[] = "AquaPro-Détect";
+    $confirmationTextBody = implode("\n", $confirmationTextLines);
 
-        $base = "demande-" . date("Ymd-His") . "-" . bin2hex(random_bytes(4));
-        $textPath = $dir . DIRECTORY_SEPARATOR . $base . ".txt";
-        $htmlPath = $dir . DIRECTORY_SEPARATOR . $base . ".html";
-        $attachmentsDir = $dir . DIRECTORY_SEPARATOR . $base . "-attachments";
-        $content = "TO: " . $to . "\n"
-            . "SUBJECT: " . $subject . "\n"
-            . "HEADERS:\n" . implode("\n", $headers) . "\n\n"
-            . $textBody . "\n";
+    $confirmationHtml = [];
+    $confirmationHtml[] = '<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>' . h($confirmationSubject) . '</title></head><body style="margin:0;background:#f4f7fb;font-family:Arial,sans-serif;color:#122033;">';
+    $confirmationHtml[] = '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="padding:24px 12px;"><tr><td align="center">';
+    $confirmationHtml[] = '<table role="presentation" width="640" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #d8e1ea;">';
+    $confirmationHtml[] = '<tr><td style="background:#0a5b8c;color:#ffffff;padding:16px 20px;font-size:20px;font-weight:700;">Demande d’intervention reçue</td></tr>';
+    $confirmationHtml[] = '<tr><td style="padding:20px;line-height:1.6;">';
+    $confirmationHtml[] = '<p style="margin:0 0 12px;">Bonjour ' . h($nom) . ',</p>';
+    $confirmationHtml[] = '<p style="margin:0 0 12px;">Nous vous confirmons la bonne réception de votre demande d’intervention.</p>';
+    $confirmationHtml[] = '<p style="margin:0 0 18px;">Elle a bien été prise en compte et sera traitée dans les plus brefs délais.</p>';
+    $confirmationHtml[] = '<div style="margin:0 0 18px;padding:14px;border:1px solid #d8e1ea;border-radius:10px;background:#f9fbfe;">';
+    $confirmationHtml[] = '<p style="margin:0 0 8px;"><strong>Service :</strong> ' . h($serviceTitle) . '</p>';
+    if ($adresse !== "") $confirmationHtml[] = '<p style="margin:0 0 8px;"><strong>Adresse :</strong> ' . h($adresse) . '</p>';
+    if ($submittedDate !== "") $confirmationHtml[] = '<p style="margin:0 0 8px;"><strong>Date :</strong> ' . h($submittedDate) . '</p>';
+    if ($submittedTime !== "") $confirmationHtml[] = '<p style="margin:0;"><strong>Heure :</strong> ' . h($submittedTime) . '</p>';
+    $confirmationHtml[] = '</div>';
+    $confirmationHtml[] = '<p style="margin:0 0 12px;">Si vous devez ajouter une précision, vous pouvez répondre à cet email ou nous contacter directement.</p>';
+    $confirmationHtml[] = '<p style="margin:0;">AquaPro-Détect</p>';
+    $confirmationHtml[] = '</td></tr></table></td></tr></table></body></html>';
+    $confirmationHtmlBody = implode("", $confirmationHtml);
 
-        $htmlContent = "<!-- TO: " . h($to) . " | SUBJECT: " . h($subject) . " -->\n" . $htmlBody;
+    $confirmationHeaders = [];
+    $confirmationHeaders[] = "MIME-Version: 1.0";
+    $confirmationHeaders[] = mailer_address_header("From", $fromEmail, "AquaPro-Détect");
+    $confirmationHeaders[] = mailer_address_header("Reply-To", $fromEmail);
+    $confirmationHeaders[] = "Content-Type: text/html; charset=utf-8";
 
-        $okText = @file_put_contents($textPath, $content);
-        $okHtml = @file_put_contents($htmlPath, $htmlContent);
-        $okAttachments = true;
+    $result = send_or_store_mail(
+        $email,
+        $confirmationSubject,
+        $confirmationTextBody,
+        $confirmationHtmlBody,
+        $confirmationHeaders
+    );
 
-        if (!empty($attachments)) {
-            if (!is_dir($attachmentsDir)) {
-                @mkdir($attachmentsDir, 0775, true);
-            }
-
-            foreach ($attachments as $attachment) {
-                $saved = @file_put_contents(
-                    $attachmentsDir . DIRECTORY_SEPARATOR . $attachment["name"],
-                    $attachment["content"]
-                );
-                if ($saved === false) {
-                    $okAttachments = false;
-                    break;
-                }
-            }
-        }
-
-        return [
-            "ok" => $okText !== false && $okHtml !== false && $okAttachments,
-            "mode" => "file",
-            "path" => $textPath,
-            "htmlPath" => $htmlPath
-        ];
-    }
-
-    $finalHeaders = $headers;
-    $messageBody = $htmlBody;
-
-    if (!empty($attachments)) {
-        $mixedBoundary = "mix-" . bin2hex(random_bytes(12));
-        $htmlBoundary = "alt-" . bin2hex(random_bytes(12));
-
-        $finalHeaders = array_values(array_filter(
-            $headers,
-            function ($header) {
-                return stripos($header, "Content-Type:") !== 0;
-            }
-        ));
-        $finalHeaders[] = 'Content-Type: multipart/mixed; boundary="' . $mixedBoundary . '"';
-
-        $parts = [];
-        $parts[] = "--" . $mixedBoundary;
-        $parts[] = 'Content-Type: multipart/alternative; boundary="' . $htmlBoundary . '"';
-        $parts[] = "";
-        $parts[] = "--" . $htmlBoundary;
-        $parts[] = 'Content-Type: text/plain; charset="utf-8"';
-        $parts[] = "Content-Transfer-Encoding: 8bit";
-        $parts[] = "";
-        $parts[] = $textBody;
-        $parts[] = "";
-        $parts[] = "--" . $htmlBoundary;
-        $parts[] = 'Content-Type: text/html; charset="utf-8"';
-        $parts[] = "Content-Transfer-Encoding: 8bit";
-        $parts[] = "";
-        $parts[] = $htmlBody;
-        $parts[] = "";
-        $parts[] = "--" . $htmlBoundary . "--";
-
-        foreach ($attachments as $attachment) {
-            $parts[] = "";
-            $parts[] = "--" . $mixedBoundary;
-            $parts[] = 'Content-Type: ' . $attachment["mime"] . '; name="' . $attachment["name"] . '"';
-            $parts[] = 'Content-Disposition: attachment; filename="' . $attachment["name"] . '"';
-            $parts[] = "Content-Transfer-Encoding: base64";
-            $parts[] = "";
-            $parts[] = chunk_split(base64_encode($attachment["content"]));
-        }
-
-        $parts[] = "--" . $mixedBoundary . "--";
-        $parts[] = "";
-        $messageBody = implode("\r\n", $parts);
-    }
-
-    $ok = @mail($to, $subject, $messageBody, implode("\r\n", $finalHeaders));
-    return ["ok" => $ok, "mode" => "send"];
+    return [
+        "ok" => $result["ok"] ?? false,
+        "transport" => $result["transport"] ?? null,
+        "detail" => mailer_last_error(),
+        "subject" => $confirmationSubject,
+    ];
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -348,8 +326,11 @@ if (isset($_FILES["plan"]) && ($_FILES["plan"]["error"] ?? UPLOAD_ERR_NO_FILE) !
     $planAttachment = ["name" => $planSafeName, "mime" => $planMime, "content" => $planContents, "size" => (int)($planFile["size"] ?? 0)];
 }
 
-// >>>> DESTINATAIRE : remplace si besoin
-$to = "intervention@aquapro-detect.be";
+// Destinataire configurable. Par défaut, les demandes partent vers la boîte
+// d'intervention.
+$to = getenv("FORM_TO_INTERVENTION")
+    ?: getenv("MAIL_TO_INTERVENTION")
+    ?: "intervention@aquapro-detect.be";
 
 // Sujet
 $subject = "Nouvelle demande d’intervention — " . $serviceTitle;
@@ -449,26 +430,58 @@ $html[] = '</td></tr></table></td></tr></table></body></html>';
 $htmlBody = implode("", $html);
 
 // Headers
-$fromEmail = "intervention@aquapro-detect.be";
+$internalFromEmail = getenv("MAIL_FROM_INTERVENTION")
+    ?: getenv("MAIL_FROM")
+    ?: "intervention@aquapro-detect.be";
 $headers = [];
 $headers[] = "MIME-Version: 1.0";
-$headers[] = "From: AquaPro-Détect <" . $fromEmail . ">";
-$headers[] = "Reply-To: " . $email;
+$headers[] = mailer_address_header("From", $internalFromEmail, "AquaPro-Détect");
+$headers[] = mailer_address_header("Reply-To", $email);
 $headers[] = "Content-Type: text/html; charset=utf-8";
 
 $allAttachments = $photoAttachments ?? [];
 if ($planAttachment !== null) $allAttachments[] = $planAttachment;
+
 $result = send_or_store_mail($to, $subject, $textBody, $htmlBody, $headers, $allAttachments);
 
 if (!$result["ok"]) {
+    error_log("AquaPro demande form: deliver_mail failed for recipient " . $to);
     http_response_code(500);
-    echo json_encode(["ok" => false, "error" => "Échec envoi email"]);
+    echo json_encode([
+        "ok" => false,
+        "error" => "Échec envoi email",
+        "transport" => $result["transport"] ?? null,
+        "detail" => mailer_last_error(),
+    ]);
     exit;
+}
+
+$confirmationFromEmail = getenv("MAIL_FROM_INTERVENTION")
+    ?: getenv("MAIL_FROM")
+    ?: "intervention@aquapro-detect.be";
+
+$confirmation = send_customer_confirmation(
+    $email,
+    $nom,
+    $serviceTitle,
+    $adresse,
+    $submittedDate,
+    $submittedTime,
+    $confirmationFromEmail
+);
+
+if (!$confirmation["ok"]) {
+    error_log(
+        "AquaPro demande form: confirmation email failed for client "
+            . $email
+            . " — "
+            . ($confirmation["detail"] ?? "Erreur inconnue")
+    );
 }
 
 echo json_encode([
     "ok" => true,
-    "mode" => $result["mode"],
-    "savedTo" => $result["path"] ?? null,
-    "savedHtmlTo" => $result["htmlPath"] ?? null
+    "transport" => $result["transport"] ?? null,
+    "confirmationSent" => $confirmation["ok"],
+    "confirmationTransport" => $confirmation["transport"] ?? null,
 ]);

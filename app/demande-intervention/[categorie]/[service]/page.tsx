@@ -120,6 +120,7 @@ export default async function RequestServicePage({
             <RequestForm
               serviceTitle={service.title}
               serviceCategory={category.title}
+              serviceSlug={service.slug}
               formType={service.formType}
             />
           </div>

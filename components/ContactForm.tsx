@@ -19,7 +19,8 @@ export default function ContactForm() {
     setStatus("loading");
     setFeedback("");
 
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const hp = String(fd.get("website") || "");
     if (hp.trim().length > 0) {
       setStatus("ok");
@@ -63,11 +64,13 @@ export default function ContactForm() {
 
       setStatus("ok");
       setFeedback("Merci, votre message a bien été envoyé.");
-      e.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (error) {
       setStatus("error");
       setFeedback(
-        "Désolé, l’envoi a échoué. Veuillez réessayer ou nous appeler."
+        error instanceof Error && error.message
+          ? error.message
+          : "Désolé, l’envoi a échoué. Veuillez réessayer ou nous appeler."
       );
     }
   }
@@ -92,7 +95,7 @@ export default function ContactForm() {
       <motion.form
         onSubmit={onSubmit}
         className={styles.form}
-        id="contact"
+        id="contact-form"
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
@@ -119,8 +122,13 @@ export default function ContactForm() {
           <input type="text" id="subject" name="subject"  autoComplete="off" required />
         </div>
         <div>
-          <label htmlFor="contact">Message</label>
-          <textarea name="comment" id="contact"  autoComplete="off" required></textarea>
+          <label htmlFor="contact-message">Message</label>
+          <textarea
+            name="comment"
+            id="contact-message"
+            autoComplete="off"
+            required
+          ></textarea>
         </div>
         <button type="submit" disabled={status === "loading"}>
           {status === "loading" ? "ENVOI..." : "SOUMETTRE"}
