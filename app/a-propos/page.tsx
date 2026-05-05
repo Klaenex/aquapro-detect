@@ -5,14 +5,21 @@ import styles from "./AboutPage.module.scss";
 export const metadata: Metadata = {
   title: "À propos | AquaPro-Détect Belgium",
   description:
-    "AquaPro-Détect Belgium : expérience, sérieux, transparence. Interventions soignées et recommandations concrètes.",
+    "AquaPro-Détect Belgium : plus de 15 ans d’expérience, sérieux et transparence. Interventions soignées, tarifs clairs et recommandations concrètes.",
   alternates: { canonical: "/a-propos/" },
   openGraph: {
     title: "À propos | AquaPro-Détect Belgium",
     description:
-      "Expérience, sérieux, tarifs annoncés à l’avance et interventions soignées.",
+      "Plus de 15 ans d’expérience, tarifs annoncés à l’avance et interventions soignées partout en Belgique.",
     url: "/a-propos/",
     type: "website",
+    images: [{ url: "/img/stock/detection-diagnostic.webp", alt: "À propos de AquaPro-Détect Belgium" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "À propos | AquaPro-Détect Belgium",
+    description: "Plus de 15 ans d’expérience en détection de fuites et égouts en Belgique.",
+    images: ["/img/stock/detection-diagnostic.webp"],
   },
 };
 

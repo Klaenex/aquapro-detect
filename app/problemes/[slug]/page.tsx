@@ -40,6 +40,13 @@ export async function generateMetadata({
       description,
       type: "article",
       url: `/problemes/${slug}/`,
+      images: [{ url: "/img/stock/detection-diagnostic.webp", alt: problem.title }],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images: ["/img/stock/detection-diagnostic.webp"],
     },
   };
 }

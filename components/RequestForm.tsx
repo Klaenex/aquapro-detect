@@ -164,7 +164,17 @@ export default function RequestForm({
   }, []);
 
   function onPhoneChange(e: ChangeEvent<HTMLInputElement>) {
-    const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+    const raw = e.target.value.trim();
+    // Keep + for prefix detection, strip everything else non-digit
+    let cleaned = raw.replace(/[^\d+]/g, "");
+    if (cleaned.startsWith("+32")) {
+      cleaned = "0" + cleaned.slice(3).replace(/\D/g, "");
+    } else if (cleaned.startsWith("0032")) {
+      cleaned = "0" + cleaned.slice(4);
+    } else {
+      cleaned = cleaned.replace(/\D/g, "");
+    }
+    const digits = cleaned.slice(0, 10);
     let formatted = digits;
     if (digits.length > 4)
       formatted = `${digits.slice(0, 4)} ${digits.slice(4)}`;
@@ -370,7 +380,12 @@ export default function RequestForm({
       return;
     }
 
-    const normalizedPhone = payload.telephone.replace(/[\s\-\.\/]/g, "");
+    let normalizedPhone = payload.telephone.replace(/[\s\-\.\/\(\)]/g, "");
+    if (normalizedPhone.startsWith("+32")) {
+      normalizedPhone = "0" + normalizedPhone.slice(3);
+    } else if (normalizedPhone.startsWith("0032")) {
+      normalizedPhone = "0" + normalizedPhone.slice(4);
+    }
     if (!/^0\d{8,9}$/.test(normalizedPhone)) {
       setStatus("error");
       setFeedback(

@@ -1,7 +1,7 @@
 import styles from "@/styles/pages/service.module.scss";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SERVICES } from "@/lib/content";
+import { SERVICES, CONTACT } from "@/lib/content";
 import { getCategory, getService } from "@/lib/utils";
 import { getPublicSiteUrl } from "@/lib/site";
 import Hero from "@/components/Hero";
@@ -53,6 +53,13 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `/services/${categorie}/${serviceSlug}/`,
+      images: [{ url: service.imageURL, alt: service.title }],
+    },
+    twitter: {
+      card: "summary_large_image" as const,
+      title,
+      description,
+      images: [service.imageURL],
     },
   };
 }
@@ -70,6 +77,23 @@ export default async function ServicePage({
   if (!category || !service) return <div>Service introuvable.</div>;
 
   const siteUrl = getPublicSiteUrl();
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.excerptLong || service.excerpt,
+    image: `${siteUrl}${service.imageURL}`,
+    url: `${siteUrl}/services/${categorie}/${serviceSlug}/`,
+    provider: {
+      "@type": "LocalBusiness",
+      name: CONTACT.brand,
+      telephone: CONTACT.phone1,
+      url: siteUrl,
+    },
+    areaServed: { "@type": "Country", name: "Belgique" },
+    serviceType: category.title,
+  };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -104,6 +128,10 @@ export default async function ServicePage({
 
   return (
     <div style={{ backgroundColor: "var(--bg-lightgrey)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

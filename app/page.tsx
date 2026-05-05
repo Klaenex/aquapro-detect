@@ -6,16 +6,24 @@ import WhyAqua from "@/components/WhyAqua";
 import ServiceCard from "@/components/ServicesCard";
 
 export const metadata: Metadata = {
-  title: "AquaPro-Détect Belgium | Détection, égouts, débouchage, nettoyage",
+  title: "AquaPro-Détect Belgium | Détection de fuite, égouts, débouchage",
   description:
-    "AquaPro-Détect Belgium : recherche de fuite, caméra thermique, test fumigène, détection sonar, inspection caméra, débouchage 24/7, entretien et réparation d’égouts, nettoyage fin de bail et après sinistre.",
+    "Recherche de fuite, caméra thermique, test fumigène, détection sonar, inspection caméra, débouchage 24/7, entretien d’égouts et nettoyage après sinistre en Belgique.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "AquaPro-Détect Belgium",
+    title: "AquaPro-Détect Belgium | Détection de fuite, égouts, débouchage",
     description:
-      "Recherche de fuite, inspection caméra, débouchage 24/7, caméra thermique, test fumigène, détection sonar, nettoyage et sinistres.",
+      "Recherche de fuite, inspection caméra, débouchage 24/7, caméra thermique, test fumigène, détection sonar, nettoyage et sinistres en Belgique.",
     url: "/",
     type: "website",
+    images: [{ url: "/img/stock/detection-diagnostic.webp", alt: "AquaPro-Détect Belgium" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AquaPro-Détect Belgium | Détection de fuite, égouts, débouchage",
+    description:
+      "Recherche de fuite, inspection caméra, débouchage 24/7 et nettoyage après sinistre en Belgique.",
+    images: ["/img/stock/detection-diagnostic.webp"],
   },
 };
 

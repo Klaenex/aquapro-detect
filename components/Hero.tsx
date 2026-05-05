@@ -72,10 +72,10 @@ export default function Hero({ category, service }: Props) {
             </>
           ) : (
             <>
-              <h2 className={styles.title}>
+              <h1 className={styles.title}>
                 {HERO.title[0]}
                 <span className={styles.highlight}>{HERO.title[1]}</span>
-              </h2>
+              </h1>
               <p className={styles.paragraph}>{HERO.first_paragraph}</p>
               <p className={styles.paragraph}>{HERO.second_paragraph}</p>
             </>

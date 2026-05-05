@@ -7,16 +7,23 @@ import { getService, getServiceUrl } from "@/lib/utils";
 import styles from "./ProblemsPage.module.scss";
 
 export const metadata: Metadata = {
-  title: "Problèmes | AquaPro-Détect Belgium",
+  title: "Problèmes fréquents | AquaPro-Détect Belgium",
   description:
-    "Odeurs d’égout, humidité & moisissures, fissures & stabilité : trouvez le bon service (inspection caméra, test fumigène, recherche de fuite…).",
+    "Odeurs d’égout, humidité, moisissures, fissures : identifiez votre problème et trouvez le bon service (inspection caméra, test fumigène, recherche de fuite…).",
   alternates: { canonical: "/problemes/" },
   openGraph: {
-    title: "Problèmes | AquaPro-Détect Belgium",
+    title: "Problèmes fréquents | AquaPro-Détect Belgium",
     description:
-      "Pages orientées client : on part du symptôme pour vous guider vers le bon service.",
+      "Partez du symptôme — odeurs, humidité, fissures — et trouvez le bon service d’intervention en Belgique.",
     url: "/problemes/",
     type: "website",
+    images: [{ url: "/img/stock/detection-diagnostic.webp", alt: "Problèmes fréquents AquaPro-Détect Belgium" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Problèmes fréquents | AquaPro-Détect Belgium",
+    description: "Odeurs, humidité, fissures : trouvez le bon service d’intervention.",
+    images: ["/img/stock/detection-diagnostic.webp"],
   },
 };
 

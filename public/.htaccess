@@ -21,7 +21,7 @@ DirectoryIndex index.html
   RewriteBase /
 
   # Never rewrite static assets or form handlers.
-  RewriteRule ^(_next/|img/|forms/|favicon\.ico$|sitemap\.xml$|robot\.txt$) - [L]
+  RewriteRule ^(_next/|img/|forms/|favicon\.ico$|sitemap\.xml$|robots\.txt$|favicon\.png$) - [L]
 
   # Serve existing files and directories directly.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
